@@ -1,0 +1,72 @@
+
+<!-- saved from url=(0035)http://127.0.0.1:5500/frontend.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
+    <style>
+        .container {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .metrics {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .metric {
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .chart-container {
+            width: 100%;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .bar {
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            border-radius: 5px;
+        }
+        .reviewed {
+            width: 0%;
+            background-color: #4CAF50; /* Green */
+        }
+        .not-reviewed {
+            width: 100%;
+            background-color: #f44336; /* Red */
+        }
+        .conclusion {
+            font-size: 16px;
+            font-style: italic;
+        }
+    </style>
+    <div class="container">
+        <div class="header">Agent Insights Review Status</div>
+        <div class="metrics">
+            <div class="metric">
+                <div>Reviewed</div>
+                <div class="metric-value">0%</div>
+            </div>
+            <div class="metric">
+                <div>Not Reviewed</div>
+                <div class="metric-value">100%</div>
+            </div>
+        </div>
+        <div class="chart-container">
+            <div class="bar reviewed" style="width: 0%;"></div>
+            <div class="bar not-reviewed" style="width: 100%;">100% Not Reviewed</div>
+        </div>
+        <div class="conclusion">
+            <p>All agent insights are currently unreviewed.</p>
+        </div>
+    </div>
+</body></html>

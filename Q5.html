@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)http://127.0.0.1:5500/frontend.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>DB Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef1f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chat-container {
+            width: 80%;
+            height: 70%;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: #4a77f7;
+            padding: 16px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .chat-box {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            background: #f7f9fc;
+        }
+
+        .msg {
+            margin-bottom: 12px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            max-width: 80%;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+
+        .user-msg {
+            background: #4a77f7;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+
+        .bot-msg {
+            background: #e5e7eb;
+            color: #111;
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+
+        .chat-input-area {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+        }
+
+        button {
+            padding: 0 18px;
+            background: #4a77f7;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: #3b63d6;
+        }
+
+        .request-block {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="chat-container">
+        <style>
+            .chat-header {
+                background-color: #4a77f7;
+                color: #ffffff;
+                padding: 12px 20px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 18px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                display: inline-block;
+            }
+            
+            .chat-header .assistant-name {
+                color: #f48a26; /* Highlight color for DB Assistant */
+                font-weight: bold;
+                font-size: 20px;
+                margin-right: 6px;
+            }
+            </style>
+            
+            <div class="chat-header">
+                <span class="assistant-name">DB Assistant</span> - Remember, even humans make mistakes !
+            </div>
+            
+
+        <div class="chat-box" id="chatBox"><div class="request-block"><div class="msg user-msg">How much percentage of agent insights are reviewed and how many are not?</div><div class="msg bot-msg"><b>Agent Steps:</b><br><div>
+                            <div><b>🔧 Step 1 — Calling tool: bigquery_list_tables</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{}</pre>
+                            </details>
+
+                            <div id="tool-output-fd30119205a945598956e5ed2e349488">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>agent_insights: No description available.
+available_columns: No description available.
+catalog: No description available.
+data_dictionary: No description available.
+dim_employees: No description available.
+dlpwork: No description available.
+fact_assets: No description available.
+insight_computation: No description available.
+insights: No description available.
+insights_computation: No description available.
+intune_assets: Intune Asset Inventory snapshot of devices managed via MDM. 
+itglue_assets: IT Glue Asset Inventory snapshot of Apple devices (macOS, iOS/iPadOS, tvOS) managed via MDM. 
+itglue_consumables: Inventory of IT Glue consumables (e.g., toner, cables, peripherals) with vendor/PO details, cost/quantity.
+metadata_summary: No description available.
+missed_insights: No description available.
+mosyle_assets: Mosyle Asset Inventory snapshot of Apple devices (macOS, iOS/iPadOS, tvOS) managed via MDM.
+profiling: No description available.
+profiling_summary: No description available.
+quality: No description available.
+quality_summary: No description available.
+workday_employees: Employee snapshot dataset, one row per employee.</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 2 — Calling tool: bigquery_get_schema</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "table_names": [
+    "agent_insights"
+  ]
+}</pre>
+                            </details>
+
+                            <div id="tool-output-ef27e68e9dad4af6a8ea52f0fc0cfddf">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>
+Table: agent_insights
+Schema:
+insight_id (STRING) - No description available.
+insight_title (STRING) - No description available.
+description (STRING) - No description available.
+table_name (STRING) - No description available.
+required_columns (STRING) - No description available.
+insight_type (STRING) - No description available.
+insight_src (STRING) - No description available.
+data_source_type (STRING) - No description available.
+rendered_sql (STRING) - No description available.
+is_insight_possible (BOOLEAN) - No description available.
+ingestion_timestamp (TIMESTAMP) - No description available.
+ingestion_date (DATE) - No description available.
+is_reviewed (BOOLEAN) - No description available.
+
+Sample Rows:
+[{'insight_id': 'f15eca0d-370e-40f3-a052-eaffa59dd9b7', 'insight_title': 'Ghost Assets Not Seen for Months', 'description': "Numerous devices have not checked into the management system for over 90 days but are still marked as active. These 'ghost' assets may be lost, stolen, or unused, yet they represent unrecovered costs and a potential security liability.", 'table_name': 'intune_assets, mosyle_assets', 'required_columns': 'intune_assets.last_check_in_timestamp, intune_assets.asset_state, mosyle_assets.last_check_in_timestamp', 'insight_type': 'Usage Anomaly', 'insight_src': 'planning_agent', 'data_source_type': 'bigquery', 'rendered_sql': 'WITH ghost_assets AS (\n    SELECT\n        asset_id,\n        asset_name,\n        user_name,\n        last_check_in_timestamp,\n        asset_state AS status,\n        \'Intune\' AS source_system\n    FROM\n        `ipdevelopment-dev-p01.astreya.intune_assets`\n    WHERE\n        asset_state = \'Active\'\n        AND last_check_in_timestamp &lt; TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 90 DAY)\n\n    UNION ALL\n\n    SELECT\n        serial_number AS asset_id,\n        asset_name,\n        user_id AS user_name,\n        last_check_in_timestamp,\n        mdm_status AS status,\n        \'Mosyle\' AS source_system\n    FROM\n        `ipdevelopment-dev-p01.astreya.mosyle_assets`\n    WHERE\n        -- Assuming devices in Mosyle are considered active if they exist in the table.\n        -- Filtering out any explicit "lost" status if applicable.\n        lost_mode_enabled IS FALSE\n        AND last_check_in_timestamp &lt; TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 90 DAY)\n)\nSELECT\n    source_system,\n    asset_id,\n    asset_name,\n    user_name,\n    status,\n    last_check_in_timestamp,\n    DATE_DIFF(CURRENT_DATE(), DATE(last_check_in_timestamp), DAY) AS days_since_last_check_in\nFROM\n    ghost_assets\nORDER BY\n    days_since_last_check_in DESC;', 'is_insight_possible': True, 'ingestion_timestamp': datetime.datetime(2025, 11, 12, 8, 31, 24, 393769, tzinfo=datetime.timezone.utc), 'ingestion_date': datetime.date(2025, 11, 12), 'is_reviewed': None}, {'insight_id': '87916cee-0a7e-444a-bae8-f7f3ada98ebe', 'insight_title': 'Corporate Devices Missing Basic Security Controls', 'description': 'Multiple company-owned Apple devices are operating without a passcode enabled or full supervision by IT. This violates security policy and exposes corporate data to significant risk if a device is lost or stolen.', 'table_name': 'mosyle_assets', 'required_columns': 'mosyle_assets.passcode_enabled, mosyle_assets.is_supervised, mosyle_assets.asset_name', 'insight_type': 'Policy Violation', 'insight_src': 'planning_agent', 'data_source_type': 'bigquery', 'rendered_sql': 'SELECT\n    t1.asset_name,\n    t1.passcode_enabled,\n    t1.is_supervised\n  FROM\n    `ipdevelopment-dev-p01.astreya.mosyle_assets` AS t1\n  WHERE t1.passcode_enabled = FALSE OR t1.is_supervised = FALSE', 'is_insight_possible': True, 'ingestion_timestamp': datetime.datetime(2025, 11, 12, 8, 31, 24, 393769, tzinfo=datetime.timezone.utc), 'ingestion_date': datetime.date(2025, 11, 12), 'is_reviewed': None}, {'insight_id': '613af58a-f1ef-45c5-83f1-b4975dd9a2ae', 'insight_title': 'Idle Assets Assigned to Employees on Leave', 'description': "Assets assigned to 70+ employees currently on extended leave (status 'On Leave') have not been used in over 30 days. These devices can be temporarily re-harvested and redeployed, avoiding the cost of purchasing new hardware for other needs.", 'table_name': 'workday_employees, intune_assets, mosyle_assets', 'required_columns': 'workday_employees.worker_status, intune_assets.last_check_in_timestamp, mosyle_assets.last_check_in_timestamp', 'insight_type': 'Resource Efficiency', 'insight_src': 'planning_agent', 'data_source_type': 'bigquery', 'rendered_sql': "SELECT\n  w.employee_id,\n  w.first_name,\n  w.last_name,\n  w.worker_status,\n  'intune_assets' AS asset_source_table,\n  i.asset_id,\n  i.asset_name,\n  i.serial_number,\n  i.last_check_in_timestamp\nFROM\n  `ipdevelopment-dev-p01.astreya.workday_employees` AS w\nJOIN\n  `ipdevelopment-dev-p01.astreya.intune_assets` AS i\nON\n  w.work_email = i.user_email\nWHERE\n  w.worker_status = 'On Leave'\n  AND i.last_check_in_timestamp &lt; TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)\nUNION ALL\nSELECT\n  w.employee_id,\n  w.first_name,\n  w.last_name,\n  w.worker_status,\n  'mosyle_assets' AS asset_source_table,\n  m.serial_number AS asset_id,\n  m.asset_name,\n  m.serial_number,\n  m.last_check_in_timestamp\nFROM\n  `ipdevelopment-dev-p01.astreya.workday_employees` AS w\nJOIN\n  `ipdevelopment-dev-p01.astreya.mosyle_assets` AS m\nON\n  w.employee_id = m.user_id\nWHERE\n  w.worker_status = 'On Leave'\n  AND m.last_check_in_timestamp &lt; TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)", 'is_insight_possible': True, 'ingestion_timestamp': datetime.datetime(2025, 11, 12, 8, 31, 24, 393769, tzinfo=datetime.timezone.utc), 'ingestion_date': datetime.date(2025, 11, 12), 'is_reviewed': None}]</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 3 — Calling tool: bq_unified_query_checker</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "query": "SELECT is_reviewed, COUNT(*) * 100.0 / (SELECT COUNT(*) FROM agent_insights) AS percentage FROM agent_insights GROUP BY is_reviewed"
+}</pre>
+                            </details>
+
+                            <div id="tool-output-13d865154df6414091ed748eca6dac70">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>{"final_status": "PASS", "message": "Query validated and safe to execute", "corrected_sql": "SELECT is_reviewed, COUNT(*) * 100.0 / (SELECT COUNT(*) FROM agent_insights) AS percentage FROM agent_insights GROUP BY is_reviewed", "layers": {"llm_checker": {"status": "PASS", "detail": "LLM returned candidate SQL", "output": "SELECT is_reviewed, COUNT(*) * 100.0 / (SELECT COUNT(*) FROM agent_insights) AS percentage FROM agent_insights GROUP BY is_reviewed"}, "static_checker": {"status": "PASS", "detail": "No modification detected", "output": "SELECT is_reviewed, COUNT(*) * 100.0 / (SELECT COUNT(*) FROM agent_insights) AS percentage FROM agent_insights GROUP BY is_reviewed"}, "dry_run": {"status": "PASS", "detail": "Dry run succeeded", "output": "DRY_RUN_OK"}}}</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 4 — Calling tool: bigquery_query</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "query": "SELECT is_reviewed, COUNT(*) * 100.0 / (SELECT COUNT(*) FROM agent_insights) AS percentage FROM agent_insights GROUP BY is_reviewed"
+}</pre>
+                            </details>
+
+                            <div id="tool-output-254ef75a10444177a3f5ac4357108bfc">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>{
+  "status": "SUCCESS",
+  "executed_sql": "SELECT is_reviewed, COUNT(*) * 100.0 / (SELECT COUNT(*) FROM agent_insights) AS percentage FROM agent_insights GROUP BY is_reviewed",
+  "rows": [
+    {
+      "is_reviewed": null,
+      "percentage": 26.41509433962264
+    },
+    {
+      "is_reviewed": false,
+      "percentage": 73.58490566037736
+    }
+  ],
+  "row_count": 2
+}</pre>
+                                </details>
+                            </div>
+                        </div></div><div class="msg bot-msg"><iframe style="width: 100%; height: 500px; border: none;" src="./Q5_files/saved_resource.html"></iframe></div></div></div>
+
+        <div class="chat-input-area">
+            <input type="text" id="userInput" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // 🔥 NEW SESSION ID USING TIMESTAMP + HIGH PRECISION TIMER
+        const sessionId = `${Date.now()}${performance.now().toFixed(3).replace('.', '')}`;
+        console.log("Generated Session ID:", sessionId);
+
+        // Maps step_id -> tool output div
+        const stepOutputTargetMap = {};
+
+        // Stores tool outputs that arrive early
+        const pendingToolOutputs = {};
+
+        async function sendMessage() {
+            const input = document.getElementById("userInput");
+            const chatBox = document.getElementById("chatBox");
+            const text = input.value.trim();
+            if (!text) return;
+
+            input.value = "";
+
+            // --- WRAPPER for this message ---
+            const requestWrapper = document.createElement("div");
+            requestWrapper.className = "request-block";
+            chatBox.appendChild(requestWrapper);
+
+            // USER MESSAGE
+            const userBubble = document.createElement("div");
+            userBubble.className = "msg user-msg";
+            userBubble.innerText = text;
+            requestWrapper.appendChild(userBubble);
+
+            // Steps container for this request
+            const stepsContainer = document.createElement("div");
+            stepsContainer.className = "msg bot-msg";
+            stepsContainer.innerHTML = "<b>Agent Steps:</b><br>";
+            requestWrapper.appendChild(stepsContainer);
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // --- Streaming fetch ---
+            const response = await fetch(
+                `http://localhost:8000/db_agent?user_input=${encodeURIComponent(text)}&session_id=${sessionId}`
+            );
+
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+
+            let finalAnswer = null;
+
+            while (true) {
+                const { value, done } = await reader.read();
+                if (done) break;
+
+                const chunk = decoder.decode(value, { stream: true });
+                if (!chunk) continue;
+
+                chunk.split("\n").forEach(line => {
+                    if (!line.trim()) return;
+
+                    let data;
+                    try { data = JSON.parse(line); }
+                    catch { return; }
+
+                    // -------------------------------------------------------
+                    // TOOL CALL
+                    // -------------------------------------------------------
+                    if (data.type === "tool_call") {
+                        const stepId = data.step_id;
+                        const uniqueDivId = `tool-output-${stepId}`;
+                        stepOutputTargetMap[stepId] = uniqueDivId;
+
+                        const box = document.createElement("div");
+                        box.innerHTML = `
+                            <div><b>🔧 Step ${data.sequence} — Calling tool: ${data.tool_name}</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>${JSON.stringify(data.tool_input, null, 2)}</pre>
+                            </details>
+
+                            <div id="${uniqueDivId}"></div>
+                        `;
+
+                        stepsContainer.appendChild(box);
+
+                        // Apply pending tool output if it arrived early
+                        if (pendingToolOutputs[stepId]) {
+                            const outBox = document.getElementById(uniqueDivId);
+                            outBox.innerHTML = `
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>${pendingToolOutputs[stepId]}</pre>
+                                </details>
+                            `;
+                            delete pendingToolOutputs[stepId];
+                        }
+                    }
+
+                    // -------------------------------------------------------
+                    // TOOL OUTPUT
+                    // -------------------------------------------------------
+                    if (data.type === "tool_output") {
+                        const stepId = data.step_id;
+                        const divId = stepOutputTargetMap[stepId];
+                        const outputDiv = divId ? document.getElementById(divId) : null;
+
+                        if (outputDiv) {
+                            outputDiv.innerHTML = `
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>${data.content}</pre>
+                                </details>
+                            `;
+                        } else {
+                            // output arrived before its tool_call
+                            pendingToolOutputs[stepId] = data.content;
+                        }
+                    }
+
+                    // -------------------------------------------------------
+                    // FINAL AI MESSAGE
+                    // -------------------------------------------------------
+                    if (data.type === "ai_message") {
+                        finalAnswer = data.content;
+                    }
+
+                    // -------------------------------------------------------
+                    // ERROR
+                    // -------------------------------------------------------
+                    if (data.error) {
+                        const errDiv = document.createElement("div");
+                        errDiv.className = "msg bot-msg";
+                        errDiv.style.color = "red";
+                        errDiv.innerText = `Error: ${data.error}`;
+                        requestWrapper.appendChild(errDiv);
+                    }
+                });
+
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+
+            // -------------------------------------------------------
+            // RENDER FINAL ANSWER (inside THIS request block ONLY)
+            // -------------------------------------------------------
+            if (finalAnswer) {
+            const finalDiv = document.createElement("div");
+            finalDiv.className = "msg bot-msg";
+
+            // Create iframe
+            const iframe = document.createElement("iframe");
+            iframe.style.width = "100%";
+            iframe.style.height = "500px"; // adjust as needed
+            iframe.style.border = "none";
+
+            // Append iframe to finalDiv
+            finalDiv.appendChild(iframe);   
+            requestWrapper.appendChild(finalDiv);
+
+            // Write the agent HTML into the iframe
+            const doc = iframe.contentDocument || iframe.contentWindow.document;
+            doc.open();
+            doc.write(finalAnswer); // the full HTML/CSS/JS output
+            doc.close();
+        }
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+
+</body></html>

@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)http://127.0.0.1:5500/frontend.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>DB Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef1f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chat-container {
+            width: 80%;
+            height: 70%;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: #4a77f7;
+            padding: 16px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .chat-box {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            background: #f7f9fc;
+        }
+
+        .msg {
+            margin-bottom: 12px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            max-width: 80%;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+
+        .user-msg {
+            background: #4a77f7;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+
+        .bot-msg {
+            background: #e5e7eb;
+            color: #111;
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+
+        .chat-input-area {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+        }
+
+        button {
+            padding: 0 18px;
+            background: #4a77f7;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: #3b63d6;
+        }
+
+        .request-block {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="chat-container">
+        <style>
+            .chat-header {
+                background-color: #4a77f7;
+                color: #ffffff;
+                padding: 12px 20px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 18px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                display: inline-block;
+            }
+            
+            .chat-header .assistant-name {
+                color: #f48a26; /* Highlight color for DB Assistant */
+                font-weight: bold;
+                font-size: 20px;
+                margin-right: 6px;
+            }
+            </style>
+            
+            <div class="chat-header">
+                <span class="assistant-name">DB Assistant</span> - Remember, even humans make mistakes !
+            </div>
+            
+
+        <div class="chat-box" id="chatBox"><div class="request-block"><div class="msg user-msg">Which agent insights relate to inconsistent employee data?</div><div class="msg bot-msg"><b>Agent Steps:</b><br><div>
+                            <div><b>🔧 Step 1 — Calling tool: bigquery_list_tables</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{}</pre>
+                            </details>
+
+                            <div id="tool-output-5c701ff0515f4281843d6c3997a5d262">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>agent_insights: No description available.
+available_columns: No description available.
+catalog: No description available.
+data_dictionary: No description available.
+dim_employees: No description available.
+dlp_findings: No description available.
+dlp_summary: No description available.
+dlpwork: No description available.
+fact_assets: No description available.
+insight_computation: No description available.
+insights: No description available.
+insights_computation: No description available.
+intune_assets: Intune Asset Inventory snapshot of devices managed via MDM. 
+itglue_assets: IT Glue Asset Inventory snapshot of Apple devices (macOS, iOS/iPadOS, tvOS) managed via MDM. 
+itglue_consumables: Inventory of IT Glue consumables (e.g., toner, cables, peripherals) with vendor/PO details, cost/quantity.
+metadata_summary: No description available.
+missed_insights: No description available.
+mosyle_assets: Mosyle Asset Inventory snapshot of Apple devices (macOS, iOS/iPadOS, tvOS) managed via MDM.
+profiling: No description available.
+profiling_summary: No description available.
+quality: No description available.
+quality_summary: No description available.
+workday_employees: Employee snapshot dataset, one row per employee.</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 2 — Calling tool: bigquery_get_schema</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "table_names": [
+    "agent_insights",
+    "workday_employees"
+  ]
+}</pre>
+                            </details>
+
+                            <div id="tool-output-3f3fb57a88034c5ca8ae0f74b5e4f96d">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>
+Table: agent_insights
+Schema:
+insight_id (STRING) - No description available.
+insight_title (STRING) - No description available.
+description (STRING) - No description available.
+table_name (STRING) - No description available.
+required_columns (STRING) - No description available.
+insight_type (STRING) - No description available.
+insight_src (STRING) - No description available.
+data_source_type (STRING) - No description available.
+rendered_sql (STRING) - No description available.
+is_insight_possible (BOOLEAN) - No description available.
+ingestion_timestamp (TIMESTAMP) - No description available.
+ingestion_date (DATE) - No description available.
+is_reviewed (BOOLEAN) - No description available.
+
+Sample Rows:
+[{'insight_id': 'f15eca0d-370e-40f3-a052-eaffa59dd9b7', 'insight_title': 'Ghost Assets Not Seen for Months', 'description': "Numerous devices have not checked into the management system for over 90 days but are still marked as active. These 'ghost' assets may be lost, stolen, or unused, yet they represent unrecovered costs and a potential security liability.", 'table_name': 'intune_assets, mosyle_assets', 'required_columns': 'intune_assets.last_check_in_timestamp, intune_assets.asset_state, mosyle_assets.last_check_in_timestamp', 'insight_type': 'Usage Anomaly', 'insight_src': 'planning_agent', 'data_source_type': 'bigquery', 'rendered_sql': 'WITH ghost_assets AS (\n    SELECT\n        asset_id,\n        asset_name,\n        user_name,\n        last_check_in_timestamp,\n        asset_state AS status,\n        \'Intune\' AS source_system\n    FROM\n        `ipdevelopment-dev-p01.astreya.intune_assets`\n    WHERE\n        asset_state = \'Active\'\n        AND last_check_in_timestamp &lt; TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 90 DAY)\n\n    UNION ALL\n\n    SELECT\n        serial_number AS asset_id,\n        asset_name,\n        user_id AS user_name,\n        last_check_in_timestamp,\n        mdm_status AS status,\n        \'Mosyle\' AS source_system\n    FROM\n        `ipdevelopment-dev-p01.astreya.mosyle_assets`\n    WHERE\n        -- Assuming devices in Mosyle are considered active if they exist in the table.\n        -- Filtering out any explicit "lost" status if applicable.\n        lost_mode_enabled IS FALSE\n        AND last_check_in_timestamp &lt; TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 90 DAY)\n)\nSELECT\n    source_system,\n    asset_id,\n    asset_name,\n    user_name,\n    status,\n    last_check_in_timestamp,\n    DATE_DIFF(CURRENT_DATE(), DATE(last_check_in_timestamp), DAY) AS days_since_last_check_in\nFROM\n    ghost_assets\nORDER BY\n    days_since_last_check_in DESC;', 'is_insight_possible': True, 'ingestion_timestamp': datetime.datetime(2025, 11, 12, 8, 31, 24, 393769, tzinfo=datetime.timezone.utc), 'ingestion_date': datetime.date(2025, 11, 12), 'is_reviewed': None}, {'insight_id': '87916cee-0a7e-444a-bae8-f7f3ada98ebe', 'insight_title': 'Corporate Devices Missing Basic Security Controls', 'description': 'Multiple company-owned Apple devices are operating without a passcode enabled or full supervision by IT. This violates security policy and exposes corporate data to significant risk if a device is lost or stolen.', 'table_name': 'mosyle_assets', 'required_columns': 'mosyle_assets.passcode_enabled, mosyle_assets.is_supervised, mosyle_assets.asset_name', 'insight_type': 'Policy Violation', 'insight_src': 'planning_agent', 'data_source_type': 'bigquery', 'rendered_sql': 'SELECT\n    t1.asset_name,\n    t1.passcode_enabled,\n    t1.is_supervised\n  FROM\n    `ipdevelopment-dev-p01.astreya.mosyle_assets` AS t1\n  WHERE t1.passcode_enabled = FALSE OR t1.is_supervised = FALSE', 'is_insight_possible': True, 'ingestion_timestamp': datetime.datetime(2025, 11, 12, 8, 31, 24, 393769, tzinfo=datetime.timezone.utc), 'ingestion_date': datetime.date(2025, 11, 12), 'is_reviewed': None}, {'insight_id': '613af58a-f1ef-45c5-83f1-b4975dd9a2ae', 'insight_title': 'Idle Assets Assigned to Employees on Leave', 'description': "Assets assigned to 70+ employees currently on extended leave (status 'On Leave') have not been used in over 30 days. These devices can be temporarily re-harvested and redeployed, avoiding the cost of purchasing new hardware for other needs.", 'table_name': 'workday_employees, intune_assets, mosyle_assets', 'required_columns': 'workday_employees.worker_status, intune_assets.last_check_in_timestamp, mosyle_assets.last_check_in_timestamp', 'insight_type': 'Resource Efficiency', 'insight_src': 'planning_agent', 'data_source_type': 'bigquery', 'rendered_sql': "SELECT\n  w.employee_id,\n  w.first_name,\n  w.last_name,\n  w.worker_status,\n  'intune_assets' AS asset_source_table,\n  i.asset_id,\n  i.asset_name,\n  i.serial_number,\n  i.last_check_in_timestamp\nFROM\n  `ipdevelopment-dev-p01.astreya.workday_employees` AS w\nJOIN\n  `ipdevelopment-dev-p01.astreya.intune_assets` AS i\nON\n  w.work_email = i.user_email\nWHERE\n  w.worker_status = 'On Leave'\n  AND i.last_check_in_timestamp &lt; TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)\nUNION ALL\nSELECT\n  w.employee_id,\n  w.first_name,\n  w.last_name,\n  w.worker_status,\n  'mosyle_assets' AS asset_source_table,\n  m.serial_number AS asset_id,\n  m.asset_name,\n  m.serial_number,\n  m.last_check_in_timestamp\nFROM\n  `ipdevelopment-dev-p01.astreya.workday_employees` AS w\nJOIN\n  `ipdevelopment-dev-p01.astreya.mosyle_assets` AS m\nON\n  w.employee_id = m.user_id\nWHERE\n  w.worker_status = 'On Leave'\n  AND m.last_check_in_timestamp &lt; TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)", 'is_insight_possible': True, 'ingestion_timestamp': datetime.datetime(2025, 11, 12, 8, 31, 24, 393769, tzinfo=datetime.timezone.utc), 'ingestion_date': datetime.date(2025, 11, 12), 'is_reviewed': None}]
+
+Table: workday_employees
+Schema:
+custom_fields (STRING) - Client specific custom attributes not promoted to columns (canonicalized JSON).
+employee_id (STRING) - Business-ready employee table.
+first_name (STRING) - Legal first name.
+last_name (STRING) - Legal last name.
+hire_date (DATE) - Hire date for the current employment.
+termination_date (DATE) - Termination date (if applicable).
+employee_status (STRING) - Active / Terminated / On Leave / Suspended, etc.
+email (STRING) - Primary corporate email.
+cost_center_name (STRING) - Cost Center name.
+manager_name (STRING) - Direct manager display name.
+location_name (STRING) - Work site name.
+job_title (STRING) - Position or job title.
+ingestion_date (DATE) - Data Ingestion date.
+ingestion_timestamp (TIMESTAMP) - Data ingestion timestamp
+raw_input_filename (STRING) - Source filename in raw.
+curated_input_filename (STRING) - Processed filename in Curated.
+source_record_hash (STRING) - Hash of tracked attributes to detect changes.
+
+Sample Rows:
+[{'custom_fields': '{}', 'employee_id': 'C5X02605N', 'first_name': 'Gabor', 'last_name': 'Ballabas', 'hire_date': datetime.date(2018, 5, 21), 'termination_date': None, 'employee_status': 'ACTIVE', 'email': 'gballabas@astreya.com', 'cost_center_name': 'CC0039 Meta', 'manager_name': 'Adam McManus', 'location_name': 'IRL - Dublin - Meta (Blackthorn Road)', 'job_title': 'Network Operations Engineer V', 'ingestion_date': datetime.date(2025, 11, 19), 'ingestion_timestamp': datetime.datetime(2025, 11, 19, 12, 1, 49, 504630, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/workday/employees/date=20251119/workday_employees_copyyy.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/workday/employees/ingestion_date=2025-11-19/part-00000-3ac84e5e-4022-4cf3-bdda-04bdff13ea6b.c000.snappy.parquet', 'source_record_hash': '5fe86b8aba26dbb01ecf244027f3a600d443130ef114954e9beef0a37463b78d'}, {'custom_fields': '{}', 'employee_id': 'C5X02839N', 'first_name': 'Padraic', 'last_name': 'Egan', 'hire_date': datetime.date(2018, 9, 3), 'termination_date': None, 'employee_status': 'ACTIVE', 'email': 'padraicegan@astreya.com', 'cost_center_name': 'CC0039 Meta', 'manager_name': 'Adam McManus', 'location_name': 'IRL - Dublin - Meta (Blackthorn Road)', 'job_title': 'Network Operations Engineer III (Operations Optical and IP Engineer)', 'ingestion_date': datetime.date(2025, 11, 19), 'ingestion_timestamp': datetime.datetime(2025, 11, 19, 12, 1, 49, 504630, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/workday/employees/date=20251119/workday_employees_copyyy.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/workday/employees/ingestion_date=2025-11-19/part-00000-3ac84e5e-4022-4cf3-bdda-04bdff13ea6b.c000.snappy.parquet', 'source_record_hash': 'bc20f1b8a4bb777482976e3842b02e0883f9766e0f81b0e73dd0e453cf7725e6'}, {'custom_fields': '{}', 'employee_id': 'C5X05013N', 'first_name': 'Szilard', 'last_name': 'Povisel', 'hire_date': datetime.date(2019, 4, 1), 'termination_date': None, 'employee_status': 'ACTIVE', 'email': 'spovisel@astreya.com', 'cost_center_name': 'CC0039 Meta', 'manager_name': 'Adam McManus', 'location_name': 'IRL - Dublin - Meta (Blackthorn Road)', 'job_title': 'Network Operations Engineer III (Operations Optical and IP Engineer)', 'ingestion_date': datetime.date(2025, 11, 19), 'ingestion_timestamp': datetime.datetime(2025, 11, 19, 12, 1, 49, 504630, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/workday/employees/date=20251119/workday_employees_copyyy.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/workday/employees/ingestion_date=2025-11-19/part-00000-3ac84e5e-4022-4cf3-bdda-04bdff13ea6b.c000.snappy.parquet', 'source_record_hash': '652504ecc4201ee7469607feb17cb6596f9657c302b7b25ac7359c718e1b3dc1'}]</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 3 — Calling tool: bq_unified_query_checker</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "query": "SELECT insight_title, description FROM agent_insights WHERE table_name LIKE '%workday_employees%'"
+}</pre>
+                            </details>
+
+                            <div id="tool-output-a6282a710c2b4979a916c6d5ed28f3c0">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>{"final_status": "PASS", "message": "Query validated and safe to execute", "corrected_sql": "SELECT insight_title, description FROM agent_insights WHERE table_name LIKE '%workday_employees%'", "layers": {"llm_checker": {"status": "PASS", "detail": "LLM returned candidate SQL", "output": "SELECT insight_title, description FROM agent_insights WHERE table_name LIKE '%workday_employees%'"}, "static_checker": {"status": "PASS", "detail": "No modification detected", "output": "SELECT insight_title, description FROM agent_insights WHERE table_name LIKE '%workday_employees%'"}, "dry_run": {"status": "PASS", "detail": "Dry run succeeded", "output": "DRY_RUN_OK"}}}</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 4 — Calling tool: bigquery_query</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "query": "SELECT insight_title, description FROM agent_insights WHERE table_name LIKE '%workday_employees%'"
+}</pre>
+                            </details>
+
+                            <div id="tool-output-949afd08f5c949aaa3ee1ea334a9b2f9">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>{
+  "status": "SUCCESS",
+  "executed_sql": "SELECT insight_title, description FROM agent_insights WHERE table_name LIKE '%workday_employees%'",
+  "rows": [
+    {
+      "insight_title": "Idle Assets Assigned to Employees on Leave",
+      "description": "Assets assigned to 70+ employees currently on extended leave (status 'On Leave') have not been used in over 30 days. These devices can be temporarily re-harvested and redeployed, avoiding the cost of purchasing new hardware for other needs."
+    },
+    {
+      "insight_title": "Unrecovered Expensive Devices from Ex-Employees",
+      "description": "Devices with a purchase price over $500 assigned to employees terminated more than 30 days ago are not being recovered. This indicates a gap in the offboarding process, leading to asset loss and increasing replacement costs."
+    },
+    {
+      "insight_title": "Expensive Idle Devices with Active Employees",
+      "description": "Over 50 active employees possess a secondary corporate device (laptop or tablet) with a purchase price above $1,500 that has not checked into the network in over 60 days. This represents significant underutilized capital that could be reallocated."
+    },
+    {
+      "insight_title": "Engineering Department Has High Access Change Rate",
+      "description": "The Engineering department generated over 100 IT tickets in the 'Security' category related to access requests in the last 60 days, 4 times the company average. This abnormal activity indicates potential role-based access control (RBAC) misconfigurations or frequent project changes causing access churn, increasing the risk of privilege creep and compliance violations."
+    },
+    {
+      "insight_title": "Devices with Outdated, Vulnerable Operating Systems",
+      "description": "At least 15 corporate devices are running operating systems older than the vendor's end-of-life support date (e.g., Windows versions before 22H2). These devices no longer receive security patches, exposing them to publicly known vulnerabilities (CVEs) and creating a critical compliance failure and an easy entry point for attackers."
+    },
+    {
+      "insight_title": "Active Device Access After Employee Termination",
+      "description": "Devices assigned to 12 employees terminated more than 7 days ago are still actively checking into the network. This critical offboarding failure represents a severe security breach, as it provides ex-employees with lingering access to sensitive corporate data, violating access control policies like SOC 2."
+    },
+    {
+      "insight_title": "Non-Compliant Personal Devices Accessing Network",
+      "description": "Over 25 personal devices (BYOD) used for work are flagged as 'Non-Compliant' in the management system. This policy violation means they lack required security configurations, such as up-to-date anti-virus or encryption, creating a weak link that compromises the security of corporate data and systems."
+    },
+    {
+      "insight_title": "Unsupervised Apple Devices Evade Full Control",
+      "description": "More than 30 corporate Apple devices are not 'Supervised' by the MDM, which prevents IT from enforcing critical security restrictions and remotely wiping the device without user approval. This compliance gap creates a high risk of data loss and circumvention of security policies, as users can remove the management profile at will."
+    },
+    {
+      "insight_title": "Slow IT Provisioning Delays New Hire Productivity",
+      "description": "What: Analysis shows a significant lag between an employee's hire date and when their initial IT service requests for equipment are resolved. On average, new hires wait 5-7 business days for their primary device, delaying their ability to start work.\n\nWhy: This indicates a process inefficiency between HR's onboarding notification and IT's equipment provisioning and deployment workflow. Potential causes include manual request processes, insufficient inventory of standard-issue devices, or delays in new user account creation.\n\nSo What: This delay directly translates to lost productivity and sunk salary costs for every day a new employee is idle. Streamlining this workflow to ensure equipment is ready on Day 1 can accelerate time-to-contribution, improve the new hire experience, and generate immediate cost savings."
+    },
+    {
+      "insight_title": "Anomalous IT Requests Before Employee Exit",
+      "description": "A small group of employees submitted an unusually high number of IT service tickets for 'Data Access' and 'Software Installation' in the 30 days preceding their termination date. This pattern is a significant outlier compared to baseline employee activity and may indicate attempts to exfiltrate company data or intellectual property, representing a critical insider security risk."
+    },
+    {
+      "insight_title": "Corporate Devices Assigned to Unknown Users",
+      "description": "Several devices managed in Intune and Mosyle are assigned to users who are not found in the Workday HR system. These 'ghost' assets pose a security risk as they are untraceable to a current employee and may still have access to company data. This also indicates a process gap in asset assignment or data synchronization, leading to potential cost inefficiencies from unmanaged hardware and licensing."
+    },
+    {
+      "insight_title": "Inconsistent User IDs Break Asset Tracking",
+      "description": "Over 15% of devices in IT management systems cannot be reliably linked to an active employee in the HR system due to mismatched user identifiers. This critical data integrity failure between Workday and Intune/Mosyle prevents automated security audits and de-provisioning, creating risks of unmonitored devices and requiring significant manual effort to reconcile ownership."
+    },
+    {
+      "insight_title": "Peripherals Ordered for Inactive Company Devices",
+      "description": "Employees are receiving new IT consumables (e.g., mice, chargers) while their primary assigned computer has been inactive for over 30 days. This may signal unreported broken hardware, asset hoarding, or potential waste."
+    },
+    {
+      "insight_title": "Excessive Consumable Spending in Specific Departments",
+      "description": "When normalized by employee count, certain departments show consumable spending (e.g., keyboards, mice) that is over 40% higher than the company median. This indicates a lack of spending controls, potential for bulk purchasing discounts, or non-standard equipment requests that are inflating operational costs."
+    },
+    {
+      "insight_title": "High-Cost Laptops Mismatched to Job Roles",
+      "description": "Employees in non-technical job roles (e.g., 'HR Coordinator') are being assigned premium, high-performance laptops (e.g., 'MacBook Pro 16-inch'). This over-provisioning represents a significant cost-saving opportunity by implementing a tiered hardware standard based on job function requirements."
+    },
+    {
+      "insight_title": "Company Funds Spent on Personal Devices",
+      "description": "An analysis of IT procurement and device management data reveals that company funds are being used to purchase consumable accessories (e.g., mice, keyboards) for employees using personal devices for work. This happens when employees with devices registered as 'Personal' in Intune receive IT consumables, representing a direct violation of typical BYOD (Bring Your Own Device) policies. Halting this practice will eliminate unnecessary operational costs and enforce consistent asset policies."
+    },
+    {
+      "insight_title": "Anomalous Bulk Orders of IT Peripherals",
+      "description": "Analysis shows that certain employees are placing single orders for unusually large quantities of IT consumables, such as keyboards and mice, with some orders exceeding 5 units when the typical request is for one. This pattern may indicate employee hoarding, inefficient purchasing for teams, or future waste if unused items become obsolete. This creates a financial risk from unnecessary spending and could signal a broken procurement process that bypasses standard inventory management."
+    },
+    {
+      "insight_title": "Departments Driving High Non-Compliance Cost Risk",
+      "description": "The Finance department accounts for over 40% of all corporate-owned devices that are in a 'Non-Compliant' state. This concentration of non-compliance creates significant financial risk from potential regulatory fines and security breaches, requiring targeted remediation."
+    },
+    {
+      "insight_title": "Redundant Corporate Devices Assigned to Single Users",
+      "description": "What: Over 5 active employees are each assigned more than one primary corporate device of the same type (e.g., two Windows laptops). Why: This occurs when an employee receives a new device, but their old one is not recovered and retired from the system, leaving two active assets assigned to one person. So What: This practice unnecessarily doubles capital costs, software licensing fees, and management overhead for these users. Recovering the redundant device for each impacted user would free up valuable hardware for new hires and generate immediate cost savings."
+    },
+    {
+      "insight_title": "Slow Device Offboarding Ties Up Assets",
+      "description": "Devices remain actively assigned in management systems for over 15 days after an employee's official termination date. This delay in the IT offboarding process ties up valuable hardware, preventing its timely reallocation and delaying new hire time-to-productivity."
+    },
+    {
+      "insight_title": "Concentrated 'Ghost Asset' Risk Under Managers",
+      "description": "Specific managers oversee teams with a high number of devices that have not checked into the network in over 60 days. This concentration points to a systemic breakdown in asset stewardship within these teams, creating a significant security blind spot and increasing the risk of data breaches from lost or unmanaged devices. Engaging these few managers offers a targeted way to mitigate widespread asset loss."
+    },
+    {
+      "insight_title": "Lagging Device Syncs Hamper Engineering Productivity",
+      "description": "Over 15% of active employees in the Engineering department are using devices that have not synchronized with management systems in more than 7 days. This lag is a leading indicator of device or network performance degradation, which directly risks developer productivity and project timelines by disrupting access to critical tools and code repositories."
+    },
+    {
+      "insight_title": "Poor Device Health Concentrated Under Specific Managers",
+      "description": "For certain managers, over 30% of their direct reports are using devices that are either non-compliant or have not checked in within the last 15 days. This concentration of poor device hygiene within specific teams points to a lack of local oversight and impacts the collective productivity and security posture of those departments."
+    },
+    {
+      "insight_title": "Productivity Loss from Unhealthy Sales Team Devices",
+      "description": "A significant portion of devices assigned to employees in sales-focused job roles have not reported back to management systems in over 30 days. This indicates these devices may be offline, broken, or malfunctioning, directly hindering the productivity of revenue-generating staff who rely on them for daily operations."
+    },
+    {
+      "insight_title": "Unarchived Consumable Records of Ex-Employees",
+      "description": "Detects active consumable asset records in the ITAM system assigned to employees who were terminated more than 90 days ago. Retaining this personally identifiable information (PII) in active systems violates data retention policies like GDPR and indicates a failure in offboarding data governance."
+    },
+    {
+      "insight_title": "Corporate-Purchased Devices Misclassified as Personal",
+      "description": "Highlights devices recorded in Intune with an 'Personal' ownership type, despite evidence of a corporate purchase order for that model and user. This misclassification leads to lax security policies being applied, creating a compliance gap and security vulnerability."
+    },
+    {
+      "insight_title": "Fragmented Spending on Common IT Peripherals",
+      "description": "More than 5 departments have independently purchased the same consumable models, such as the 'Logitech M185 Mouse', in the last 90 days, totaling over 50 units. This decentralized purchasing prevents the company from leveraging volume discounts. Consolidating procurement for these common items into a centralized process will reduce per-unit costs and improve operational efficiency."
+    },
+    {
+      "insight_title": "Capital Wasted on Dormant High-Value Assets",
+      "description": "High-value hardware, such as premium laptops, is assigned to active employees but shows no network activity, having not checked into management systems for over 60 days. This indicates the assets are unused, tying up capital that could be recovered. Investigating these 'zombie' assets allows for their reallocation to new hires or other needs, directly reducing new procurement costs and improving overall resource utilization."
+    },
+    {
+      "insight_title": "Corporate Devices Bypass Key Security Policies",
+      "description": "A subset of corporate devices managed by Microsoft Intune are not correctly registered with Azure AD. This configuration failure represents a critical security gap, as these devices can bypass Conditional Access policies designed to protect company data. This allows devices that do not meet security standards to potentially access sensitive resources, undermining the organization's zero-trust security posture and increasing the risk of a data breach."
+    },
+    {
+      "insight_title": "Over-provisioned Device Storage Inflates Hardware Costs",
+      "description": "Analysis shows that more than 15% of employees in non-data-intensive roles (e.g., Sales, HR, Admin) are equipped with Apple devices that have over 512 GB of storage. This level of storage is typically unnecessary for roles that primarily use cloud-based applications, indicating a costly mismatch between hardware specifications and actual job requirements. Implementing role-based hardware standards, starting with a 256 GB baseline for these departments, will directly reduce procurement costs and optimize capital allocation."
+    }
+  ],
+  "row_count": 30
+}</pre>
+                                </details>
+                            </div>
+                        </div></div><div class="msg bot-msg"><iframe style="width: 100%; height: 500px; border: none;" src="./Q7_files/saved_resource.html"></iframe></div></div></div>
+
+        <div class="chat-input-area">
+            <input type="text" id="userInput" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // 🔥 NEW SESSION ID USING TIMESTAMP + HIGH PRECISION TIMER
+        const sessionId = `${Date.now()}${performance.now().toFixed(3).replace('.', '')}`;
+        console.log("Generated Session ID:", sessionId);
+
+        // Maps step_id -> tool output div
+        const stepOutputTargetMap = {};
+
+        // Stores tool outputs that arrive early
+        const pendingToolOutputs = {};
+
+        async function sendMessage() {
+            const input = document.getElementById("userInput");
+            const chatBox = document.getElementById("chatBox");
+            const text = input.value.trim();
+            if (!text) return;
+
+            input.value = "";
+
+            // --- WRAPPER for this message ---
+            const requestWrapper = document.createElement("div");
+            requestWrapper.className = "request-block";
+            chatBox.appendChild(requestWrapper);
+
+            // USER MESSAGE
+            const userBubble = document.createElement("div");
+            userBubble.className = "msg user-msg";
+            userBubble.innerText = text;
+            requestWrapper.appendChild(userBubble);
+
+            // Steps container for this request
+            const stepsContainer = document.createElement("div");
+            stepsContainer.className = "msg bot-msg";
+            stepsContainer.innerHTML = "<b>Agent Steps:</b><br>";
+            requestWrapper.appendChild(stepsContainer);
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // --- Streaming fetch ---
+            const response = await fetch(
+                `http://localhost:8000/db_agent?user_input=${encodeURIComponent(text)}&session_id=${sessionId}`
+            );
+
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+
+            let finalAnswer = null;
+
+            while (true) {
+                const { value, done } = await reader.read();
+                if (done) break;
+
+                const chunk = decoder.decode(value, { stream: true });
+                if (!chunk) continue;
+
+                chunk.split("\n").forEach(line => {
+                    if (!line.trim()) return;
+
+                    let data;
+                    try { data = JSON.parse(line); }
+                    catch { return; }
+
+                    // -------------------------------------------------------
+                    // TOOL CALL
+                    // -------------------------------------------------------
+                    if (data.type === "tool_call") {
+                        const stepId = data.step_id;
+                        const uniqueDivId = `tool-output-${stepId}`;
+                        stepOutputTargetMap[stepId] = uniqueDivId;
+
+                        const box = document.createElement("div");
+                        box.innerHTML = `
+                            <div><b>🔧 Step ${data.sequence} — Calling tool: ${data.tool_name}</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>${JSON.stringify(data.tool_input, null, 2)}</pre>
+                            </details>
+
+                            <div id="${uniqueDivId}"></div>
+                        `;
+
+                        stepsContainer.appendChild(box);
+
+                        // Apply pending tool output if it arrived early
+                        if (pendingToolOutputs[stepId]) {
+                            const outBox = document.getElementById(uniqueDivId);
+                            outBox.innerHTML = `
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>${pendingToolOutputs[stepId]}</pre>
+                                </details>
+                            `;
+                            delete pendingToolOutputs[stepId];
+                        }
+                    }
+
+                    // -------------------------------------------------------
+                    // TOOL OUTPUT
+                    // -------------------------------------------------------
+                    if (data.type === "tool_output") {
+                        const stepId = data.step_id;
+                        const divId = stepOutputTargetMap[stepId];
+                        const outputDiv = divId ? document.getElementById(divId) : null;
+
+                        if (outputDiv) {
+                            outputDiv.innerHTML = `
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>${data.content}</pre>
+                                </details>
+                            `;
+                        } else {
+                            // output arrived before its tool_call
+                            pendingToolOutputs[stepId] = data.content;
+                        }
+                    }
+
+                    // -------------------------------------------------------
+                    // FINAL AI MESSAGE
+                    // -------------------------------------------------------
+                    if (data.type === "ai_message") {
+                        finalAnswer = data.content;
+                    }
+
+                    // -------------------------------------------------------
+                    // ERROR
+                    // -------------------------------------------------------
+                    if (data.error) {
+                        const errDiv = document.createElement("div");
+                        errDiv.className = "msg bot-msg";
+                        errDiv.style.color = "red";
+                        errDiv.innerText = `Error: ${data.error}`;
+                        requestWrapper.appendChild(errDiv);
+                    }
+                });
+
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+
+            // -------------------------------------------------------
+            // RENDER FINAL ANSWER (inside THIS request block ONLY)
+            // -------------------------------------------------------
+            if (finalAnswer) {
+            const finalDiv = document.createElement("div");
+            finalDiv.className = "msg bot-msg";
+
+            // Create iframe
+            const iframe = document.createElement("iframe");
+            iframe.style.width = "100%";
+            iframe.style.height = "500px"; // adjust as needed
+            iframe.style.border = "none";
+
+            // Append iframe to finalDiv
+            finalDiv.appendChild(iframe);   
+            requestWrapper.appendChild(finalDiv);
+
+            // Write the agent HTML into the iframe
+            const doc = iframe.contentDocument || iframe.contentWindow.document;
+            doc.open();
+            doc.write(finalAnswer); // the full HTML/CSS/JS output
+            doc.close();
+        }
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+
+</body></html>

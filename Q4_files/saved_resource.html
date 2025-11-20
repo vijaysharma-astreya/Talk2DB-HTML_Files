@@ -1,0 +1,214 @@
+
+<!-- saved from url=(0035)http://127.0.0.1:5500/frontend.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #0056b3;
+            text-align: center;
+        }
+
+        h2 {
+            color: #0056b3;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .conclusion {
+            margin-top: 30px;
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+    <h1>Root Causes for Missed Insights</h1>
+    <h2>Inactive &amp; Unused Devices</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Rule Name</th>
+                <th>Rule Column</th>
+                <th>Rule Dimension</th>
+                <th>Rule Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>device-id-not-null-check</td>
+                <td>asset_id</td>
+                <td>COMPLETENESS</td>
+                <td>Device ID must not be null (primary key)</td>
+            </tr>
+            <tr>
+                <td>device-id-uniqueness-check</td>
+                <td>asset_id</td>
+                <td>UNIQUENESS</td>
+                <td>Device ID must be unique across all records</td>
+            </tr>
+            <tr>
+                <td>device-name-not-null-check</td>
+                <td>asset_name</td>
+                <td>COMPLETENESS</td>
+                <td>Device name must not be null</td>
+            </tr>
+            <tr>
+                <td>model-not-null-check</td>
+                <td>model</td>
+                <td>COMPLETENESS</td>
+                <td>Model should not be null</td>
+            </tr>
+            <tr>
+                <td>primary-user-email-not-null-check</td>
+                <td>user_email</td>
+                <td>COMPLETENESS</td>
+                <td>Primary user email should not be null</td>
+            </tr>
+            <tr>
+                <td>last-check-in-not-null-check</td>
+                <td>last_check_in_timestamp</td>
+                <td>COMPLETENESS</td>
+                <td>Last check-in timestamp should not be null</td>
+            </tr>
+            <tr>
+                <td>type-validity-check</td>
+                <td>asset_type</td>
+                <td>VALIDITY</td>
+                <td>Asset type must be a valid category</td>
+            </tr>
+            <tr>
+                <td>status-validity-check</td>
+                <td>status</td>
+                <td>VALIDITY</td>
+                <td>Status must be a valid asset status</td>
+            </tr>
+            <tr>
+                <td>archived-not-null-check</td>
+                <td>archived</td>
+                <td>COMPLETENESS</td>
+                <td>Archived must not be null</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Ghost Contractor Detection (Shadow Workforce Cleanup)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Rule Name</th>
+                <th>Rule Column</th>
+                <th>Rule Dimension</th>
+                <th>Rule Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>primary-user-email-not-null-check</td>
+                <td>user_email</td>
+                <td>COMPLETENESS</td>
+                <td>Primary user email should not be null</td>
+            </tr>
+            <tr>
+                <td>last-check-in-not-null-check</td>
+                <td>last_check_in_timestamp</td>
+                <td>COMPLETENESS</td>
+                <td>Last check-in timestamp should not be null</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Review Assets with Anomalous Lifespans</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Rule Name</th>
+                <th>Rule Column</th>
+                <th>Rule Dimension</th>
+                <th>Rule Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>device-id-not-null-check</td>
+                <td>asset_id</td>
+                <td>COMPLETENESS</td>
+                <td>Device ID must not be null (primary key)</td>
+            </tr>
+            <tr>
+                <td>device-id-uniqueness-check</td>
+                <td>asset_id</td>
+                <td>UNIQUENESS</td>
+                <td>Device ID must be unique across all records</td>
+            </tr>
+            <tr>
+                <td>device-name-not-null-check</td>
+                <td>asset_name</td>
+                <td>COMPLETENESS</td>
+                <td>Device name must not be null</td>
+            </tr>
+            <tr>
+                <td>model-not-null-check</td>
+                <td>model</td>
+                <td>COMPLETENESS</td>
+                <td>Model should not be null</td>
+            </tr>
+            <tr>
+                <td>type-validity-check</td>
+                <td>asset_type</td>
+                <td>VALIDITY</td>
+                <td>Asset type must be a valid category</td>
+            </tr>
+            <tr>
+                <td>start-date-not-null-check</td>
+                <td>in_service_date</td>
+                <td>COMPLETENESS</td>
+                <td>Start date must not be null</td>
+            </tr>
+            <tr>
+                <td>retired-date-not-null-check</td>
+                <td>decommission_date</td>
+                <td>COMPLETENESS</td>
+                <td>Retired date must not be null</td>
+            </tr>
+            <tr>
+                <td>status-validity-check</td>
+                <td>status</td>
+                <td>VALIDITY</td>
+                <td>Status must be a valid asset status</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="conclusion">
+        <p>The analysis reveals that data quality issues, primarily related to completeness and validity, are the primary drivers of missed insights. Improving data collection and validation processes is crucial for more accurate and reliable insights.</p>
+    </div>
+</body></html>
