@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0047)file:///Users/vijay/Desktop/Talk2DB_QNA/Q6.html -->
+<!-- saved from url=(0035)http://127.0.0.1:5500/frontend.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <title>DB Assistant</title>
@@ -132,7 +132,7 @@
                                 <pre>{}</pre>
                             </details>
 
-                            <div id="tool-output-08be5c62507a4bf9b8020316147e1bcb">
+                            <div id="tool-output-ba478296a00742cf908bcc3ecd8380a0">
                                 <details>
                                     <summary>📄 Tool Output</summary>
                                     <pre>agent_insights: No description available.
@@ -140,6 +140,8 @@ available_columns: No description available.
 catalog: No description available.
 data_dictionary: No description available.
 dim_employees: No description available.
+dlp_findings: No description available.
+dlp_summary: No description available.
 dlpwork: No description available.
 fact_assets: No description available.
 insight_computation: No description available.
@@ -170,10 +172,11 @@ workday_employees: Employee snapshot dataset, one row per employee.</pre>
 }</pre>
                             </details>
 
-                            <div id="tool-output-af049f5348ae4189a38cee2cbdc2f272">
+                            <div id="tool-output-496a6ac0fd7446fda2ddfa18b3a87ae2">
                                 <details>
                                     <summary>📄 Tool Output</summary>
-                                    <pre>Table: agent_insights
+                                    <pre>
+Table: agent_insights
 Schema:
 insight_id (STRING) - No description available.
 insight_title (STRING) - No description available.
@@ -190,7 +193,7 @@ ingestion_date (DATE) - No description available.
 is_reviewed (BOOLEAN) - No description available.
 
 Sample Rows:
-[{'insight_id': 'f15eca0d-370e-40f3-a052-eaffa59dd9b7', 'insight_title': 'Ghost Assets Not Seen for Months', 'description': "Numerous devices have not checked into the management system for over 90 days but are still marked as active. These 'ghost' assets may be lost, stolen, or unused, yet they represent unrecovered costs and a potential security liability.", 'table_name': 'intune_assets, mosyle_assets', 'required_columns': 'intune_assets.last_check_in_timestamp, intune_assets.asset_state, mosyle_assets.last_check_in_timestamp', 'insight_type': 'Usage Anomaly', 'insight_src': 'planning_agent', 'data_source_type': 'bigquery', 'rendered_sql': 'WITH ghost_assets AS (\n    SELECT\n        asset_id,\n        asset_name,\n        user_name,\n        last_check_in_timestamp,\n        asset_state AS status,\n        \'Intune\' AS source_system\n    FROM\n        `ipdevelopment-dev-p01.astreya.intune_assets`\n    WHERE\n        asset_state = \'Active\'\n        AND last_check_in_timestamp &lt; TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 90 DAY)\n\n    UNION ALL\n\n    SELECT\n        serial_number AS asset_id,\n        asset_name,\n        user_id AS user_name,\n        last_check_in_timestamp,\n        mdm_status AS status,\n        \'Mosyle\' AS source_system\n    FROM\n        `ipdevelopment-dev-p01.astreya.mosyle_assets`\n    WHERE\n        -- Assuming devices in Mosyle are considered active if they exist in the table.\n        -- Filtering out any explicit "lost" status if applicable.\n        lost_mode_enabled IS FALSE\n        AND last_check_in_timestamp &lt; TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 90 DAY)\n)\nSELECT\n    source_system,\n    asset_id,\n    asset_name,\n    user_name,\n    status,\n    last_check_in_timestamp,\n    DATE_DIFF(CURRENT_DATE(), DATE(last_check_in_timestamp), DAY) AS days_since_last_check_in\nFROM\n    ghost_assets\nORDER BY\n    days_since_last_check_in DESC;', 'is_insight_possible': True, 'ingestion_timestamp': datetime.datetime(2025, 11, 12, 8, 31, 24, 393769, tzinfo=datetime.timezone.utc), 'ingestion_date': datetime.date(2025, 11, 12), 'is_reviewed': None}, {'insight_id': '87916cee-0a7e-444a-bae8-f7f3ada98ebe', 'insight_title': 'Corporate Devices Missing Basic Security Controls', 'description': 'Multiple company-owned Apple devices are operating without a passcode enabled or full supervision by IT. This violates security policy and exposes corporate data to significant risk if a device is lost or stolen.', 'table_name': 'mosyle_assets', 'required_columns': 'mosyle_assets.passcode_enabled, mosyle_assets.is_supervised, mosyle_assets.asset_name', 'insight_type': 'Policy Violation', 'insight_src': 'planning_agent', 'data_source_type': 'bigquery', 'rendered_sql': 'SELECT\n    t1.asset_name,\n    t1.passcode_enabled,\n    t1.is_supervised\n  FROM\n    `ipdevelopment-dev-p01.astreya.mosyle_assets` AS t1\n  WHERE t1.passcode_enabled = FALSE OR t1.is_supervised = FALSE', 'is_insight_possible': True, 'ingestion_timestamp': datetime.datetime(2025, 11, 12, 8, 31, 24, 393769, tzinfo=datetime.timezone.utc), 'ingestion_date': datetime.date(2025, 11, 12), 'is_reviewed': None}, {'insight_id': '613af58a-f1ef-45c5-83f1-b4975dd9a2ae', 'insight_title': 'Idle Assets Assigned to Employees on Leave', 'description': "Assets assigned to 70+ employees currently on extended leave (status 'On Leave') have not been used in over 30 days. These devices can be temporarily re-harvested and redeployed, avoiding the cost of purchasing new hardware for other needs.", 'table_name': 'workday_employees, intune_assets, mosyle_assets', 'required_columns': 'workday_employees.worker_status, intune_assets.last_check_in_timestamp, mosyle_assets.last_check_in_timestamp', 'insight_type': 'Resource Efficiency', 'insight_src': 'planning_agent', 'data_source_type': 'bigquery', 'rendered_sql': "SELECT\n  w.employee_id,\n  w.first_name,\n  w.last_name,\n  w.worker_status,\n  'intune_assets' AS asset_source_table,\n  i.asset_id,\n  i.asset_name,\n  i.serial_number,\n  i.last_check_in_timestamp\nFROM\n  `ipdevelopment-dev-p01.astreya.workday_employees` AS w\nJOIN\n  `ipdevelopment-dev-p01.astreya.intune_assets` AS i\nON\n  w.work_email = i.user_email\nWHERE\n  w.worker_status = 'On Leave'\n  AND i.last_check_in_timestamp &lt; TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)\nUNION ALL\nSELECT\n  w.employee_id,\n  w.first_name,\n  w.last_name,\n  w.worker_status,\n  'mosyle_assets' AS asset_source_table,\n  m.serial_number AS asset_id,\n  m.asset_name,\n  m.serial_number,\n  m.last_check_in_timestamp\nFROM\n  `ipdevelopment-dev-p01.astreya.workday_employees` AS w\nJOIN\n  `ipdevelopment-dev-p01.astreya.mosyle_assets` AS m\nON\n  w.employee_id = m.user_id\nWHERE\n  w.worker_status = 'On Leave'\n  AND m.last_check_in_timestamp &lt; TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)", 'is_insight_possible': True, 'ingestion_timestamp': datetime.datetime(2025, 11, 12, 8, 31, 24, 393769, tzinfo=datetime.timezone.utc), 'ingestion_date': datetime.date(2025, 11, 12), 'is_reviewed': None}]</pre>
+[{'insight_id': 'c244f08c-1590-4d4d-ac02-f3795d0903a4', 'insight_title': 'Premature Purchasing Wastes Asset Warranty Periods', 'description': 'IT consumables are being put into service for new employees more than 30 days before their actual hire date. This practice ties up capital, prematurely starts the warranty clock, and erodes the value of the asset before it is ever used. This indicates a misalignment between the IT procurement process and final HR onboarding timelines, leading to inefficient use of resources and reduced asset lifecycle value.', 'table_name': 'workday_employees, itglue_consumables', 'required_columns': 'itglue_consumables.in_service_date, workday_employees.hire_date, itglue_consumables.user_name', 'insight_type': 'Cost Saving', 'insight_src': 'planning_agent', 'data_source_type': 'bigquery', 'rendered_sql': '', 'is_insight_possible': False, 'ingestion_timestamp': datetime.datetime(2025, 11, 20, 11, 21, 4, 739627, tzinfo=datetime.timezone.utc), 'ingestion_date': datetime.date(2025, 11, 20), 'is_reviewed': False}, {'insight_id': '7b05fea6-72d1-412d-b030-38ada3a05d18', 'insight_title': 'Departments Driving High Non-Compliance Cost Risk', 'description': "The Finance department accounts for over 40% of all corporate-owned devices that are in a 'Non-Compliant' state. This concentration of non-compliance creates significant financial risk from potential regulatory fines and security breaches, requiring targeted remediation.", 'table_name': 'intune_assets, workday_employees', 'required_columns': 'intune_assets.compliance_state, intune_assets.ownership_type, intune_assets.user_principal_name, workday_employees.cost_center_name', 'insight_type': 'Cost Saving', 'insight_src': 'planning_agent', 'data_source_type': 'bigquery', 'rendered_sql': '', 'is_insight_possible': False, 'ingestion_timestamp': datetime.datetime(2025, 11, 18, 11, 18, 37, 942325, tzinfo=datetime.timezone.utc), 'ingestion_date': datetime.date(2025, 11, 18), 'is_reviewed': False}, {'insight_id': 'eed972f3-65c2-4cd5-bf45-01c67d6522fb', 'insight_title': 'Untracked Consumables Missing Associated Hardware', 'description': 'Purchase orders for consumables totaling over $5,000 have no corresponding hardware asset record in the inventory. This process gap means peripherals are being purchased without being linked to a primary device, leading to untraceable spend and likely asset loss.', 'table_name': 'itglue_consumables, itglue_assets', 'required_columns': 'itglue_consumables.purchase_order, itglue_consumables.unit_cost, itglue_consumables.quantity, itglue_assets.purchase_order', 'insight_type': 'Cost Saving', 'insight_src': 'planning_agent', 'data_source_type': 'bigquery', 'rendered_sql': '', 'is_insight_possible': False, 'ingestion_timestamp': datetime.datetime(2025, 11, 18, 11, 18, 37, 942325, tzinfo=datetime.timezone.utc), 'ingestion_date': datetime.date(2025, 11, 18), 'is_reviewed': False}]</pre>
                                 </details>
                             </div>
                         </div><div>
@@ -199,14 +202,14 @@ Sample Rows:
                             <details>
                                 <summary>📥 Tool Input</summary>
                                 <pre>{
-  "query": "SELECT insight_title, description, insight_type FROM agent_insights WHERE insight_type IN ('Policy Violation', 'Usage Anomaly') ORDER BY insight_type ASC LIMIT 5"
+  "query": "SELECT DISTINCT insight_type FROM `agent_insights`"
 }</pre>
                             </details>
 
-                            <div id="tool-output-fa1321f84f42446985d27448779b9f17">
+                            <div id="tool-output-61aab43d4f4f4f948f6193a5ef76ae28">
                                 <details>
                                     <summary>📄 Tool Output</summary>
-                                    <pre>{"final_status": "PASS", "message": "Query validated and safe to execute", "corrected_sql": "SELECT insight_title, description, insight_type FROM agent_insights WHERE insight_type IN ('Policy Violation', 'Usage Anomaly') ORDER BY insight_type ASC LIMIT 5", "layers": {"llm_checker": {"status": "PASS", "detail": "LLM returned candidate SQL", "output": "SELECT insight_title, description, insight_type FROM agent_insights WHERE insight_type IN ('Policy Violation', 'Usage Anomaly') ORDER BY insight_type ASC LIMIT 5"}, "static_checker": {"status": "PASS", "detail": "No modification detected", "output": "SELECT insight_title, description, insight_type FROM agent_insights WHERE insight_type IN ('Policy Violation', 'Usage Anomaly') ORDER BY insight_type ASC LIMIT 5"}, "dry_run": {"status": "PASS", "detail": "Dry run succeeded", "output": "DRY_RUN_OK"}}}</pre>
+                                    <pre>{"final_status": "PASS", "message": "Query validated and safe to execute", "corrected_sql": "SELECT DISTINCT insight_type FROM `agent_insights`", "layers": {"llm_checker": {"status": "PASS", "detail": "LLM returned candidate SQL", "output": "SELECT DISTINCT insight_type FROM `agent_insights`"}, "static_checker": {"status": "PASS", "detail": "No modification detected", "output": "SELECT DISTINCT insight_type FROM `agent_insights`"}, "dry_run": {"status": "PASS", "detail": "Dry run succeeded", "output": "DRY_RUN_OK"}}}</pre>
                                 </details>
                             </div>
                         </div><div>
@@ -215,41 +218,100 @@ Sample Rows:
                             <details>
                                 <summary>📥 Tool Input</summary>
                                 <pre>{
-  "query": "SELECT insight_title, description, insight_type FROM agent_insights WHERE insight_type IN ('Policy Violation', 'Usage Anomaly') ORDER BY insight_type ASC LIMIT 5"
+  "query": "SELECT DISTINCT insight_type FROM `agent_insights`"
 }</pre>
                             </details>
 
-                            <div id="tool-output-c0a3950f40fc4086bd673f92df32d8c1">
+                            <div id="tool-output-8f1b2b1b3c544d8d82752e2d0922f0fe">
                                 <details>
                                     <summary>📄 Tool Output</summary>
                                     <pre>{
   "status": "SUCCESS",
-  "executed_sql": "SELECT insight_title, description, insight_type FROM agent_insights WHERE insight_type IN ('Policy Violation', 'Usage Anomaly') ORDER BY insight_type ASC LIMIT 5",
+  "executed_sql": "SELECT DISTINCT insight_type FROM `agent_insights`",
   "rows": [
     {
-      "insight_title": "Poor Device Health Concentrated Under Specific Managers",
-      "description": "For certain managers, over 30% of their direct reports are using devices that are either non-compliant or have not checked in within the last 15 days. This concentration of poor device hygiene within specific teams points to a lack of local oversight and impacts the collective productivity and security posture of those departments.",
-      "insight_type": "Policy Violation"
+      "insight_type": "Governance Risk"
     },
     {
-      "insight_title": "Unarchived Consumable Records of Ex-Employees",
-      "description": "Detects active consumable asset records in the ITAM system assigned to employees who were terminated more than 90 days ago. Retaining this personally identifiable information (PII) in active systems violates data retention policies like GDPR and indicates a failure in offboarding data governance.",
-      "insight_type": "Policy Violation"
-    },
-    {
-      "insight_title": "Corporate Devices Missing Basic Security Controls",
-      "description": "Multiple company-owned Apple devices are operating without a passcode enabled or full supervision by IT. This violates security policy and exposes corporate data to significant risk if a device is lost or stolen.",
-      "insight_type": "Policy Violation"
-    },
-    {
-      "insight_title": "Non-Compliant Personal Devices Accessing Network",
-      "description": "Over 25 personal devices (BYOD) used for work are flagged as 'Non-Compliant' in the management system. This policy violation means they lack required security configurations, such as up-to-date anti-virus or encryption, creating a weak link that compromises the security of corporate data and systems.",
-      "insight_type": "Policy Violation"
-    },
-    {
-      "insight_title": "Lagging Device Syncs Hamper Engineering Productivity",
-      "description": "Over 15% of active employees in the Engineering department are using devices that have not synchronized with management systems in more than 7 days. This lag is a leading indicator of device or network performance degradation, which directly risks developer productivity and project timelines by disrupting access to critical tools and code repositories.",
       "insight_type": "Usage Anomaly"
+    },
+    {
+      "insight_type": "Resource Efficiency"
+    },
+    {
+      "insight_type": "Data Quality Issue"
+    },
+    {
+      "insight_type": "Policy Violation"
+    },
+    {
+      "insight_type": "Cost Saving"
+    },
+    {
+      "insight_type": "Security Risk"
+    }
+  ],
+  "row_count": 7
+}</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 5 — Calling tool: bq_unified_query_checker</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "query": "SELECT insight_title, description, insight_type FROM `agent_insights` WHERE insight_type IN ('Governance Risk', 'Security Risk') LIMIT 5"
+}</pre>
+                            </details>
+
+                            <div id="tool-output-6a1b9e5c3f6f4f878a48ee343d41546d">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>{"final_status": "PASS", "message": "Query validated and safe to execute", "corrected_sql": "SELECT insight_title, description, insight_type FROM `agent_insights` WHERE insight_type IN ('Governance Risk', 'Security Risk') LIMIT 5", "layers": {"llm_checker": {"status": "PASS", "detail": "LLM returned candidate SQL", "output": "SELECT insight_title, description, insight_type FROM `agent_insights` WHERE insight_type IN ('Governance Risk', 'Security Risk') LIMIT 5"}, "static_checker": {"status": "PASS", "detail": "No modification detected", "output": "SELECT insight_title, description, insight_type FROM `agent_insights` WHERE insight_type IN ('Governance Risk', 'Security Risk') LIMIT 5"}, "dry_run": {"status": "PASS", "detail": "Dry run succeeded", "output": "DRY_RUN_OK"}}}</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 6 — Calling tool: bigquery_query</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "query": "SELECT insight_title, description, insight_type FROM `agent_insights` WHERE insight_type IN ('Governance Risk', 'Security Risk') LIMIT 5"
+}</pre>
+                            </details>
+
+                            <div id="tool-output-1de58716bae14b8482eecb3d7493e719">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>{
+  "status": "SUCCESS",
+  "executed_sql": "SELECT insight_title, description, insight_type FROM `agent_insights` WHERE insight_type IN ('Governance Risk', 'Security Risk') LIMIT 5",
+  "rows": [
+    {
+      "insight_title": "Concentrated 'Ghost Asset' Risk Under Managers",
+      "description": "Specific managers oversee teams with a high number of devices that have not checked into the network in over 60 days. This concentration points to a systemic breakdown in asset stewardship within these teams, creating a significant security blind spot and increasing the risk of data breaches from lost or unmanaged devices. Engaging these few managers offers a targeted way to mitigate widespread asset loss.",
+      "insight_type": "Security Risk"
+    },
+    {
+      "insight_title": "Conflicting Device Records Across MDM Platforms",
+      "description": "The same physical device, identified by its serial number, has conflicting data between the Mosyle and Intune management systems, such as different assigned users or OS versions. This data conflict corrupts compliance reports and obscures true asset ownership and security posture.",
+      "insight_type": "Security Risk"
+    },
+    {
+      "insight_title": "Prolonged Device Non-Compliance Impacts User Access",
+      "description": "Over 10% of Windows devices remain in a 'NonCompliant' state for more than 7 consecutive days, as tracked across daily data ingestions. This extended non-compliance period indicates slow IT remediation and often results in restricted access to corporate resources, creating a direct and measurable drag on employee productivity.",
+      "insight_type": "Security Risk"
+    },
+    {
+      "insight_title": "Corporate-Purchased Devices Misclassified as Personal",
+      "description": "Highlights devices recorded in Intune with an 'Personal' ownership type, despite evidence of a corporate purchase order for that model and user. This misclassification leads to lax security policies being applied, creating a compliance gap and security vulnerability.",
+      "insight_type": "Governance Risk"
+    },
+    {
+      "insight_title": "Corporate Devices Bypass Key Security Policies",
+      "description": "A subset of corporate devices managed by Microsoft Intune are not correctly registered with Azure AD. This configuration failure represents a critical security gap, as these devices can bypass Conditional Access policies designed to protect company data. This allows devices that do not meet security standards to potentially access sensitive resources, undermining the organization's zero-trust security posture and increasing the risk of a data breach.",
+      "insight_type": "Security Risk"
     }
   ],
   "row_count": 5
