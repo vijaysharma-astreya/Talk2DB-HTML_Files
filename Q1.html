@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)http://127.0.0.1:5500/frontend.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>DB Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef1f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chat-container {
+            width: 80%;
+            height: 70%;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: #4a77f7;
+            padding: 16px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .chat-box {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            background: #f7f9fc;
+        }
+
+        .msg {
+            margin-bottom: 12px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            max-width: 80%;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+
+        .user-msg {
+            background: #4a77f7;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+
+        .bot-msg {
+            background: #e5e7eb;
+            color: #111;
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+
+        .chat-input-area {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+        }
+
+        button {
+            padding: 0 18px;
+            background: #4a77f7;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: #3b63d6;
+        }
+
+        .request-block {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="chat-container">
+        <style>
+            .chat-header {
+                background-color: #4a77f7;
+                color: #ffffff;
+                padding: 12px 20px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 18px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                display: inline-block;
+            }
+            
+            .chat-header .assistant-name {
+                color: #f48a26; /* Highlight color for DB Assistant */
+                font-weight: bold;
+                font-size: 20px;
+                margin-right: 6px;
+            }
+            </style>
+            
+            <div class="chat-header">
+                <span class="assistant-name">DB Assistant</span> - Remember, even humans make mistakes !
+            </div>
+            
+
+        <div class="chat-box" id="chatBox"><div class="request-block"><div class="msg user-msg">Give me count of it glue assets on basis of its type, in cool pie chart</div><div class="msg bot-msg"><b>Agent Steps:</b><br><div>
+                            <div><b>🔧 Step 1 — Calling tool: bigquery_list_tables</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{}</pre>
+                            </details>
+
+                            <div id="tool-output-fb3eade8369a48239610c61a628e300a">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>agent_insights: No description available.
+available_columns: No description available.
+catalog: No description available.
+data_dictionary: No description available.
+dim_employees: No description available.
+dlpwork: No description available.
+fact_assets: No description available.
+insight_computation: No description available.
+insights: No description available.
+insights_computation: No description available.
+intune_assets: Intune Asset Inventory snapshot of devices managed via MDM. 
+itglue_assets: IT Glue Asset Inventory snapshot of Apple devices (macOS, iOS/iPadOS, tvOS) managed via MDM. 
+itglue_consumables: Inventory of IT Glue consumables (e.g., toner, cables, peripherals) with vendor/PO details, cost/quantity.
+metadata_summary: No description available.
+missed_insights: No description available.
+mosyle_assets: Mosyle Asset Inventory snapshot of Apple devices (macOS, iOS/iPadOS, tvOS) managed via MDM.
+profiling: No description available.
+profiling_summary: No description available.
+quality: No description available.
+quality_summary: No description available.
+workday_employees: Employee snapshot dataset, one row per employee.</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 2 — Calling tool: bigquery_get_schema</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "table_names": [
+    "itglue_assets"
+  ]
+}</pre>
+                            </details>
+
+                            <div id="tool-output-f9b87ed26be14156bbf35d6e790ea1ba">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>
+Table: itglue_assets
+Schema:
+custom_fields (STRING) - Client specific custom attributes not promoted to columns (canonicalized JSON).
+asset_id (STRING) - IT Glue asset/configuration record ID.
+asset_name (STRING) - Human-friendly name/display name, or, Current device name as reported to MDM.
+asset_type (STRING) - Record type: Configuration, Flexible Asset, Password, etc.
+serial_number (STRING) - Hardware serial number.
+status (STRING) - Lifecycle status: In Use, Spare, Disposed, etc.
+ownership_type (STRING) - Kind of Asset Ownership - General, Client-Owned
+model (STRING) - Model or product name.
+cpu (STRING) - CPU/SoC description.
+memory_gb (FLOAT) - Installed RAM in GB
+storage_total_gb (FLOAT) - Total storage (GB).
+mac_address (STRING) - Known MAC addresses.
+purchase_order (STRING) - Purchase order number
+acquisition_cost (FLOAT) - Acquisition cost
+currency_code (STRING) - ISO currency
+warranty_expiry_date (DATE) - Warranty coverage end date.
+decommission_date (DATE) - Retired/disposed date
+is_active (BOOLEAN) - Indicates the item has been activated or provisioned and is 'live' for use.
+archived (BOOLEAN) - Record is retired/closed and frozen for history, not active in operations.
+user_id (STRING) - Primary user/assignee.
+location_id (STRING) - Site/Location ID (if enabled).
+country (STRING) - Country Name
+excluded_from_audit_scope (BOOLEAN) - Flag denotes of asset is excluded from compliance/audit checks.
+notes (STRING) - Free-text notes/documentation.
+record_updated_timestamp (TIMESTAMP) - Source record updated
+ingestion_date (DATE) - Data Ingestion date.
+ingestion_timestamp (TIMESTAMP) - Data ingestion timestamp
+raw_input_filename (STRING) - Source filename in raw.
+curated_input_filename (STRING) - Processed filename in Curated.
+source_record_hash (STRING) - Hash of tracked attributes to detect changes.
+
+Sample Rows:
+[{'custom_fields': '{}', 'asset_id': '52293828', 'asset_name': 'Acer 23.8 FHD@75Hz IPS Monitor', 'asset_type': 'Monitor', 'serial_number': None, 'status': 'Deployed', 'ownership_type': 'General', 'model': 'Acer 23.8 FHD@75 Hz IPS Monitor', 'cpu': None, 'memory_gb': None, 'storage_total_gb': None, 'mac_address': None, 'purchase_order': 'ITZ00014452-2', 'acquisition_cost': 157.1999969482422, 'currency_code': 'EUR', 'warranty_expiry_date': datetime.date(2023, 5, 18), 'decommission_date': None, 'is_active': False, 'archived': False, 'user_id': 'Mariela Barbara Marquez Morones', 'location_id': 'Remote - IE', 'country': 'Ireland', 'excluded_from_audit_scope': False, 'notes': None, 'record_updated_timestamp': datetime.datetime(2022, 10, 28, 16, 34, 20, tzinfo=datetime.timezone.utc), 'ingestion_date': datetime.date(2025, 11, 19), 'ingestion_timestamp': datetime.datetime(2025, 11, 19, 10, 45, 16, 92237, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/itglue/assets/date=20251119/itglue_assets_corrected_1.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/itglue/assets/ingestion_date=2025-11-19/part-00000-44a146d0-a8b1-4a68-bca7-d0c7abda8838.c000.snappy.parquet', 'source_record_hash': '242151c20d1f6bf36ff02ec851da68f6a5731681bffacf8d090ca486db4c1244'}, {'custom_fields': '{"client_asset_id":"M100086504"}', 'asset_id': '54873001', 'asset_name': 'Acer 514 Chromebook i5-1135G7 / 8 / 128GB', 'asset_type': 'Chromebook', 'serial_number': 'NXATZSP0042021E4F57600', 'status': 'In-Stock', 'ownership_type': 'General', 'model': 'Acer 514 Chromebook [NX.ATZSP.004]', 'cpu': 'i5-1135G7', 'memory_gb': 8.0, 'storage_total_gb': 128.0, 'mac_address': 'F8B54D4B514A', 'purchase_order': '0167254', 'acquisition_cost': 38629.80078125, 'currency_code': 'PHP', 'warranty_expiry_date': datetime.date(2023, 7, 27), 'decommission_date': None, 'is_active': False, 'archived': False, 'user_id': None, 'location_id': 'Zones - PH', 'country': 'Philippines', 'excluded_from_audit_scope': False, 'notes': None, 'record_updated_timestamp': datetime.datetime(2025, 4, 3, 3, 36, 13, tzinfo=datetime.timezone.utc), 'ingestion_date': datetime.date(2025, 11, 19), 'ingestion_timestamp': datetime.datetime(2025, 11, 19, 10, 45, 16, 92237, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/itglue/assets/date=20251119/itglue_assets_corrected_1.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/itglue/assets/ingestion_date=2025-11-19/part-00000-44a146d0-a8b1-4a68-bca7-d0c7abda8838.c000.snappy.parquet', 'source_record_hash': '061f41c2fc4f0069e15013f1a3c1c5bae32420bf2699ee5c14c0eaa13b59f8c6'}, {'custom_fields': '{"client_asset_id":"M100072773"}', 'asset_id': '52458265', 'asset_name': 'Acer 514 Chromebook i5-1135G7 / 8 / 256GB', 'asset_type': 'Chromebook', 'serial_number': 'NXATZSP005217081077600', 'status': 'In-Stock', 'ownership_type': 'General', 'model': 'Acer 514 Chromebook [NX.ATZSP.005]', 'cpu': 'i5-1135G7', 'memory_gb': 8.0, 'storage_total_gb': 256.0, 'mac_address': '60:A5:E2:D1:B7:C6', 'purchase_order': '0165632', 'acquisition_cost': 40019.80078125, 'currency_code': 'PHP', 'warranty_expiry_date': datetime.date(2023, 5, 19), 'decommission_date': None, 'is_active': False, 'archived': False, 'user_id': None, 'location_id': 'Zones - PH', 'country': 'Philippines', 'excluded_from_audit_scope': False, 'notes': 'Replaced camera', 'record_updated_timestamp': datetime.datetime(2024, 2, 19, 3, 56, 55, tzinfo=datetime.timezone.utc), 'ingestion_date': datetime.date(2025, 11, 19), 'ingestion_timestamp': datetime.datetime(2025, 11, 19, 10, 45, 16, 92237, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/itglue/assets/date=20251119/itglue_assets_corrected_1.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/itglue/assets/ingestion_date=2025-11-19/part-00000-44a146d0-a8b1-4a68-bca7-d0c7abda8838.c000.snappy.parquet', 'source_record_hash': '3001bd310f567c07bbb6cc7d6c42f659e9ab0e5b6e31bf9b484199e1bdb725fe'}]</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 3 — Calling tool: bq_unified_query_checker</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "query": "SELECT asset_type, COUNT(asset_id) AS asset_count FROM itglue_assets GROUP BY asset_type ORDER BY asset_count DESC"
+}</pre>
+                            </details>
+
+                            <div id="tool-output-8a2f625a0ff444168a733ccb2bb0672d">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>{"final_status": "PASS", "message": "Query validated and safe to execute", "corrected_sql": "SELECT asset_type, COUNT(asset_id) AS asset_count FROM itglue_assets GROUP BY asset_type ORDER BY asset_count DESC", "layers": {"llm_checker": {"status": "PASS", "detail": "LLM returned candidate SQL", "output": "SELECT asset_type, COUNT(asset_id) AS asset_count FROM itglue_assets GROUP BY asset_type ORDER BY asset_count DESC"}, "static_checker": {"status": "PASS", "detail": "No modification detected", "output": "SELECT asset_type, COUNT(asset_id) AS asset_count FROM itglue_assets GROUP BY asset_type ORDER BY asset_count DESC"}, "dry_run": {"status": "PASS", "detail": "Dry run succeeded", "output": "DRY_RUN_OK"}}}</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 4 — Calling tool: bigquery_query</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "query": "SELECT asset_type, COUNT(asset_id) AS asset_count FROM itglue_assets GROUP BY asset_type ORDER BY asset_count DESC"
+}</pre>
+                            </details>
+
+                            <div id="tool-output-290b880800b14447b716319174594c1e">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>{
+  "status": "SUCCESS",
+  "executed_sql": "SELECT asset_type, COUNT(asset_id) AS asset_count FROM itglue_assets GROUP BY asset_type ORDER BY asset_count DESC",
+  "rows": [
+    {
+      "asset_type": "Laptop",
+      "asset_count": 289
+    },
+    {
+      "asset_type": "Chromebook",
+      "asset_count": 219
+    },
+    {
+      "asset_type": "Monitor",
+      "asset_count": 157
+    },
+    {
+      "asset_type": "License",
+      "asset_count": 20
+    },
+    {
+      "asset_type": "Tablet",
+      "asset_count": 14
+    },
+    {
+      "asset_type": "Phone",
+      "asset_count": 10
+    },
+    {
+      "asset_type": "Dock",
+      "asset_count": 5
+    },
+    {
+      "asset_type": "Workstation",
+      "asset_count": 3
+    }
+  ],
+  "row_count": 8
+}</pre>
+                                </details>
+                            </div>
+                        </div></div><div class="msg bot-msg"><iframe style="width: 100%; height: 500px; border: none;" src="./Q1_files/saved_resource.html"></iframe></div></div></div>
+
+        <div class="chat-input-area">
+            <input type="text" id="userInput" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // 🔥 NEW SESSION ID USING TIMESTAMP + HIGH PRECISION TIMER
+        const sessionId = `${Date.now()}${performance.now().toFixed(3).replace('.', '')}`;
+        console.log("Generated Session ID:", sessionId);
+
+        // Maps step_id -> tool output div
+        const stepOutputTargetMap = {};
+
+        // Stores tool outputs that arrive early
+        const pendingToolOutputs = {};
+
+        async function sendMessage() {
+            const input = document.getElementById("userInput");
+            const chatBox = document.getElementById("chatBox");
+            const text = input.value.trim();
+            if (!text) return;
+
+            input.value = "";
+
+            // --- WRAPPER for this message ---
+            const requestWrapper = document.createElement("div");
+            requestWrapper.className = "request-block";
+            chatBox.appendChild(requestWrapper);
+
+            // USER MESSAGE
+            const userBubble = document.createElement("div");
+            userBubble.className = "msg user-msg";
+            userBubble.innerText = text;
+            requestWrapper.appendChild(userBubble);
+
+            // Steps container for this request
+            const stepsContainer = document.createElement("div");
+            stepsContainer.className = "msg bot-msg";
+            stepsContainer.innerHTML = "<b>Agent Steps:</b><br>";
+            requestWrapper.appendChild(stepsContainer);
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // --- Streaming fetch ---
+            const response = await fetch(
+                `http://localhost:8000/db_agent?user_input=${encodeURIComponent(text)}&session_id=${sessionId}`
+            );
+
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+
+            let finalAnswer = null;
+
+            while (true) {
+                const { value, done } = await reader.read();
+                if (done) break;
+
+                const chunk = decoder.decode(value, { stream: true });
+                if (!chunk) continue;
+
+                chunk.split("\n").forEach(line => {
+                    if (!line.trim()) return;
+
+                    let data;
+                    try { data = JSON.parse(line); }
+                    catch { return; }
+
+                    // -------------------------------------------------------
+                    // TOOL CALL
+                    // -------------------------------------------------------
+                    if (data.type === "tool_call") {
+                        const stepId = data.step_id;
+                        const uniqueDivId = `tool-output-${stepId}`;
+                        stepOutputTargetMap[stepId] = uniqueDivId;
+
+                        const box = document.createElement("div");
+                        box.innerHTML = `
+                            <div><b>🔧 Step ${data.sequence} — Calling tool: ${data.tool_name}</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>${JSON.stringify(data.tool_input, null, 2)}</pre>
+                            </details>
+
+                            <div id="${uniqueDivId}"></div>
+                        `;
+
+                        stepsContainer.appendChild(box);
+
+                        // Apply pending tool output if it arrived early
+                        if (pendingToolOutputs[stepId]) {
+                            const outBox = document.getElementById(uniqueDivId);
+                            outBox.innerHTML = `
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>${pendingToolOutputs[stepId]}</pre>
+                                </details>
+                            `;
+                            delete pendingToolOutputs[stepId];
+                        }
+                    }
+
+                    // -------------------------------------------------------
+                    // TOOL OUTPUT
+                    // -------------------------------------------------------
+                    if (data.type === "tool_output") {
+                        const stepId = data.step_id;
+                        const divId = stepOutputTargetMap[stepId];
+                        const outputDiv = divId ? document.getElementById(divId) : null;
+
+                        if (outputDiv) {
+                            outputDiv.innerHTML = `
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>${data.content}</pre>
+                                </details>
+                            `;
+                        } else {
+                            // output arrived before its tool_call
+                            pendingToolOutputs[stepId] = data.content;
+                        }
+                    }
+
+                    // -------------------------------------------------------
+                    // FINAL AI MESSAGE
+                    // -------------------------------------------------------
+                    if (data.type === "ai_message") {
+                        finalAnswer = data.content;
+                    }
+
+                    // -------------------------------------------------------
+                    // ERROR
+                    // -------------------------------------------------------
+                    if (data.error) {
+                        const errDiv = document.createElement("div");
+                        errDiv.className = "msg bot-msg";
+                        errDiv.style.color = "red";
+                        errDiv.innerText = `Error: ${data.error}`;
+                        requestWrapper.appendChild(errDiv);
+                    }
+                });
+
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+
+            // -------------------------------------------------------
+            // RENDER FINAL ANSWER (inside THIS request block ONLY)
+            // -------------------------------------------------------
+            if (finalAnswer) {
+            const finalDiv = document.createElement("div");
+            finalDiv.className = "msg bot-msg";
+
+            // Create iframe
+            const iframe = document.createElement("iframe");
+            iframe.style.width = "100%";
+            iframe.style.height = "500px"; // adjust as needed
+            iframe.style.border = "none";
+
+            // Append iframe to finalDiv
+            finalDiv.appendChild(iframe);   
+            requestWrapper.appendChild(finalDiv);
+
+            // Write the agent HTML into the iframe
+            const doc = iframe.contentDocument || iframe.contentWindow.document;
+            doc.open();
+            doc.write(finalAnswer); // the full HTML/CSS/JS output
+            doc.close();
+        }
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+
+</body></html>

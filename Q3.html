@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)http://127.0.0.1:5500/frontend.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>DB Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef1f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chat-container {
+            width: 80%;
+            height: 70%;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: #4a77f7;
+            padding: 16px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .chat-box {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            background: #f7f9fc;
+        }
+
+        .msg {
+            margin-bottom: 12px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            max-width: 80%;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+
+        .user-msg {
+            background: #4a77f7;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+
+        .bot-msg {
+            background: #e5e7eb;
+            color: #111;
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+
+        .chat-input-area {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+        }
+
+        button {
+            padding: 0 18px;
+            background: #4a77f7;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: #3b63d6;
+        }
+
+        .request-block {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="chat-container">
+        <style>
+            .chat-header {
+                background-color: #4a77f7;
+                color: #ffffff;
+                padding: 12px 20px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 18px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                display: inline-block;
+            }
+            
+            .chat-header .assistant-name {
+                color: #f48a26; /* Highlight color for DB Assistant */
+                font-weight: bold;
+                font-size: 20px;
+                margin-right: 6px;
+            }
+            </style>
+            
+            <div class="chat-header">
+                <span class="assistant-name">DB Assistant</span> - Remember, even humans make mistakes !
+            </div>
+            
+
+        <div class="chat-box" id="chatBox"><div class="request-block"><div class="msg user-msg">show the average data quality score for each table that has been scanned.</div><div class="msg bot-msg"><b>Agent Steps:</b><br><div>
+                            <div><b>🔧 Step 1 — Calling tool: bigquery_list_tables</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{}</pre>
+                            </details>
+
+                            <div id="tool-output-09dc963d37de422eace8ec8089c38fa9">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>agent_insights: No description available.
+available_columns: No description available.
+catalog: No description available.
+data_dictionary: No description available.
+dim_employees: No description available.
+dlp_findings: No description available.
+dlp_summary: No description available.
+dlpwork: No description available.
+fact_assets: No description available.
+insight_computation: No description available.
+insights: No description available.
+insights_computation: No description available.
+intune_assets: Intune Asset Inventory snapshot of devices managed via MDM. 
+itglue_assets: IT Glue Asset Inventory snapshot of Apple devices (macOS, iOS/iPadOS, tvOS) managed via MDM. 
+itglue_consumables: Inventory of IT Glue consumables (e.g., toner, cables, peripherals) with vendor/PO details, cost/quantity.
+metadata_summary: No description available.
+missed_insights: No description available.
+mosyle_assets: Mosyle Asset Inventory snapshot of Apple devices (macOS, iOS/iPadOS, tvOS) managed via MDM.
+profiling: No description available.
+profiling_summary: No description available.
+quality: No description available.
+quality_summary: No description available.
+workday_employees: Employee snapshot dataset, one row per employee.</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 2 — Calling tool: bigquery_get_schema</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "table_names": [
+    "quality",
+    "quality_summary"
+  ]
+}</pre>
+                            </details>
+
+                            <div id="tool-output-06295fd7558a4ec2b4d58bd0ebe80d35">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>
+Table: quality
+Schema:
+rule_name (STRING) - No description available.
+rule_column (STRING) - No description available.
+rule_dimension (STRING) - No description available.
+rule_description (STRING) - No description available.
+pass_ratio (FLOAT) - No description available.
+passed (BOOLEAN) - No description available.
+null_count (INTEGER) - No description available.
+passed_count (INTEGER) - No description available.
+evaluated_count (INTEGER) - No description available.
+failing_rows_query (STRING) - No description available.
+overall_score (FLOAT) - No description available.
+overall_passed (BOOLEAN) - No description available.
+total_row_count (STRING) - No description available.
+start_time (STRING) - No description available.
+end_time (STRING) - No description available.
+assertion_row_count (INTEGER) - No description available.
+rule_threshold (FLOAT) - No description available.
+rule_ignore_null (BOOLEAN) - No description available.
+rule_suspended (BOOLEAN) - No description available.
+rule_set_expectation_values (RECORD) - No description available.
+rule_regex_expectation_regex (STRING) - No description available.
+rule_sql_assertion_sql_statement (STRING) - No description available.
+name (STRING) - No description available.
+uid (STRING) - No description available.
+state (STRING) - No description available.
+type (INTEGER) - No description available.
+create_time (STRING) - No description available.
+sampling_percent (FLOAT) - No description available.
+row_filter (STRING) - No description available.
+tool_id (STRING) - No description available.
+dataset (STRING) - No description available.
+rule_range_expectation_min_value (STRING) - No description available.
+rule_range_expectation_strict_min_enabled (BOOLEAN) - No description available.
+rule_range_expectation_max_value (STRING) - No description available.
+rule_range_expectation_strict_max_enabled (BOOLEAN) - No description available.
+
+Sample Rows:
+[{'rule_name': 'category-not-null-check', 'rule_column': 'category', 'rule_dimension': 'COMPLETENESS', 'rule_description': 'Category should not be null', 'pass_ratio': 0.0, 'passed': False, 'null_count': 179, 'passed_count': 0, 'evaluated_count': 179, 'failing_rows_query': 'WITH `039c5154-2ab8-4ad9-8306-7a234193d684` AS (SELECT * FROM `ipdevelopment-dev-p01.astreya_staging.intune_assets` ) SELECT * FROM `039c5154-2ab8-4ad9-8306-7a234193d684` WHERE (`Category` IS NULL);', 'overall_score': 70.0, 'overall_passed': False, 'total_row_count': '179', 'start_time': '2025-11-19T10:21:21.940Z', 'end_time': '2025-11-19T10:21:49.299408920Z', 'assertion_row_count': 0, 'rule_threshold': 0.65, 'rule_ignore_null': False, 'rule_suspended': False, 'rule_set_expectation_values': None, 'rule_regex_expectation_regex': None, 'rule_sql_assertion_sql_statement': None, 'name': 'projects/468286210290/locations/us-central1/dataScans/astreya-intune-assets-dq/jobs/039c5154-2ab8-4ad9-8306-7a234193d684', 'uid': '039c5154-2ab8-4ad9-8306-7a234193d684', 'state': 'SUCCEEDED', 'type': 1, 'create_time': '2025-11-19T10:21:21.353436696Z', 'sampling_percent': 100.0, 'row_filter': '', 'tool_id': 'intune', 'dataset': 'assets', 'rule_range_expectation_min_value': None, 'rule_range_expectation_strict_min_enabled': None, 'rule_range_expectation_max_value': None, 'rule_range_expectation_strict_max_enabled': None}, {'rule_name': 'category-not-null-check', 'rule_column': 'category', 'rule_dimension': 'COMPLETENESS', 'rule_description': 'Category should not be null', 'pass_ratio': 0.0, 'passed': False, 'null_count': 179, 'passed_count': 0, 'evaluated_count': 179, 'failing_rows_query': 'WITH `039c5154-2ab8-4ad9-8306-7a234193d684` AS (SELECT * FROM `ipdevelopment-dev-p01.astreya_staging.intune_assets` ) SELECT * FROM `039c5154-2ab8-4ad9-8306-7a234193d684` WHERE (`Category` IS NULL);', 'overall_score': 70.0, 'overall_passed': False, 'total_row_count': '179', 'start_time': '2025-11-19T10:21:21.940Z', 'end_time': '2025-11-19T10:21:49.299408920Z', 'assertion_row_count': 0, 'rule_threshold': 0.65, 'rule_ignore_null': False, 'rule_suspended': False, 'rule_set_expectation_values': None, 'rule_regex_expectation_regex': None, 'rule_sql_assertion_sql_statement': None, 'name': 'projects/468286210290/locations/us-central1/dataScans/astreya-intune-assets-dq/jobs/039c5154-2ab8-4ad9-8306-7a234193d684', 'uid': '039c5154-2ab8-4ad9-8306-7a234193d684', 'state': 'SUCCEEDED', 'type': 1, 'create_time': '2025-11-19T10:21:21.353436696Z', 'sampling_percent': 100.0, 'row_filter': '', 'tool_id': 'intune', 'dataset': 'assets', 'rule_range_expectation_min_value': None, 'rule_range_expectation_strict_min_enabled': None, 'rule_range_expectation_max_value': None, 'rule_range_expectation_strict_max_enabled': None}, {'rule_name': 'cellular-technology-not-null-check', 'rule_column': 'cellular_technology', 'rule_dimension': 'COMPLETENESS', 'rule_description': 'Cellular technology should not be null for mobile devices', 'pass_ratio': 0.0, 'passed': False, 'null_count': 179, 'passed_count': 0, 'evaluated_count': 179, 'failing_rows_query': 'WITH `039c5154-2ab8-4ad9-8306-7a234193d684` AS (SELECT * FROM `ipdevelopment-dev-p01.astreya_staging.intune_assets` ) SELECT * FROM `039c5154-2ab8-4ad9-8306-7a234193d684` WHERE (`CellularTechnology` IS NULL);', 'overall_score': 70.0, 'overall_passed': False, 'total_row_count': '179', 'start_time': '2025-11-19T10:21:21.940Z', 'end_time': '2025-11-19T10:21:49.299408920Z', 'assertion_row_count': 0, 'rule_threshold': 0.5, 'rule_ignore_null': False, 'rule_suspended': False, 'rule_set_expectation_values': None, 'rule_regex_expectation_regex': None, 'rule_sql_assertion_sql_statement': None, 'name': 'projects/468286210290/locations/us-central1/dataScans/astreya-intune-assets-dq/jobs/039c5154-2ab8-4ad9-8306-7a234193d684', 'uid': '039c5154-2ab8-4ad9-8306-7a234193d684', 'state': 'SUCCEEDED', 'type': 1, 'create_time': '2025-11-19T10:21:21.353436696Z', 'sampling_percent': 100.0, 'row_filter': '', 'tool_id': 'intune', 'dataset': 'assets', 'rule_range_expectation_min_value': None, 'rule_range_expectation_strict_min_enabled': None, 'rule_range_expectation_max_value': None, 'rule_range_expectation_strict_max_enabled': None}]
+
+Table: quality_summary
+Schema:
+uid (STRING) - No description available.
+name (STRING) - No description available.
+tool (STRING) - No description available.
+entity (STRING) - No description available.
+tablename (STRING) - No description available.
+quality_scan_start_time (STRING) - No description available.
+quality_scan_end_time (STRING) - No description available.
+state (STRING) - No description available.
+total_row_count (STRING) - No description available.
+create_time (STRING) - No description available.
+sampling_percent (FLOAT) - No description available.
+total_dataset (INTEGER) - No description available.
+completeness_avg (FLOAT) - No description available.
+validity_avg (FLOAT) - No description available.
+uniqueness_avg (FLOAT) - No description available.
+consistency_avg (FLOAT) - No description available.
+accuracy_avg (FLOAT) - No description available.
+integrity_avg (FLOAT) - No description available.
+timeliness_avg (FLOAT) - No description available.
+completeness_rule_count (INTEGER) - No description available.
+validity_rule_count (INTEGER) - No description available.
+uniqueness_rule_count (INTEGER) - No description available.
+consistency_rule_count (INTEGER) - No description available.
+accuracy_rule_count (INTEGER) - No description available.
+integrity_rule_count (INTEGER) - No description available.
+avg_quality_score (FLOAT) - No description available.
+dataset_avg_quality_score (FLOAT) - No description available.
+total_rule_count (INTEGER) - No description available.
+open_alerts (INTEGER) - No description available.
+quality_threshold (INTEGER) - No description available.
+high_quality_data_pct (FLOAT) - No description available.
+low_quality_data_pct (FLOAT) - No description available.
+summary_created_timestamp (TIMESTAMP) - No description available.
+summary_created_date (DATE) - No description available.
+
+Sample Rows:
+[{'uid': '039c5154-2ab8-4ad9-8306-7a234193d684', 'name': 'projects/468286210290/locations/us-central1/dataScans/astreya-intune-assets-dq/jobs/039c5154-2ab8-4ad9-8306-7a234193d684', 'tool': 'intune', 'entity': 'assets', 'tablename': 'intune_assets', 'quality_scan_start_time': '2025-11-19T10:21:21.940Z', 'quality_scan_end_time': '2025-11-19T10:21:49.299408920Z', 'state': 'SUCCEEDED', 'total_row_count': '179', 'create_time': '2025-11-19T10:21:21.353436696Z', 'sampling_percent': 100.0, 'total_dataset': 1, 'completeness_avg': 67.75, 'validity_avg': 100.0, 'uniqueness_avg': 98.76, 'consistency_avg': 100.0, 'accuracy_avg': 100.0, 'integrity_avg': 99.86, 'timeliness_avg': 87.71, 'completeness_rule_count': 100, 'validity_rule_count': 12, 'uniqueness_rule_count': 10, 'consistency_rule_count': 2, 'accuracy_rule_count': 4, 'integrity_rule_count': 8, 'avg_quality_score': 94.34, 'dataset_avg_quality_score': 93.44, 'total_rule_count': 140, 'open_alerts': 1, 'quality_threshold': 70, 'high_quality_data_pct': 100.0, 'low_quality_data_pct': 0.0, 'summary_created_timestamp': datetime.datetime(2025, 11, 20, 8, 44, 58, 508944, tzinfo=datetime.timezone.utc), 'summary_created_date': datetime.date(2025, 11, 20)}, {'uid': '7532fabb-2c94-40cb-b8e3-759ff6c82e7a', 'name': 'projects/468286210290/locations/us-central1/dataScans/astreya-itglue-assets-dq/jobs/7532fabb-2c94-40cb-b8e3-759ff6c82e7a', 'tool': 'itglue', 'entity': 'assets', 'tablename': 'itglue_assets', 'quality_scan_start_time': '2025-11-19T10:21:06.228Z', 'quality_scan_end_time': '2025-11-19T10:21:36.887667508Z', 'state': 'SUCCEEDED', 'total_row_count': '717', 'create_time': '2025-11-19T10:21:05.754505668Z', 'sampling_percent': 100.0, 'total_dataset': 1, 'completeness_avg': 82.35, 'validity_avg': 100.0, 'uniqueness_avg': 100.0, 'consistency_avg': 72.15, 'accuracy_avg': 64.02, 'integrity_avg': 100.0, 'timeliness_avg': 79.15, 'completeness_rule_count': 48, 'validity_rule_count': 6, 'uniqueness_rule_count': 6, 'consistency_rule_count': 6, 'accuracy_rule_count': 2, 'integrity_rule_count': 4, 'avg_quality_score': 94.34, 'dataset_avg_quality_score': 85.38, 'total_rule_count': 76, 'open_alerts': 1, 'quality_threshold': 70, 'high_quality_data_pct': 100.0, 'low_quality_data_pct': 0.0, 'summary_created_timestamp': datetime.datetime(2025, 11, 20, 8, 44, 58, 508944, tzinfo=datetime.timezone.utc), 'summary_created_date': datetime.date(2025, 11, 20)}, {'uid': 'c4520034-260d-44b1-bb75-3c938ea63c08', 'name': 'projects/468286210290/locations/us-central1/dataScans/astreya-mosyle-assets-dq/jobs/c4520034-260d-44b1-bb75-3c938ea63c08', 'tool': 'mosyle', 'entity': 'assets', 'tablename': 'mosyle_assets', 'quality_scan_start_time': '2025-11-19T11:15:12.416Z', 'quality_scan_end_time': '2025-11-19T11:15:41.075229172Z', 'state': 'SUCCEEDED', 'total_row_count': '185', 'create_time': '2025-11-19T11:15:12.008196422Z', 'sampling_percent': 100.0, 'total_dataset': 1, 'completeness_avg': 92.84, 'validity_avg': 98.92, 'uniqueness_avg': 97.95, 'consistency_avg': 100.0, 'accuracy_avg': 99.46, 'integrity_avg': 100.0, 'timeliness_avg': 100.0, 'completeness_rule_count': 28, 'validity_rule_count': 5, 'uniqueness_rule_count': 5, 'consistency_rule_count': 1, 'accuracy_rule_count': 1, 'integrity_rule_count': 3, 'avg_quality_score': 94.34, 'dataset_avg_quality_score': 98.45, 'total_rule_count': 45, 'open_alerts': 0, 'quality_threshold': 70, 'high_quality_data_pct': 100.0, 'low_quality_data_pct': 0.0, 'summary_created_timestamp': datetime.datetime(2025, 11, 20, 8, 44, 58, 508944, tzinfo=datetime.timezone.utc), 'summary_created_date': datetime.date(2025, 11, 20)}]</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 3 — Calling tool: bq_unified_query_checker</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "query": "SELECT tablename, AVG(avg_quality_score) AS average_quality_score FROM quality_summary GROUP BY tablename"
+}</pre>
+                            </details>
+
+                            <div id="tool-output-e8520cd53439489dbec50dc57d7b3119">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>{"final_status": "PASS", "message": "Query validated and safe to execute", "corrected_sql": "SELECT tablename, AVG(avg_quality_score) AS average_quality_score FROM quality_summary GROUP BY tablename", "layers": {"llm_checker": {"status": "PASS", "detail": "LLM returned candidate SQL", "output": "SELECT tablename, AVG(avg_quality_score) AS average_quality_score FROM quality_summary GROUP BY tablename"}, "static_checker": {"status": "PASS", "detail": "No modification detected", "output": "SELECT tablename, AVG(avg_quality_score) AS average_quality_score FROM quality_summary GROUP BY tablename"}, "dry_run": {"status": "PASS", "detail": "Dry run succeeded", "output": "DRY_RUN_OK"}}}</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 4 — Calling tool: bigquery_query</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "query": "SELECT tablename, AVG(avg_quality_score) AS average_quality_score FROM quality_summary GROUP BY tablename"
+}</pre>
+                            </details>
+
+                            <div id="tool-output-fff3db45777f4d5f89606d701a9f3bbd">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>{
+  "status": "SUCCESS",
+  "executed_sql": "SELECT tablename, AVG(avg_quality_score) AS average_quality_score FROM quality_summary GROUP BY tablename",
+  "rows": [
+    {
+      "tablename": "intune_assets",
+      "average_quality_score": 94.34
+    },
+    {
+      "tablename": "itglue_assets",
+      "average_quality_score": 94.34
+    },
+    {
+      "tablename": "mosyle_assets",
+      "average_quality_score": 94.34
+    },
+    {
+      "tablename": "itglue_consumables",
+      "average_quality_score": 94.34
+    },
+    {
+      "tablename": "workday_employees",
+      "average_quality_score": 94.34
+    }
+  ],
+  "row_count": 5
+}</pre>
+                                </details>
+                            </div>
+                        </div></div><div class="msg bot-msg"><iframe style="width: 100%; height: 500px; border: none;" src="./Q3_files/saved_resource.html"></iframe></div></div></div>
+
+        <div class="chat-input-area">
+            <input type="text" id="userInput" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // 🔥 NEW SESSION ID USING TIMESTAMP + HIGH PRECISION TIMER
+        const sessionId = `${Date.now()}${performance.now().toFixed(3).replace('.', '')}`;
+        console.log("Generated Session ID:", sessionId);
+
+        // Maps step_id -> tool output div
+        const stepOutputTargetMap = {};
+
+        // Stores tool outputs that arrive early
+        const pendingToolOutputs = {};
+
+        async function sendMessage() {
+            const input = document.getElementById("userInput");
+            const chatBox = document.getElementById("chatBox");
+            const text = input.value.trim();
+            if (!text) return;
+
+            input.value = "";
+
+            // --- WRAPPER for this message ---
+            const requestWrapper = document.createElement("div");
+            requestWrapper.className = "request-block";
+            chatBox.appendChild(requestWrapper);
+
+            // USER MESSAGE
+            const userBubble = document.createElement("div");
+            userBubble.className = "msg user-msg";
+            userBubble.innerText = text;
+            requestWrapper.appendChild(userBubble);
+
+            // Steps container for this request
+            const stepsContainer = document.createElement("div");
+            stepsContainer.className = "msg bot-msg";
+            stepsContainer.innerHTML = "<b>Agent Steps:</b><br>";
+            requestWrapper.appendChild(stepsContainer);
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // --- Streaming fetch ---
+            const response = await fetch(
+                `http://localhost:8000/db_agent?user_input=${encodeURIComponent(text)}&session_id=${sessionId}`
+            );
+
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+
+            let finalAnswer = null;
+
+            while (true) {
+                const { value, done } = await reader.read();
+                if (done) break;
+
+                const chunk = decoder.decode(value, { stream: true });
+                if (!chunk) continue;
+
+                chunk.split("\n").forEach(line => {
+                    if (!line.trim()) return;
+
+                    let data;
+                    try { data = JSON.parse(line); }
+                    catch { return; }
+
+                    // -------------------------------------------------------
+                    // TOOL CALL
+                    // -------------------------------------------------------
+                    if (data.type === "tool_call") {
+                        const stepId = data.step_id;
+                        const uniqueDivId = `tool-output-${stepId}`;
+                        stepOutputTargetMap[stepId] = uniqueDivId;
+
+                        const box = document.createElement("div");
+                        box.innerHTML = `
+                            <div><b>🔧 Step ${data.sequence} — Calling tool: ${data.tool_name}</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>${JSON.stringify(data.tool_input, null, 2)}</pre>
+                            </details>
+
+                            <div id="${uniqueDivId}"></div>
+                        `;
+
+                        stepsContainer.appendChild(box);
+
+                        // Apply pending tool output if it arrived early
+                        if (pendingToolOutputs[stepId]) {
+                            const outBox = document.getElementById(uniqueDivId);
+                            outBox.innerHTML = `
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>${pendingToolOutputs[stepId]}</pre>
+                                </details>
+                            `;
+                            delete pendingToolOutputs[stepId];
+                        }
+                    }
+
+                    // -------------------------------------------------------
+                    // TOOL OUTPUT
+                    // -------------------------------------------------------
+                    if (data.type === "tool_output") {
+                        const stepId = data.step_id;
+                        const divId = stepOutputTargetMap[stepId];
+                        const outputDiv = divId ? document.getElementById(divId) : null;
+
+                        if (outputDiv) {
+                            outputDiv.innerHTML = `
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>${data.content}</pre>
+                                </details>
+                            `;
+                        } else {
+                            // output arrived before its tool_call
+                            pendingToolOutputs[stepId] = data.content;
+                        }
+                    }
+
+                    // -------------------------------------------------------
+                    // FINAL AI MESSAGE
+                    // -------------------------------------------------------
+                    if (data.type === "ai_message") {
+                        finalAnswer = data.content;
+                    }
+
+                    // -------------------------------------------------------
+                    // ERROR
+                    // -------------------------------------------------------
+                    if (data.error) {
+                        const errDiv = document.createElement("div");
+                        errDiv.className = "msg bot-msg";
+                        errDiv.style.color = "red";
+                        errDiv.innerText = `Error: ${data.error}`;
+                        requestWrapper.appendChild(errDiv);
+                    }
+                });
+
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+
+            // -------------------------------------------------------
+            // RENDER FINAL ANSWER (inside THIS request block ONLY)
+            // -------------------------------------------------------
+            if (finalAnswer) {
+            const finalDiv = document.createElement("div");
+            finalDiv.className = "msg bot-msg";
+
+            // Create iframe
+            const iframe = document.createElement("iframe");
+            iframe.style.width = "100%";
+            iframe.style.height = "500px"; // adjust as needed
+            iframe.style.border = "none";
+
+            // Append iframe to finalDiv
+            finalDiv.appendChild(iframe);   
+            requestWrapper.appendChild(finalDiv);
+
+            // Write the agent HTML into the iframe
+            const doc = iframe.contentDocument || iframe.contentWindow.document;
+            doc.open();
+            doc.write(finalAnswer); // the full HTML/CSS/JS output
+            doc.close();
+        }
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+
+</body></html>

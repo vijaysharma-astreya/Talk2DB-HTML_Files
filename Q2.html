@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)http://127.0.0.1:5500/frontend.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>DB Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef1f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chat-container {
+            width: 80%;
+            height: 70%;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: #4a77f7;
+            padding: 16px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .chat-box {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            background: #f7f9fc;
+        }
+
+        .msg {
+            margin-bottom: 12px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            max-width: 80%;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+
+        .user-msg {
+            background: #4a77f7;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+
+        .bot-msg {
+            background: #e5e7eb;
+            color: #111;
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+
+        .chat-input-area {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+        }
+
+        button {
+            padding: 0 18px;
+            background: #4a77f7;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: #3b63d6;
+        }
+
+        .request-block {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="chat-container">
+        <style>
+            .chat-header {
+                background-color: #4a77f7;
+                color: #ffffff;
+                padding: 12px 20px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 18px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                display: inline-block;
+            }
+            
+            .chat-header .assistant-name {
+                color: #f48a26; /* Highlight color for DB Assistant */
+                font-weight: bold;
+                font-size: 20px;
+                margin-right: 6px;
+            }
+            </style>
+            
+            <div class="chat-header">
+                <span class="assistant-name">DB Assistant</span> - Remember, even humans make mistakes !
+            </div>
+            
+
+        <div class="chat-box" id="chatBox"><div class="request-block"><div class="msg user-msg">Which job titles have the most expensive assets assigned to them? Give me with best fit visuals</div><div class="msg bot-msg"><b>Agent Steps:</b><br><div>
+                            <div><b>🔧 Step 1 — Calling tool: bigquery_list_tables</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{}</pre>
+                            </details>
+
+                            <div id="tool-output-57801c49a7b749f5949d85b6d4e8db3a">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>agent_insights: No description available.
+available_columns: No description available.
+catalog: No description available.
+data_dictionary: No description available.
+dim_employees: No description available.
+dlpwork: No description available.
+fact_assets: No description available.
+insight_computation: No description available.
+insights: No description available.
+insights_computation: No description available.
+intune_assets: Intune Asset Inventory snapshot of devices managed via MDM. 
+itglue_assets: IT Glue Asset Inventory snapshot of Apple devices (macOS, iOS/iPadOS, tvOS) managed via MDM. 
+itglue_consumables: Inventory of IT Glue consumables (e.g., toner, cables, peripherals) with vendor/PO details, cost/quantity.
+metadata_summary: No description available.
+missed_insights: No description available.
+mosyle_assets: Mosyle Asset Inventory snapshot of Apple devices (macOS, iOS/iPadOS, tvOS) managed via MDM.
+profiling: No description available.
+profiling_summary: No description available.
+quality: No description available.
+quality_summary: No description available.
+workday_employees: Employee snapshot dataset, one row per employee.</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 2 — Calling tool: bigquery_get_schema</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "table_names": [
+    "fact_assets",
+    "workday_employees",
+    "dim_employees"
+  ]
+}</pre>
+                            </details>
+
+                            <div id="tool-output-420358f443aa4f06a2f83e745f764eb6">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>
+Table: fact_assets
+Schema:
+asset_id (STRING) - No description available.
+asset_name (STRING) - No description available.
+asset_description (STRING) - No description available.
+asset_type (STRING) - No description available.
+client_asset_id (STRING) - No description available.
+serial_number (STRING) - No description available.
+status (STRING) - No description available.
+ownership (STRING) - No description available.
+model_name (STRING) - No description available.
+cpu (STRING) - No description available.
+memory_gb (FLOAT) - No description available.
+storage_total_gb (FLOAT) - No description available.
+mac_address (STRING) - No description available.
+purchase_order (STRING) - No description available.
+purchase_price (FLOAT) - No description available.
+currency (STRING) - No description available.
+warranty_end_date (DATE) - No description available.
+decommission_date (DATE) - No description available.
+is_active (BOOLEAN) - No description available.
+archived (BOOLEAN) - No description available.
+user_id (STRING) - No description available.
+location_id (STRING) - No description available.
+country (STRING) - No description available.
+excluded_from_audit_scope (BOOLEAN) - No description available.
+notes (STRING) - No description available.
+updated_at (TIMESTAMP) - No description available.
+category (STRING) - No description available.
+unit_cost (FLOAT) - No description available.
+ship_to_via (STRING) - No description available.
+ship_to_tracking (STRING) - No description available.
+asset_url (STRING) - No description available.
+ticket_url (STRING) - No description available.
+quantity_requested (INTEGER) - No description available.
+user_name (STRING) - No description available.
+in_service_date (DATE) - No description available.
+expected_return_date (DATE) - No description available.
+ingestion_date (DATE) - No description available.
+ingestion_timestamp (TIMESTAMP) - No description available.
+raw_input_filename (STRING) - No description available.
+curated_input_filename (STRING) - No description available.
+data_source (STRING) - No description available.
+
+Sample Rows:
+[{'asset_id': 'b9c6ee89-f8a0-4d8d-ae58-af72b5f93c0d', 'asset_name': '0F00B58214000C', 'asset_description': None, 'asset_type': None, 'client_asset_id': None, 'serial_number': '0F00B58214000C', 'status': None, 'ownership': 'Corporate', 'model_name': None, 'cpu': None, 'memory_gb': None, 'storage_total_gb': 975574.0, 'mac_address': None, 'purchase_order': None, 'purchase_price': None, 'currency': None, 'warranty_end_date': None, 'decommission_date': None, 'is_active': None, 'archived': None, 'user_id': 'f7371a06-0c3e-4e8e-8627-dba5197206a6', 'location_id': None, 'country': None, 'excluded_from_audit_scope': None, 'notes': None, 'updated_at': None, 'category': None, 'unit_cost': None, 'ship_to_via': None, 'ship_to_tracking': None, 'asset_url': None, 'ticket_url': None, 'quantity_requested': None, 'user_name': 'David Burton', 'in_service_date': None, 'expected_return_date': None, 'ingestion_date': datetime.date(2025, 10, 24), 'ingestion_timestamp': datetime.datetime(2025, 10, 24, 10, 58, 48, 336203, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/intune/assets/date=20251024/intune_assets.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/intune/assets/ingestion_date=20251024/part-00000-1f0810cf-1116-4e12-bde3-1094a1a92b07.c000.snappy.parquet', 'data_source': 'intune_assets'}, {'asset_id': 'b9c6ee89-f8a0-4d8d-ae58-af72b5f93c0d', 'asset_name': '0F00B58214000C', 'asset_description': None, 'asset_type': None, 'client_asset_id': None, 'serial_number': '0F00B58214000C', 'status': None, 'ownership': 'Corporate', 'model_name': None, 'cpu': None, 'memory_gb': None, 'storage_total_gb': 975574.0, 'mac_address': None, 'purchase_order': None, 'purchase_price': None, 'currency': None, 'warranty_end_date': None, 'decommission_date': None, 'is_active': None, 'archived': None, 'user_id': 'f7371a06-0c3e-4e8e-8627-dba5197206a6', 'location_id': None, 'country': None, 'excluded_from_audit_scope': None, 'notes': None, 'updated_at': None, 'category': None, 'unit_cost': None, 'ship_to_via': None, 'ship_to_tracking': None, 'asset_url': None, 'ticket_url': None, 'quantity_requested': None, 'user_name': 'David Burton', 'in_service_date': None, 'expected_return_date': None, 'ingestion_date': datetime.date(2025, 10, 24), 'ingestion_timestamp': datetime.datetime(2025, 10, 24, 10, 58, 48, 336203, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/intune/assets/date=20251024/intune_assets1.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/intune/assets/ingestion_date=20251024/part-00001-1f0810cf-1116-4e12-bde3-1094a1a92b07.c000.snappy.parquet', 'data_source': 'intune_assets'}, {'asset_id': '4f2ce9f7-1ba7-404a-a5cf-b9e736eb7c28', 'asset_name': '0F33VFD24033GT', 'asset_description': None, 'asset_type': None, 'client_asset_id': None, 'serial_number': '0F33VFD24033GT', 'status': None, 'ownership': 'Corporate', 'model_name': None, 'cpu': None, 'memory_gb': None, 'storage_total_gb': 241873.0, 'mac_address': None, 'purchase_order': None, 'purchase_price': None, 'currency': None, 'warranty_end_date': None, 'decommission_date': None, 'is_active': None, 'archived': None, 'user_id': '82ee6a72-eb48-41d7-b991-9a2a3f9d0c84', 'location_id': None, 'country': None, 'excluded_from_audit_scope': None, 'notes': None, 'updated_at': None, 'category': None, 'unit_cost': None, 'ship_to_via': None, 'ship_to_tracking': None, 'asset_url': None, 'ticket_url': None, 'quantity_requested': None, 'user_name': 'Romil Bahl', 'in_service_date': None, 'expected_return_date': None, 'ingestion_date': datetime.date(2025, 10, 24), 'ingestion_timestamp': datetime.datetime(2025, 10, 24, 10, 58, 48, 336203, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/intune/assets/date=20251024/intune_assets1.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/intune/assets/ingestion_date=20251024/part-00001-1f0810cf-1116-4e12-bde3-1094a1a92b07.c000.snappy.parquet', 'data_source': 'intune_assets'}]
+
+Table: workday_employees
+Schema:
+custom_fields (STRING) - Client specific custom attributes not promoted to columns (canonicalized JSON).
+employee_id (STRING) - Business-ready employee table.
+first_name (STRING) - Legal first name.
+last_name (STRING) - Legal last name.
+hire_date (DATE) - Hire date for the current employment.
+termination_date (DATE) - Termination date (if applicable).
+employee_status (STRING) - Active / Terminated / On Leave / Suspended, etc.
+email (STRING) - Primary corporate email.
+cost_center_name (STRING) - Cost Center name.
+manager_name (STRING) - Direct manager display name.
+location_name (STRING) - Work site name.
+job_title (STRING) - Position or job title.
+ingestion_date (DATE) - Data Ingestion date.
+ingestion_timestamp (TIMESTAMP) - Data ingestion timestamp
+raw_input_filename (STRING) - Source filename in raw.
+curated_input_filename (STRING) - Processed filename in Curated.
+source_record_hash (STRING) - Hash of tracked attributes to detect changes.
+
+Sample Rows:
+[{'custom_fields': '{}', 'employee_id': 'C5X02605N', 'first_name': 'Gabor', 'last_name': 'Ballabas', 'hire_date': datetime.date(2018, 5, 21), 'termination_date': None, 'employee_status': 'ACTIVE', 'email': 'gballabas@astreya.com', 'cost_center_name': 'CC0039 Meta', 'manager_name': 'Adam McManus', 'location_name': 'IRL - Dublin - Meta (Blackthorn Road)', 'job_title': 'Network Operations Engineer V', 'ingestion_date': datetime.date(2025, 11, 19), 'ingestion_timestamp': datetime.datetime(2025, 11, 19, 12, 1, 49, 504630, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/workday/employees/date=20251119/workday_employees_copyyy.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/workday/employees/ingestion_date=2025-11-19/part-00000-3ac84e5e-4022-4cf3-bdda-04bdff13ea6b.c000.snappy.parquet', 'source_record_hash': '5fe86b8aba26dbb01ecf244027f3a600d443130ef114954e9beef0a37463b78d'}, {'custom_fields': '{}', 'employee_id': 'C5X02839N', 'first_name': 'Padraic', 'last_name': 'Egan', 'hire_date': datetime.date(2018, 9, 3), 'termination_date': None, 'employee_status': 'ACTIVE', 'email': 'padraicegan@astreya.com', 'cost_center_name': 'CC0039 Meta', 'manager_name': 'Adam McManus', 'location_name': 'IRL - Dublin - Meta (Blackthorn Road)', 'job_title': 'Network Operations Engineer III (Operations Optical and IP Engineer)', 'ingestion_date': datetime.date(2025, 11, 19), 'ingestion_timestamp': datetime.datetime(2025, 11, 19, 12, 1, 49, 504630, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/workday/employees/date=20251119/workday_employees_copyyy.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/workday/employees/ingestion_date=2025-11-19/part-00000-3ac84e5e-4022-4cf3-bdda-04bdff13ea6b.c000.snappy.parquet', 'source_record_hash': 'bc20f1b8a4bb777482976e3842b02e0883f9766e0f81b0e73dd0e453cf7725e6'}, {'custom_fields': '{}', 'employee_id': 'C5X05013N', 'first_name': 'Szilard', 'last_name': 'Povisel', 'hire_date': datetime.date(2019, 4, 1), 'termination_date': None, 'employee_status': 'ACTIVE', 'email': 'spovisel@astreya.com', 'cost_center_name': 'CC0039 Meta', 'manager_name': 'Adam McManus', 'location_name': 'IRL - Dublin - Meta (Blackthorn Road)', 'job_title': 'Network Operations Engineer III (Operations Optical and IP Engineer)', 'ingestion_date': datetime.date(2025, 11, 19), 'ingestion_timestamp': datetime.datetime(2025, 11, 19, 12, 1, 49, 504630, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/workday/employees/date=20251119/workday_employees_copyyy.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/workday/employees/ingestion_date=2025-11-19/part-00000-3ac84e5e-4022-4cf3-bdda-04bdff13ea6b.c000.snappy.parquet', 'source_record_hash': '652504ecc4201ee7469607feb17cb6596f9657c302b7b25ac7359c718e1b3dc1'}]
+
+Table: dim_employees
+Schema:
+employee_id (STRING) - No description available.
+first_name (STRING) - No description available.
+last_name (STRING) - No description available.
+hire_date (DATE) - No description available.
+termination_date (DATE) - No description available.
+worker_status (STRING) - No description available.
+work_email (STRING) - No description available.
+cost_center_name (STRING) - No description available.
+manager_name (STRING) - No description available.
+work_location_name (STRING) - No description available.
+job_title (STRING) - No description available.
+ingestion_timestamp (TIMESTAMP) - No description available.
+raw_input_filename (STRING) - No description available.
+
+Sample Rows:
+[{'employee_id': 'C5X05013N', 'first_name': 'Szilard', 'last_name': 'Povisel', 'hire_date': datetime.date(2019, 4, 1), 'termination_date': None, 'worker_status': 'ACTIVE', 'work_email': 'spovisel@astreya.com', 'cost_center_name': 'CC0039 Meta', 'manager_name': 'Adam McManus', 'work_location_name': 'IRL - Dublin - Meta (Blackthorn Road)', 'job_title': 'Network Operations Engineer III (Operations Optical and IP Engineer)', 'ingestion_timestamp': datetime.datetime(2025, 10, 28, 13, 10, 13, 524141, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/workday/employees/date=20251028/workday_employees_1.csv'}, {'employee_id': 'E0008363', 'first_name': 'Bruno Felippe', 'last_name': 'Paciello da Silva', 'hire_date': datetime.date(2022, 4, 19), 'termination_date': None, 'worker_status': 'ACTIVE', 'work_email': 'bfpdasilva@astreya.com', 'cost_center_name': 'CC0039 Meta', 'manager_name': 'Adam McManus', 'work_location_name': 'IRL - Dublin - Meta (Blackthorn Road)', 'job_title': 'Network Operations Engineer II', 'ingestion_timestamp': datetime.datetime(2025, 10, 28, 13, 10, 13, 524141, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/workday/employees/date=20251028/workday_employees_1.csv'}, {'employee_id': 'C5X02839N', 'first_name': 'Padraic', 'last_name': 'Egan', 'hire_date': datetime.date(2018, 9, 3), 'termination_date': None, 'worker_status': 'ACTIVE', 'work_email': 'padraicegan@astreya.com', 'cost_center_name': 'CC0039 Meta', 'manager_name': 'Adam McManus', 'work_location_name': 'IRL - Dublin - Meta (Blackthorn Road)', 'job_title': 'Network Operations Engineer III (Operations Optical and IP Engineer)', 'ingestion_timestamp': datetime.datetime(2025, 10, 28, 13, 10, 13, 524141, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/workday/employees/date=20251028/workday_employees_1.csv'}]</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 3 — Calling tool: bq_unified_query_checker</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "query": "SELECT\n    t2.job_title,\n    SUM(t1.purchase_price) AS total_asset_cost\nFROM\n    `fact_assets` AS t1\nINNER JOIN\n    `workday_employees` AS t2 ON t1.user_name = CONCAT(t2.first_name, ' ', t2.last_name)\nWHERE\n    t1.purchase_price IS NOT NULL\nGROUP BY\n    t2.job_title\nORDER BY\n    total_asset_cost DESC\nLIMIT 10"
+}</pre>
+                            </details>
+
+                            <div id="tool-output-4756327d47314ca8b856904985d5aa87">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>{"final_status": "PASS", "message": "Query validated and safe to execute", "corrected_sql": "SELECT\n    t2.job_title,\n    SUM(t1.purchase_price) AS total_asset_cost\nFROM\n    `fact_assets` AS t1\nINNER JOIN\n    `workday_employees` AS t2 ON t1.user_name = CONCAT(t2.first_name, ' ', t2.last_name)\nWHERE\n    t1.purchase_price IS NOT NULL\nGROUP BY\n    t2.job_title\nORDER BY\n    total_asset_cost DESC\nLIMIT 10", "layers": {"llm_checker": {"status": "PASS", "detail": "LLM returned candidate SQL", "output": "SELECT\n    t2.job_title,\n    SUM(t1.purchase_price) AS total_asset_cost\nFROM\n    `fact_assets` AS t1\nINNER JOIN\n    `workday_employees` AS t2 ON t1.user_name = CONCAT(t2.first_name, ' ', t2.last_name)\nWHERE\n    t1.purchase_price IS NOT NULL\nGROUP BY\n    t2.job_title\nORDER BY\n    total_asset_cost DESC\nLIMIT 10"}, "static_checker": {"status": "PASS", "detail": "No modification detected", "output": "SELECT\n    t2.job_title,\n    SUM(t1.purchase_price) AS total_asset_cost\nFROM\n    `fact_assets` AS t1\nINNER JOIN\n    `workday_employees` AS t2 ON t1.user_name = CONCAT(t2.first_name, ' ', t2.last_name)\nWHERE\n    t1.purchase_price IS NOT NULL\nGROUP BY\n    t2.job_title\nORDER BY\n    total_asset_cost DESC\nLIMIT 10"}, "dry_run": {"status": "PASS", "detail": "Dry run succeeded", "output": "DRY_RUN_OK"}}}</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 4 — Calling tool: bigquery_query</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "query": "SELECT\n    t2.job_title,\n    SUM(t1.purchase_price) AS total_asset_cost\nFROM\n    `fact_assets` AS t1\nINNER JOIN\n    `workday_employees` AS t2 ON t1.user_name = CONCAT(t2.first_name, ' ', t2.last_name)\nWHERE\n    t1.purchase_price IS NOT NULL\nGROUP BY\n    t2.job_title\nORDER BY\n    total_asset_cost DESC\nLIMIT 10"
+}</pre>
+                            </details>
+
+                            <div id="tool-output-8fc3cc8f1ee94a899095343bb8ec2ab4">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>{
+  "status": "SUCCESS",
+  "executed_sql": "SELECT\n    t2.job_title,\n    SUM(t1.purchase_price) AS total_asset_cost\nFROM\n    `fact_assets` AS t1\nINNER JOIN\n    `workday_employees` AS t2 ON t1.user_name = CONCAT(t2.first_name, ' ', t2.last_name)\nWHERE\n    t1.purchase_price IS NOT NULL\nGROUP BY\n    t2.job_title\nORDER BY\n    total_asset_cost DESC\nLIMIT 10",
+  "rows": [],
+  "row_count": 0
+}</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 5 — Calling tool: bq_unified_query_checker</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "query": "SELECT\n    t2.job_title,\n    SUM(t1.purchase_price) AS total_asset_cost\nFROM\n    `fact_assets` AS t1\nINNER JOIN\n    `dim_employees` AS t2 ON t1.user_name = CONCAT(t2.first_name, ' ', t2.last_name)\nWHERE\n    t1.purchase_price IS NOT NULL\nGROUP BY\n    t2.job_title\nORDER BY\n    total_asset_cost DESC\nLIMIT 10"
+}</pre>
+                            </details>
+
+                            <div id="tool-output-801af5be5ed4419b9f97099271bf21f9">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>{"final_status": "PASS", "message": "Query validated and safe to execute", "corrected_sql": "SELECT\n    t2.job_title,\n    SUM(t1.purchase_price) AS total_asset_cost\nFROM\n    `fact_assets` AS t1\nINNER JOIN\n    `dim_employees` AS t2 ON t1.user_name = CONCAT(t2.first_name, ' ', t2.last_name)\nWHERE\n    t1.purchase_price IS NOT NULL\nGROUP BY\n    t2.job_title\nORDER BY\n    total_asset_cost DESC\nLIMIT 10", "layers": {"llm_checker": {"status": "PASS", "detail": "LLM returned candidate SQL", "output": "SELECT\n    t2.job_title,\n    SUM(t1.purchase_price) AS total_asset_cost\nFROM\n    `fact_assets` AS t1\nINNER JOIN\n    `dim_employees` AS t2 ON t1.user_name = CONCAT(t2.first_name, ' ', t2.last_name)\nWHERE\n    t1.purchase_price IS NOT NULL\nGROUP BY\n    t2.job_title\nORDER BY\n    total_asset_cost DESC\nLIMIT 10"}, "static_checker": {"status": "PASS", "detail": "No modification detected", "output": "SELECT\n    t2.job_title,\n    SUM(t1.purchase_price) AS total_asset_cost\nFROM\n    `fact_assets` AS t1\nINNER JOIN\n    `dim_employees` AS t2 ON t1.user_name = CONCAT(t2.first_name, ' ', t2.last_name)\nWHERE\n    t1.purchase_price IS NOT NULL\nGROUP BY\n    t2.job_title\nORDER BY\n    total_asset_cost DESC\nLIMIT 10"}, "dry_run": {"status": "PASS", "detail": "Dry run succeeded", "output": "DRY_RUN_OK"}}}</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 6 — Calling tool: bigquery_query</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "query": "SELECT\n    t2.job_title,\n    SUM(t1.purchase_price) AS total_asset_cost\nFROM\n    `fact_assets` AS t1\nINNER JOIN\n    `dim_employees` AS t2 ON t1.user_name = CONCAT(t2.first_name, ' ', t2.last_name)\nWHERE\n    t1.purchase_price IS NOT NULL\nGROUP BY\n    t2.job_title\nORDER BY\n    total_asset_cost DESC\nLIMIT 10"
+}</pre>
+                            </details>
+
+                            <div id="tool-output-0d0317f10e194d89a9666552cc9bd850">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>{
+  "status": "SUCCESS",
+  "executed_sql": "SELECT\n    t2.job_title,\n    SUM(t1.purchase_price) AS total_asset_cost\nFROM\n    `fact_assets` AS t1\nINNER JOIN\n    `dim_employees` AS t2 ON t1.user_name = CONCAT(t2.first_name, ' ', t2.last_name)\nWHERE\n    t1.purchase_price IS NOT NULL\nGROUP BY\n    t2.job_title\nORDER BY\n    total_asset_cost DESC\nLIMIT 10",
+  "rows": [],
+  "row_count": 0
+}</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 7 — Calling tool: bigquery_get_schema</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "table_names": [
+    "intune_assets",
+    "itglue_assets",
+    "mosyle_assets"
+  ]
+}</pre>
+                            </details>
+
+                            <div id="tool-output-6ca66b4d705c480e87e006c49eb3d343">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>
+Table: intune_assets
+Schema:
+custom_fields (STRING) - Client specific custom attributes not promoted to columns (canonicalized JSON).
+asset_id (STRING) - Intune/Graph managed device ID (GUID).
+asset_name (STRING) - Device/computer name.
+serial_number (STRING) - Hardware serial (if device).
+upn_user_id (STRING) - Primary user UPN.
+user_name (STRING) - Primary user display name.
+user_id (STRING) - The unique identifier (GUID) of the primary user associated with the device in Intune/Azure AD.
+asset_state (STRING) - Managed/Unmanaged. The device is successfully enrolled and actively managed by Intune (MDM).
+category (STRING) - Intune device category display name.
+ownership_type (STRING) - Ownership: company / personal.
+management_name (STRING) - The Intune management authority name. eg-david_Windows_5/6/2025_10:11 AM
+management_certificate_expiration_timestamp (TIMESTAMP) - Expiration date of the MDM management certificate that allows Intune to manage the device.
+enrollment_timestamp (TIMESTAMP) - Initial enrollment timestamp.
+last_check_in_timestamp (TIMESTAMP) - Last check-in with Intune.
+compliance_state (STRING) - Compliant/noncompliant/unknown.
+compliance_grace_expiry (TIMESTAMP) - Compliance grace period end.
+platform (STRING) - Operating system family.
+os_version (STRING) - OS version
+sku (STRING) - Stock Keeping Unit. Describes the hardware or OS family type of the device as reported by the system SKU. eg. Home,Pro.
+model (STRING) - Model identifier.
+manufacturer (STRING) - Manufacturer.
+imei (STRING) - IMEI (mobile).
+meid (STRING) - MEID (mobile).
+wifi_subnet (STRING) - The subnet ID or range (network segment) of the Wi-Fi the device is/was connected to.
+wifi_mac_address (STRING) - Wi-Fi MAC address.
+wifi_ip_address (STRING) - The current or last known IPv4 address assigned to the device when connected via Wi-Fi.
+mac_address (STRING) - Ethernet MAC (if present).
+is_supervised (BOOLEAN) - Apple supervised flag.
+jailbreak_detected (STRING) - Jailbreak detection (iOS).
+encryption_enabled (BOOLEAN) - Disk encryption status.
+storage_total_gb (FLOAT) - Total storage GB.
+storage_free_gb (FLOAT) - Free storage GB.
+user_email (STRING) - User Email Id.
+user_phone_number (STRING) - user contact number.
+os_patch_level (STRING) - OS vendor security patch baseline currently installed (Android = YYYY-MM-01 date; Windows/macOS often a label/build).
+esim_id (STRING) - eSIM Embedded IDentifier (global chip ID for eSIM-capable devices).
+tpm_vendor_id (STRING) - TPM vendor ID (Windows) reported by the TPM; sometimes a 4-char code or numeric mapped to vendor.
+tpm_version (STRING) - TPM firmware version string.
+processor_architecture (STRING) - CPU architecture reported by the OS.
+product_name (STRING) - OS product/edition name.
+bios_version (STRING) - SMBIOS/Firmware version string from the system board.
+circuit_card_id (STRING) - SIM card Integrated Circuit Card ID (if cellular present).
+subscriber_carrier (STRING) - Mobile carrier associated with the active SIM/eSIM.
+cellular_technology (STRING) - Current/last-reported radio technology.
+eas_status (STRING) - Exchange ActiveSync management state.
+eas_reason (STRING) - Reason text/code for the current EAS status.
+eas_activated (BOOLEAN) - Whether an EAS partnership/profile is active on the device.
+eas_activation_id (STRING) - Identifier of the EAS partnership/activation on the server.
+last_eas_sync_timestamp (STRING) - Timestamp of the last successful EAS mailbox sync.
+management_agent (STRING) - Management authority for the device as seen by Intune.
+ingestion_date (DATE) - Data Ingestion date.
+ingestion_timestamp (TIMESTAMP) - Data ingestion timestamp
+raw_input_filename (STRING) - Source filename in raw.
+curated_input_filename (STRING) - Processed filename in Curated.
+source_record_hash (STRING) - Hash of tracked attributes to detect changes.
+
+Sample Rows:
+[{'custom_fields': '{"Azure AD Device ID":"ca75ec68-0648-42f1-bc63-3940dfa0cb5e","Azure AD registered":"FALSE","Intune registered":"Registered","JoinType":"Azure AD joined"}', 'asset_id': 'ca75ec68-0648-42f1-bc63-3940dfa0cb5e', 'asset_name': 'ASTREYA_RMS', 'serial_number': None, 'upn_user_id': 'rakeshms@astreya.com', 'user_name': 'Rakesh MS', 'user_id': 'ec1c430b-f97a-467e-b99d-bbcfa3015b92', 'asset_state': 'Managed', 'category': None, 'ownership_type': 'Corporate', 'management_name': 'rms_Windows_4/16/2025_11:02 AM', 'management_certificate_expiration_timestamp': None, 'enrollment_timestamp': None, 'last_check_in_timestamp': None, 'compliance_state': 'Compliant', 'compliance_grace_expiry': None, 'platform': 'Windows', 'os_version': '0.0.0.0', 'sku': None, 'model': None, 'manufacturer': None, 'imei': None, 'meid': None, 'wifi_subnet': None, 'wifi_mac_address': None, 'wifi_ip_address': None, 'mac_address': None, 'is_supervised': False, 'jailbreak_detected': 'Unknown', 'encryption_enabled': False, 'storage_total_gb': 0.0, 'storage_free_gb': 0.0, 'user_email': None, 'user_phone_number': None, 'os_patch_level': None, 'esim_id': None, 'tpm_vendor_id': None, 'tpm_version': None, 'processor_architecture': 'Unknown', 'product_name': None, 'bios_version': None, 'circuit_card_id': None, 'subscriber_carrier': None, 'cellular_technology': None, 'eas_status': None, 'eas_reason': None, 'eas_activated': False, 'eas_activation_id': '82B4AD6373E654A2BBC0F8E5A0833820', 'last_eas_sync_timestamp': '1/1/2001 0:00:00', 'management_agent': 'Intune', 'ingestion_date': datetime.date(2025, 11, 19), 'ingestion_timestamp': datetime.datetime(2025, 11, 19, 10, 45, 46, 75829, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/intune/assets/date=20251119/intune_assets1.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/intune/assets/ingestion_date=2025-11-19/part-00000-75670e76-d034-409c-9bf7-57b92ca90d86.c000.snappy.parquet', 'source_record_hash': '9e508287e15bc9321369aa3edc622b0daae682f6ccac51e1927b9b7e4f81e914'}, {'custom_fields': '{"Azure AD Device ID":"ca75ec68-0648-42f1-bc63-3940dfa0cb5e","Azure AD registered":"FALSE","Intune registered":"Registered","JoinType":"Azure AD joined"}', 'asset_id': 'ca75ec68-0648-42f1-bc63-3940dfa0cb5e', 'asset_name': 'ASTREYA_RMS', 'serial_number': None, 'upn_user_id': 'rakeshms@astreya.com', 'user_name': 'Rakesh MS', 'user_id': 'ec1c430b-f97a-467e-b99d-bbcfa3015b92', 'asset_state': 'Managed', 'category': None, 'ownership_type': 'Corporate', 'management_name': 'rms_Windows_4/16/2025_11:02 AM', 'management_certificate_expiration_timestamp': None, 'enrollment_timestamp': None, 'last_check_in_timestamp': None, 'compliance_state': 'Compliant', 'compliance_grace_expiry': None, 'platform': 'Windows', 'os_version': '0.0.0.0', 'sku': None, 'model': None, 'manufacturer': None, 'imei': None, 'meid': None, 'wifi_subnet': None, 'wifi_mac_address': None, 'wifi_ip_address': None, 'mac_address': None, 'is_supervised': False, 'jailbreak_detected': 'Unknown', 'encryption_enabled': False, 'storage_total_gb': 0.0, 'storage_free_gb': 0.0, 'user_email': None, 'user_phone_number': None, 'os_patch_level': None, 'esim_id': None, 'tpm_vendor_id': None, 'tpm_version': None, 'processor_architecture': 'Unknown', 'product_name': None, 'bios_version': None, 'circuit_card_id': None, 'subscriber_carrier': None, 'cellular_technology': None, 'eas_status': None, 'eas_reason': None, 'eas_activated': False, 'eas_activation_id': '82B4AD6373E654A2BBC0F8E5A0833820', 'last_eas_sync_timestamp': '1/1/2001 0:00:00', 'management_agent': 'Intune', 'ingestion_date': datetime.date(2025, 11, 19), 'ingestion_timestamp': datetime.datetime(2025, 11, 19, 10, 45, 46, 75829, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/intune/assets/date=20251112/intune_assets1.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/intune/assets/ingestion_date=2025-11-12/part-00000-7189be35-3585-4a88-9929-a06a3349a0ec.c000.snappy.parquet', 'source_record_hash': '9e508287e15bc9321369aa3edc622b0daae682f6ccac51e1927b9b7e4f81e914'}, {'custom_fields': '{"Azure AD Device ID":"6714284c-b133-4c63-a905-f358b57c0008","Azure AD registered":"TRUE","Intune registered":"Registered","JoinType":"Azure AD joined"}', 'asset_id': 'b843e47e-c285-488e-8eeb-08a5d27ecf41', 'asset_name': 'PF1589ZV', 'serial_number': 'PF1589ZV', 'upn_user_id': 'rwheeler@astreya.com', 'user_name': 'Rose Marie Wheeler', 'user_id': '9161e47c-6a30-4184-add8-3d3f3569b9f8', 'asset_state': 'Managed', 'category': None, 'ownership_type': 'Corporate', 'management_name': 'deanjames_Windows_9/20/2021_5:21 PM', 'management_certificate_expiration_timestamp': None, 'enrollment_timestamp': None, 'last_check_in_timestamp': None, 'compliance_state': 'Compliant', 'compliance_grace_expiry': None, 'platform': 'Windows', 'os_version': '10.0.26100.3775', 'sku': 'Pro', 'model': '20KS003LUS', 'manufacturer': 'LENOVO', 'imei': None, 'meid': None, 'wifi_subnet': '192.168.0.0', 'wifi_mac_address': 'D89C67CA0B5D', 'wifi_ip_address': '192.168.0.135', 'mac_address': 'E86A6405B1CC', 'is_supervised': False, 'jailbreak_detected': 'Unknown', 'encryption_enabled': True, 'storage_total_gb': 936480.0, 'storage_free_gb': 798937.0, 'user_email': None, 'user_phone_number': None, 'os_patch_level': None, 'esim_id': None, 'tpm_vendor_id': None, 'tpm_version': None, 'processor_architecture': 'X64', 'product_name': None, 'bios_version': None, 'circuit_card_id': None, 'subscriber_carrier': None, 'cellular_technology': None, 'eas_status': None, 'eas_reason': None, 'eas_activated': True, 'eas_activation_id': '3E3F511C7A81931F2528D26D4C350DE7', 'last_eas_sync_timestamp': '1/1/2001 0:00:00', 'management_agent': 'Intune', 'ingestion_date': datetime.date(2025, 11, 19), 'ingestion_timestamp': datetime.datetime(2025, 11, 19, 10, 45, 46, 75829, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/intune/assets/date=20251119/intune_assets1.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/intune/assets/ingestion_date=2025-11-19/part-00000-75670e76-d034-409c-9bf7-57b92ca90d86.c000.snappy.parquet', 'source_record_hash': '7d8ddcd240d02587a16cae7c544efb38204ab9fd667b2ed33e238dfe9201bfc7'}]
+
+Table: itglue_assets
+Schema:
+custom_fields (STRING) - Client specific custom attributes not promoted to columns (canonicalized JSON).
+asset_id (STRING) - IT Glue asset/configuration record ID.
+asset_name (STRING) - Human-friendly name/display name, or, Current device name as reported to MDM.
+asset_type (STRING) - Record type: Configuration, Flexible Asset, Password, etc.
+serial_number (STRING) - Hardware serial number.
+status (STRING) - Lifecycle status: In Use, Spare, Disposed, etc.
+ownership_type (STRING) - Kind of Asset Ownership - General, Client-Owned
+model (STRING) - Model or product name.
+cpu (STRING) - CPU/SoC description.
+memory_gb (FLOAT) - Installed RAM in GB
+storage_total_gb (FLOAT) - Total storage (GB).
+mac_address (STRING) - Known MAC addresses.
+purchase_order (STRING) - Purchase order number
+acquisition_cost (FLOAT) - Acquisition cost
+currency_code (STRING) - ISO currency
+warranty_expiry_date (DATE) - Warranty coverage end date.
+decommission_date (DATE) - Retired/disposed date
+is_active (BOOLEAN) - Indicates the item has been activated or provisioned and is 'live' for use.
+archived (BOOLEAN) - Record is retired/closed and frozen for history, not active in operations.
+user_id (STRING) - Primary user/assignee.
+location_id (STRING) - Site/Location ID (if enabled).
+country (STRING) - Country Name
+excluded_from_audit_scope (BOOLEAN) - Flag denotes of asset is excluded from compliance/audit checks.
+notes (STRING) - Free-text notes/documentation.
+record_updated_timestamp (TIMESTAMP) - Source record updated
+ingestion_date (DATE) - Data Ingestion date.
+ingestion_timestamp (TIMESTAMP) - Data ingestion timestamp
+raw_input_filename (STRING) - Source filename in raw.
+curated_input_filename (STRING) - Processed filename in Curated.
+source_record_hash (STRING) - Hash of tracked attributes to detect changes.
+
+Sample Rows:
+[{'custom_fields': '{}', 'asset_id': '52293828', 'asset_name': 'Acer 23.8 FHD@75Hz IPS Monitor', 'asset_type': 'Monitor', 'serial_number': None, 'status': 'Deployed', 'ownership_type': 'General', 'model': 'Acer 23.8 FHD@75 Hz IPS Monitor', 'cpu': None, 'memory_gb': None, 'storage_total_gb': None, 'mac_address': None, 'purchase_order': 'ITZ00014452-2', 'acquisition_cost': 157.1999969482422, 'currency_code': 'EUR', 'warranty_expiry_date': datetime.date(2023, 5, 18), 'decommission_date': None, 'is_active': False, 'archived': False, 'user_id': 'Mariela Barbara Marquez Morones', 'location_id': 'Remote - IE', 'country': 'Ireland', 'excluded_from_audit_scope': False, 'notes': None, 'record_updated_timestamp': datetime.datetime(2022, 10, 28, 16, 34, 20, tzinfo=datetime.timezone.utc), 'ingestion_date': datetime.date(2025, 11, 19), 'ingestion_timestamp': datetime.datetime(2025, 11, 19, 10, 45, 16, 92237, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/itglue/assets/date=20251119/itglue_assets_corrected_1.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/itglue/assets/ingestion_date=2025-11-19/part-00000-44a146d0-a8b1-4a68-bca7-d0c7abda8838.c000.snappy.parquet', 'source_record_hash': '242151c20d1f6bf36ff02ec851da68f6a5731681bffacf8d090ca486db4c1244'}, {'custom_fields': '{"client_asset_id":"M100086504"}', 'asset_id': '54873001', 'asset_name': 'Acer 514 Chromebook i5-1135G7 / 8 / 128GB', 'asset_type': 'Chromebook', 'serial_number': 'NXATZSP0042021E4F57600', 'status': 'In-Stock', 'ownership_type': 'General', 'model': 'Acer 514 Chromebook [NX.ATZSP.004]', 'cpu': 'i5-1135G7', 'memory_gb': 8.0, 'storage_total_gb': 128.0, 'mac_address': 'F8B54D4B514A', 'purchase_order': '0167254', 'acquisition_cost': 38629.80078125, 'currency_code': 'PHP', 'warranty_expiry_date': datetime.date(2023, 7, 27), 'decommission_date': None, 'is_active': False, 'archived': False, 'user_id': None, 'location_id': 'Zones - PH', 'country': 'Philippines', 'excluded_from_audit_scope': False, 'notes': None, 'record_updated_timestamp': datetime.datetime(2025, 4, 3, 3, 36, 13, tzinfo=datetime.timezone.utc), 'ingestion_date': datetime.date(2025, 11, 19), 'ingestion_timestamp': datetime.datetime(2025, 11, 19, 10, 45, 16, 92237, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/itglue/assets/date=20251119/itglue_assets_corrected_1.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/itglue/assets/ingestion_date=2025-11-19/part-00000-44a146d0-a8b1-4a68-bca7-d0c7abda8838.c000.snappy.parquet', 'source_record_hash': '061f41c2fc4f0069e15013f1a3c1c5bae32420bf2699ee5c14c0eaa13b59f8c6'}, {'custom_fields': '{"client_asset_id":"M100072773"}', 'asset_id': '52458265', 'asset_name': 'Acer 514 Chromebook i5-1135G7 / 8 / 256GB', 'asset_type': 'Chromebook', 'serial_number': 'NXATZSP005217081077600', 'status': 'In-Stock', 'ownership_type': 'General', 'model': 'Acer 514 Chromebook [NX.ATZSP.005]', 'cpu': 'i5-1135G7', 'memory_gb': 8.0, 'storage_total_gb': 256.0, 'mac_address': '60:A5:E2:D1:B7:C6', 'purchase_order': '0165632', 'acquisition_cost': 40019.80078125, 'currency_code': 'PHP', 'warranty_expiry_date': datetime.date(2023, 5, 19), 'decommission_date': None, 'is_active': False, 'archived': False, 'user_id': None, 'location_id': 'Zones - PH', 'country': 'Philippines', 'excluded_from_audit_scope': False, 'notes': 'Replaced camera', 'record_updated_timestamp': datetime.datetime(2024, 2, 19, 3, 56, 55, tzinfo=datetime.timezone.utc), 'ingestion_date': datetime.date(2025, 11, 19), 'ingestion_timestamp': datetime.datetime(2025, 11, 19, 10, 45, 16, 92237, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/itglue/assets/date=20251119/itglue_assets_corrected_1.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/itglue/assets/ingestion_date=2025-11-19/part-00000-44a146d0-a8b1-4a68-bca7-d0c7abda8838.c000.snappy.parquet', 'source_record_hash': '3001bd310f567c07bbb6cc7d6c42f659e9ab0e5b6e31bf9b484199e1bdb725fe'}]
+
+Table: mosyle_assets
+Schema:
+custom_fields (STRING) - Client specific custom attributes not promoted to columns (canonicalized JSON).
+asset_name (STRING) - Mosyle device record ID (internal).
+serial_number (STRING) - Hardware serial number.
+udid_link (STRING) - Apple device UDID Link.
+mdm_status (STRING) - Is MDM activated.
+asset_tag (STRING) - Organization asset tag (if set).
+model (STRING) - Marketing model name.
+os_version (STRING) - Operating system version (major.minor[.patch]).
+storage_total_gb (FLOAT) - Total internal storage capacity (GB).
+storage_free_gb (FLOAT) - Free internal storage (GB).
+passcode_enabled (BOOLEAN) - Passcode policy present (iOS/iPadOS).
+imei (STRING) - IMEI for cellular-enabled devices (iPhone/iPad).
+wifi_mac_address (STRING) - Wi‑Fi MAC address.
+last_wan_ip (STRING) - Last reported WAN IP address.
+last_lan_ip (STRING) - Last reported IP address.
+bluetooth_status (BOOLEAN) - Bluetooth Status. On/Off
+bluetooth_mac_address (STRING) - Bluetooth MAC address.
+battery_remaining_pct (INTEGER) - Battery Remaining Percentage.
+find_my_device_enabled (BOOLEAN) - Apple's owner-location feature tied to an Apple ID.
+is_supervised (BOOLEAN) - Apple Supervision status.
+enrollment_timestamp (TIMESTAMP) - Timestamp when enrolled into MDM.
+enrollment_profile (STRING) - Profile enrolled into MDM.
+user_id (STRING) - Assigned Mosyle user ID.
+user_type (STRING) - Assigned Mosyle user type. e.g. End User / Administrator
+last_asset_modification_timestamp (TIMESTAMP) - Last asset update timestamp.
+last_reboot_timestamp (TIMESTAMP) - Last asset reboot timestamp.
+last_check_in_timestamp (TIMESTAMP) - Last time device checked in with Mosyle.
+last_cloud_backup_date (DATE) - Last iCloud Backup Date
+lost_mode_enabled (BOOLEAN) - MDM-triggered lock state.
+tags (STRING) - Label used in Mosyle to group devices. e.g., department.
+ingestion_date (DATE) - Data Ingestion date.
+ingestion_timestamp (TIMESTAMP) - Data ingestion timestamp
+raw_input_filename (STRING) - Source filename in raw.
+curated_input_filename (STRING) - Processed filename in Curated.
+source_record_hash (STRING) - Hash of tracked attributes to detect changes.
+
+Sample Rows:
+[{'custom_fields': '{}', 'asset_name': 'KJWMQ2KW0N', 'serial_number': 'KJWMQ2KW0N', 'udid_link': 'https://mybusiness.mosyle.com/#device_DE6D490D-3919-5346-9DEE-8F74FB4A5043', 'mdm_status': 'Activated', 'asset_tag': None, 'model': '"Mac Studio ""M4 Max"" (2025)"', 'os_version': '15.4.1', 'storage_total_gb': None, 'storage_free_gb': None, 'passcode_enabled': False, 'imei': None, 'wifi_mac_address': '1C:1D:D3:DA:6D:26', 'last_wan_ip': '65.217.204.196', 'last_lan_ip': '169.254.251.50', 'bluetooth_status': None, 'bluetooth_mac_address': '1C:1D:D3:DB:24:28', 'battery_remaining_pct': -1, 'find_my_device_enabled': False, 'is_supervised': True, 'enrollment_timestamp': datetime.datetime(2025, 3, 29, 11, 19, tzinfo=datetime.timezone.utc), 'enrollment_profile': '1:1 - Edward Betancourt', 'user_id': 'ebetancourt', 'user_type': 'End User', 'last_asset_modification_timestamp': datetime.datetime(2025, 5, 7, 10, 37, tzinfo=datetime.timezone.utc), 'last_reboot_timestamp': datetime.datetime(2025, 4, 19, 16, 11, tzinfo=datetime.timezone.utc), 'last_check_in_timestamp': datetime.datetime(2025, 5, 7, 10, 37, tzinfo=datetime.timezone.utc), 'last_cloud_backup_date': None, 'lost_mode_enabled': False, 'tags': None, 'ingestion_date': datetime.date(2025, 11, 19), 'ingestion_timestamp': datetime.datetime(2025, 11, 19, 11, 36, 9, 756607, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/mosyle/assets/date=20251119/mosyle_asset_1.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/mosyle/assets/ingestion_date=2025-11-19/part-00000-c743520b-8941-4b67-b6db-c95135c77a76.c000.snappy.parquet', 'source_record_hash': '5fdc6c7eb49bc5bf84022241a88de339bb29946f7c9004a867edc3ac0f8d15a4'}, {'custom_fields': '{}', 'asset_name': 'GC2167WFC2', 'serial_number': 'GC2167WFC2', 'udid_link': 'https://mybusiness.mosyle.com/#device_10548ED0-1133-5BB3-8089-643146E90295', 'mdm_status': 'Activated', 'asset_tag': None, 'model': 'MacBook Air (13-inch, M3, 2024)', 'os_version': '15.4.1', 'storage_total_gb': None, 'storage_free_gb': None, 'passcode_enabled': False, 'imei': None, 'wifi_mac_address': '9C:58:84:32:E0:ED', 'last_wan_ip': '106.219.25.61', 'last_lan_ip': '172.20.10.10', 'bluetooth_status': None, 'bluetooth_mac_address': '9C:58:84:32:FB:B5', 'battery_remaining_pct': 0, 'find_my_device_enabled': False, 'is_supervised': True, 'enrollment_timestamp': datetime.datetime(2025, 1, 31, 8, 15, tzinfo=datetime.timezone.utc), 'enrollment_profile': '1:1 - Archana RJ', 'user_id': 'arj', 'user_type': 'End User', 'last_asset_modification_timestamp': datetime.datetime(2025, 5, 7, 9, 40, tzinfo=datetime.timezone.utc), 'last_reboot_timestamp': datetime.datetime(2025, 5, 7, 5, 54, tzinfo=datetime.timezone.utc), 'last_check_in_timestamp': datetime.datetime(2025, 5, 7, 9, 50, tzinfo=datetime.timezone.utc), 'last_cloud_backup_date': None, 'lost_mode_enabled': False, 'tags': None, 'ingestion_date': datetime.date(2025, 11, 19), 'ingestion_timestamp': datetime.datetime(2025, 11, 19, 11, 36, 9, 756607, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/mosyle/assets/date=20251119/mosyle_asset_1.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/mosyle/assets/ingestion_date=2025-11-19/part-00000-c743520b-8941-4b67-b6db-c95135c77a76.c000.snappy.parquet', 'source_record_hash': '24076a422071ac234fa8bffcdcf903a85676209382f977e10eb68c40ff1f99cf'}, {'custom_fields': '{}', 'asset_name': 'F7L6CKP2RG', 'serial_number': 'F7L6CKP2RG', 'udid_link': 'https://mybusiness.mosyle.com/#device_14E4A213-1677-586E-B421-0E73B18646DF', 'mdm_status': 'Activated', 'asset_tag': None, 'model': 'MacBook Air (13-inch, M3, 2024)', 'os_version': '15.4.1', 'storage_total_gb': None, 'storage_free_gb': None, 'passcode_enabled': False, 'imei': None, 'wifi_mac_address': '50:A6:D8:CF:75:12', 'last_wan_ip': '124.123.172.64', 'last_lan_ip': '192.168.0.101', 'bluetooth_status': None, 'bluetooth_mac_address': '50:A6:D8:D3:4E:A0', 'battery_remaining_pct': 0, 'find_my_device_enabled': False, 'is_supervised': True, 'enrollment_timestamp': datetime.datetime(2024, 6, 6, 10, 45, tzinfo=datetime.timezone.utc), 'enrollment_profile': '1:1 - G Madhu Sudhan Rao', 'user_id': 'mrao', 'user_type': 'End User', 'last_asset_modification_timestamp': datetime.datetime(2025, 5, 7, 10, 54, tzinfo=datetime.timezone.utc), 'last_reboot_timestamp': datetime.datetime(2025, 4, 24, 0, 18, tzinfo=datetime.timezone.utc), 'last_check_in_timestamp': datetime.datetime(2025, 5, 7, 10, 54, tzinfo=datetime.timezone.utc), 'last_cloud_backup_date': None, 'lost_mode_enabled': False, 'tags': None, 'ingestion_date': datetime.date(2025, 11, 19), 'ingestion_timestamp': datetime.datetime(2025, 11, 19, 11, 36, 9, 756607, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/mosyle/assets/date=20251119/mosyle_asset_1.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/mosyle/assets/ingestion_date=2025-11-19/part-00000-c743520b-8941-4b67-b6db-c95135c77a76.c000.snappy.parquet', 'source_record_hash': '0b628f3b6f42d67d54ac085958d4d097f93cdd4d920152246f3ac521b8acaafa'}]</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 8 — Calling tool: bq_unified_query_checker</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "query": "SELECT\n    t2.job_title,\n    SUM(t1.acquisition_cost) AS total_asset_cost\nFROM\n    `itglue_assets` AS t1\nINNER JOIN\n    `workday_employees` AS t2 ON t1.user_id = CONCAT(t2.first_name, ' ', t2.last_name)\nWHERE\n    t1.acquisition_cost IS NOT NULL\nGROUP BY\n    t2.job_title\nORDER BY\n    total_asset_cost DESC\nLIMIT 10"
+}</pre>
+                            </details>
+
+                            <div id="tool-output-baf70ef8dba3451aadf0aea50a288d2d">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>{"final_status": "PASS", "message": "Query validated and safe to execute", "corrected_sql": "SELECT\n    t2.job_title,\n    SUM(t1.acquisition_cost) AS total_asset_cost\nFROM\n    `itglue_assets` AS t1\nINNER JOIN\n    `workday_employees` AS t2 ON t1.user_id = CONCAT(t2.first_name, ' ', t2.last_name)\nWHERE\n    t1.acquisition_cost IS NOT NULL\nGROUP BY\n    t2.job_title\nORDER BY\n    total_asset_cost DESC\nLIMIT 10", "layers": {"llm_checker": {"status": "PASS", "detail": "LLM returned candidate SQL", "output": "SELECT\n    t2.job_title,\n    SUM(t1.acquisition_cost) AS total_asset_cost\nFROM\n    `itglue_assets` AS t1\nINNER JOIN\n    `workday_employees` AS t2 ON t1.user_id = CONCAT(t2.first_name, ' ', t2.last_name)\nWHERE\n    t1.acquisition_cost IS NOT NULL\nGROUP BY\n    t2.job_title\nORDER BY\n    total_asset_cost DESC\nLIMIT 10"}, "static_checker": {"status": "PASS", "detail": "No modification detected", "output": "SELECT\n    t2.job_title,\n    SUM(t1.acquisition_cost) AS total_asset_cost\nFROM\n    `itglue_assets` AS t1\nINNER JOIN\n    `workday_employees` AS t2 ON t1.user_id = CONCAT(t2.first_name, ' ', t2.last_name)\nWHERE\n    t1.acquisition_cost IS NOT NULL\nGROUP BY\n    t2.job_title\nORDER BY\n    total_asset_cost DESC\nLIMIT 10"}, "dry_run": {"status": "PASS", "detail": "Dry run succeeded", "output": "DRY_RUN_OK"}}}</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 9 — Calling tool: bigquery_query</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "query": "SELECT\n    t2.job_title,\n    SUM(t1.acquisition_cost) AS total_asset_cost\nFROM\n    `itglue_assets` AS t1\nINNER JOIN\n    `workday_employees` AS t2 ON t1.user_id = CONCAT(t2.first_name, ' ', t2.last_name)\nWHERE\n    t1.acquisition_cost IS NOT NULL\nGROUP BY\n    t2.job_title\nORDER BY\n    total_asset_cost DESC\nLIMIT 10"
+}</pre>
+                            </details>
+
+                            <div id="tool-output-99ea9200d4ba4a9397ca4795ba30d4c9">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>{
+  "status": "SUCCESS",
+  "executed_sql": "SELECT\n    t2.job_title,\n    SUM(t1.acquisition_cost) AS total_asset_cost\nFROM\n    `itglue_assets` AS t1\nINNER JOIN\n    `workday_employees` AS t2 ON t1.user_id = CONCAT(t2.first_name, ' ', t2.last_name)\nWHERE\n    t1.acquisition_cost IS NOT NULL\nGROUP BY\n    t2.job_title\nORDER BY\n    total_asset_cost DESC\nLIMIT 10",
+  "rows": [
+    {
+      "job_title": null,
+      "total_asset_cost": 408008.2601547241
+    },
+    {
+      "job_title": "Service Delivery, Manager",
+      "total_asset_cost": 321478.15216064453
+    },
+    {
+      "job_title": "Data Scientist IV",
+      "total_asset_cost": 245800.0
+    },
+    {
+      "job_title": "Software Developer IV",
+      "total_asset_cost": 222800.0
+    },
+    {
+      "job_title": "Cellular Support Technician II",
+      "total_asset_cost": 216840.8009033203
+    },
+    {
+      "job_title": "Talent Acquisition Sourcer II",
+      "total_asset_cost": 211700.0
+    },
+    {
+      "job_title": "Software Developer I",
+      "total_asset_cost": 183305.9921875
+    },
+    {
+      "job_title": "Talent Acquisition, Senior Director",
+      "total_asset_cost": 172800.0
+    },
+    {
+      "job_title": "Software Developer II",
+      "total_asset_cost": 167078.5
+    },
+    {
+      "job_title": "Product Marketing, Manager",
+      "total_asset_cost": 163238.25
+    }
+  ],
+  "row_count": 10
+}</pre>
+                                </details>
+                            </div>
+                        </div></div><div class="msg bot-msg"><iframe style="width: 100%; height: 500px; border: none;" src="./Q2_files/saved_resource.html"></iframe></div></div></div>
+
+        <div class="chat-input-area">
+            <input type="text" id="userInput" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // 🔥 NEW SESSION ID USING TIMESTAMP + HIGH PRECISION TIMER
+        const sessionId = `${Date.now()}${performance.now().toFixed(3).replace('.', '')}`;
+        console.log("Generated Session ID:", sessionId);
+
+        // Maps step_id -> tool output div
+        const stepOutputTargetMap = {};
+
+        // Stores tool outputs that arrive early
+        const pendingToolOutputs = {};
+
+        async function sendMessage() {
+            const input = document.getElementById("userInput");
+            const chatBox = document.getElementById("chatBox");
+            const text = input.value.trim();
+            if (!text) return;
+
+            input.value = "";
+
+            // --- WRAPPER for this message ---
+            const requestWrapper = document.createElement("div");
+            requestWrapper.className = "request-block";
+            chatBox.appendChild(requestWrapper);
+
+            // USER MESSAGE
+            const userBubble = document.createElement("div");
+            userBubble.className = "msg user-msg";
+            userBubble.innerText = text;
+            requestWrapper.appendChild(userBubble);
+
+            // Steps container for this request
+            const stepsContainer = document.createElement("div");
+            stepsContainer.className = "msg bot-msg";
+            stepsContainer.innerHTML = "<b>Agent Steps:</b><br>";
+            requestWrapper.appendChild(stepsContainer);
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // --- Streaming fetch ---
+            const response = await fetch(
+                `http://localhost:8000/db_agent?user_input=${encodeURIComponent(text)}&session_id=${sessionId}`
+            );
+
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+
+            let finalAnswer = null;
+
+            while (true) {
+                const { value, done } = await reader.read();
+                if (done) break;
+
+                const chunk = decoder.decode(value, { stream: true });
+                if (!chunk) continue;
+
+                chunk.split("\n").forEach(line => {
+                    if (!line.trim()) return;
+
+                    let data;
+                    try { data = JSON.parse(line); }
+                    catch { return; }
+
+                    // -------------------------------------------------------
+                    // TOOL CALL
+                    // -------------------------------------------------------
+                    if (data.type === "tool_call") {
+                        const stepId = data.step_id;
+                        const uniqueDivId = `tool-output-${stepId}`;
+                        stepOutputTargetMap[stepId] = uniqueDivId;
+
+                        const box = document.createElement("div");
+                        box.innerHTML = `
+                            <div><b>🔧 Step ${data.sequence} — Calling tool: ${data.tool_name}</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>${JSON.stringify(data.tool_input, null, 2)}</pre>
+                            </details>
+
+                            <div id="${uniqueDivId}"></div>
+                        `;
+
+                        stepsContainer.appendChild(box);
+
+                        // Apply pending tool output if it arrived early
+                        if (pendingToolOutputs[stepId]) {
+                            const outBox = document.getElementById(uniqueDivId);
+                            outBox.innerHTML = `
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>${pendingToolOutputs[stepId]}</pre>
+                                </details>
+                            `;
+                            delete pendingToolOutputs[stepId];
+                        }
+                    }
+
+                    // -------------------------------------------------------
+                    // TOOL OUTPUT
+                    // -------------------------------------------------------
+                    if (data.type === "tool_output") {
+                        const stepId = data.step_id;
+                        const divId = stepOutputTargetMap[stepId];
+                        const outputDiv = divId ? document.getElementById(divId) : null;
+
+                        if (outputDiv) {
+                            outputDiv.innerHTML = `
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>${data.content}</pre>
+                                </details>
+                            `;
+                        } else {
+                            // output arrived before its tool_call
+                            pendingToolOutputs[stepId] = data.content;
+                        }
+                    }
+
+                    // -------------------------------------------------------
+                    // FINAL AI MESSAGE
+                    // -------------------------------------------------------
+                    if (data.type === "ai_message") {
+                        finalAnswer = data.content;
+                    }
+
+                    // -------------------------------------------------------
+                    // ERROR
+                    // -------------------------------------------------------
+                    if (data.error) {
+                        const errDiv = document.createElement("div");
+                        errDiv.className = "msg bot-msg";
+                        errDiv.style.color = "red";
+                        errDiv.innerText = `Error: ${data.error}`;
+                        requestWrapper.appendChild(errDiv);
+                    }
+                });
+
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+
+            // -------------------------------------------------------
+            // RENDER FINAL ANSWER (inside THIS request block ONLY)
+            // -------------------------------------------------------
+            if (finalAnswer) {
+            const finalDiv = document.createElement("div");
+            finalDiv.className = "msg bot-msg";
+
+            // Create iframe
+            const iframe = document.createElement("iframe");
+            iframe.style.width = "100%";
+            iframe.style.height = "500px"; // adjust as needed
+            iframe.style.border = "none";
+
+            // Append iframe to finalDiv
+            finalDiv.appendChild(iframe);   
+            requestWrapper.appendChild(finalDiv);
+
+            // Write the agent HTML into the iframe
+            const doc = iframe.contentDocument || iframe.contentWindow.document;
+            doc.open();
+            doc.write(finalAnswer); // the full HTML/CSS/JS output
+            doc.close();
+        }
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+
+</body></html>
