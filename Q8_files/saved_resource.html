@@ -1,0 +1,132 @@
+
+<!-- saved from url=(0035)http://127.0.0.1:5500/frontend.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 25px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      text-align: center;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #0078d4;
+    }
+
+    .header h1 {
+      color: #0078d4;
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .introduction p {
+      text-align: center;
+      font-size: 18px;
+      color: #555;
+    }
+
+    .pattern-section {
+      margin-top: 30px;
+    }
+
+    .pattern-card {
+      background-color: #f9f9f9;
+      border-left: 5px solid #0078d4;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .pattern-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .pattern-card h3 {
+      margin-top: 0;
+      color: #005a9e;
+      font-size: 22px;
+    }
+
+    .pattern-card p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    .call-to-action {
+      text-align: center;
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #eaf6ff;
+      border-radius: 8px;
+    }
+
+    .call-to-action p {
+      font-size: 18px;
+      color: #005a9e;
+      margin: 0;
+    }
+  </style>
+
+  <div class="container">
+    <div class="header">
+      <h1>Intune Data Analysis Pattern</h1>
+    </div>
+
+    <div class="introduction">
+      <p>I have identified the <strong>intune_assets</strong> table, which contains a rich set of data about your Intune-managed devices. Here is a proposed pattern for analysis that we can explore.
+      </p>
+    </div>
+
+    <div class="pattern-section">
+      <div class="pattern-card">
+        <h3>Device Inventory Summary</h3>
+        <p>Get a high-level overview of your device landscape. This includes total asset counts, breakdowns by operating system (platform), ownership type (Corporate/Personal), and manufacturer.</p>
+      </div>
+
+      <div class="pattern-card">
+        <h3>Device Compliance Analysis</h3>
+        <p>Understand the compliance posture of your devices. We can visualize the distribution of devices by their compliance state (Compliant, Non-compliant, Unknown) to identify potential security risks.</p>
+      </div>
+
+      <div class="pattern-card">
+        <h3>User-Device Relationship</h3>
+        <p>Map devices to their primary users. This is useful for understanding device allocation and for user-centric reporting and troubleshooting.</p>
+      </div>
+
+      <div class="pattern-card">
+        <h3>Asset Age and Refresh Cycle</h3>
+        <p>Analyze device lifecycle by examining enrollment dates. This can help identify aging assets that may be due for a refresh, helping with budget and hardware planning.</p>
+      </div>
+
+      <div class="pattern-card">
+        <h3>Storage Utilization</h3>
+        <p>Assess the disk space on your devices. We can analyze total vs. free storage to identify devices that are running low on space, which can impact performance and user productivity.</p>
+      </div>
+
+      <div class="pattern-card">
+        <h3>Security Posture</h3>
+        <p>Gain insights into the security settings of your devices. This includes checking the status of disk encryption and detecting if any devices are jailbroken, which are critical security indicators.</p>
+      </div>
+    </div>
+
+    <div class="call-to-action">
+      <p>Please let me know which of these analysis patterns you would like to explore first, or feel free to ask a more specific question about your Intune data!</p>
+    </div>
+  </div>
+</body></html>

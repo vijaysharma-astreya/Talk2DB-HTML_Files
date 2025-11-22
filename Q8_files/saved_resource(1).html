@@ -1,0 +1,263 @@
+
+<!-- saved from url=(0035)http://127.0.0.1:5500/frontend.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 25px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      text-align: center;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #0078d4;
+    }
+
+    .header h1 {
+      color: #0078d4;
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .metrics-container {
+      display: flex;
+      justify-content: space-around;
+      margin: 30px 0;
+      text-align: center;
+    }
+
+    .metric-card {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      width: 30%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      border-left: 5px solid;
+    }
+
+    .metric-card.encrypted {
+      border-left-color: #28a745;
+    }
+
+    .metric-card.unencrypted {
+      border-left-color: #dc3545;
+    }
+    
+    .metric-card.total {
+        border-left-color: #17a2b8;
+    }
+
+    .metric-card h3 {
+      margin: 0 0 10px 0;
+      font-size: 20px;
+      color: #005a9e;
+    }
+
+    .metric-card p {
+      margin: 0;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    
+    .metric-card .percentage {
+      font-size: 16px;
+      color: #555;
+    }
+
+    .chart-container {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .donut-chart {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      margin: 0 auto;
+      background-image: conic-gradient(#28a745 0% 94.97%, #dc3545 94.97% 100%);
+    }
+
+    .chart-inner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    
+    .chart-inner .total-devices {
+        font-size: 28px;
+        font-weight: bold;
+        color: #333;
+    }
+    
+    .chart-inner .total-label {
+        font-size: 14px;
+        color: #777;
+    }
+
+    .legend {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      margin: 0 15px;
+    }
+
+    .legend-color {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    .details-section {
+      margin-top: 30px;
+    }
+
+    .details-section h2 {
+      text-align: center;
+      color: #005a9e;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    thead {
+      background-color: #0078d4;
+      color: #ffffff;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    
+    .info-box {
+        background-color: #eaf6ff;
+        border-left: 5px solid #0078d4;
+        padding: 15px;
+        margin-top: 20px;
+        border-radius: 5px;
+    }
+
+    .conclusion {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      font-size: 16px;
+      color: #555;
+    }
+  </style>
+
+  <div class="container">
+    <div class="header">
+      <h1>Intune Security Posture Analysis</h1>
+    </div>
+
+    <div class="metrics-container">
+      <div class="metric-card total">
+        <h3>Total Devices</h3>
+        <p>895</p>
+      </div>
+      <div class="metric-card encrypted">
+        <h3>Encrypted</h3>
+        <p>850</p>
+        <p class="percentage">(94.97%)</p>
+      </div>
+      <div class="metric-card unencrypted">
+        <h3>Unencrypted</h3>
+        <p>45</p>
+        <p class="percentage">(5.03%)</p>
+      </div>
+    </div>
+    
+    <div class="chart-container">
+        <h2>Device Encryption Status</h2>
+        <div class="donut-chart">
+            <div class="chart-inner">
+                <div class="total-devices">895</div>
+                <div class="total-label">Total Devices</div>
+            </div>
+        </div>
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #28a745;"></div>
+                <span>Encrypted</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #dc3545;"></div>
+                <span>Unencrypted</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="details-section">
+      <h2>Security Details</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Encryption Enabled</th>
+            <th>Jailbreak Detected</th>
+            <th>Device Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>True</td>
+            <td>Unknown</td>
+            <td>850</td>
+          </tr>
+          <tr>
+            <td>False</td>
+            <td>Unknown</td>
+            <td>45</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <div class="info-box">
+        <p><strong>Jailbreak Detection:</strong> The 'Jailbreak Detected' status is marked as 'Unknown' for all devices. This is a standard report for devices where this check is not applicable, such as Windows and Android, as this feature is primarily used for iOS/iPadOS devices.</p>
+      </div>
+    </div>
+
+    <div class="conclusion">
+      <p>The analysis reveals that while a vast majority of devices are encrypted, a small but significant number remain unencrypted, posing a potential security risk that should be addressed.</p>
+    </div>
+  </div>
+</body></html>

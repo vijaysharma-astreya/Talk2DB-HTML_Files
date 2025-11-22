@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)http://127.0.0.1:5500/frontend.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>DB Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef1f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chat-container {
+            width: 80%;
+            height: 70%;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: #4a77f7;
+            padding: 16px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .chat-box {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            background: #f7f9fc;
+        }
+
+        .msg {
+            margin-bottom: 12px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            max-width: 80%;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+
+        .user-msg {
+            background: #4a77f7;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+
+        .bot-msg {
+            background: #e5e7eb;
+            color: #111;
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+
+        .chat-input-area {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+        }
+
+        button {
+            padding: 0 18px;
+            background: #4a77f7;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: #3b63d6;
+        }
+
+        .request-block {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="chat-container">
+        <style>
+            .chat-header {
+                background-color: #4a77f7;
+                color: #ffffff;
+                padding: 12px 20px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 18px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                display: inline-block;
+            }
+            
+            .chat-header .assistant-name {
+                color: #f48a26; /* Highlight color for DB Assistant */
+                font-weight: bold;
+                font-size: 20px;
+                margin-right: 6px;
+            }
+            </style>
+            
+            <div class="chat-header">
+                <span class="assistant-name">DB Assistant</span> - Remember, even humans make mistakes !
+            </div>
+            
+
+        <div class="chat-box" id="chatBox"><div class="request-block"><div class="msg user-msg">Make a pattern for analysis of intune data</div><div class="msg bot-msg"><b>Agent Steps:</b><br><div>
+                            <div><b>🔧 Step 1 — Calling tool: bigquery_list_tables</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{}</pre>
+                            </details>
+
+                            <div id="tool-output-10bdfcc7ca8e4572a6408c6baefa1749">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>agent_insights: No description available.
+available_columns: No description available.
+catalog: No description available.
+data_dictionary: No description available.
+dim_employees: No description available.
+dlp_findings: No description available.
+dlp_summary: PII (Personally Identifiable Information) detection summary table aggregating Google Cloud DLP scan results across all datasets.Identifies sensitive data elements, their locations, severity levels, and occurrence patterns to support data privacy compliance (GDPR, CCPA, HIPAA), data minimization strategies, and security risk assessments.This table powers privacy impact assessments, data classification workflows, and sensitive data inventory reporting.
+dlpwork: No description available.
+fact_assets: No description available.
+insight_computation: No description available.
+insights: Actionable business insights and analytical queries catalog that identifies which pre-built insights   can be executed against available datasets. This table serves as the bridge between the insight library (potential analyses) and   actual data availability, filtering out insights that cannot be run due to missing columns or tables.   Powers insight recommendation engines, automated analytics generation, data discovery workflows, and   helps data consumers understand what questions can be answered with existing data. Essential for self-service analytics enablement and maximizing value extraction from curated datasets.
+insights_computation: No description available.
+intune_assets: Intune Asset Inventory snapshot of devices managed via MDM. 
+itglue_assets: IT Glue Asset Inventory snapshot of Apple devices (macOS, iOS/iPadOS, tvOS) managed via MDM. 
+itglue_consumables: Inventory of IT Glue consumables (e.g., toner, cables, peripherals) with vendor/PO details, cost/quantity.
+metadata_summary: Comprehensive metadata summary table combining insights, data quality metrics, profiling statistics, and table characteristics across all datasets
+missed_insights: Data gap analysis table identifying insights that cannot be executed due to missing columns or tables in the current data warehouse. This table serves as a strategic roadmap for data acquisition and schema enhancement by quantifying the analytical value locked behind missing data elements. Powers prioritization decisions for data pipeline development, guides vendor API integration scoping, supports business cases for new data sources, and enables product managers to communicate the incremental value of data investments. Critical for data strategy planning and maximizing ROI on data engineering efforts.
+mosyle_assets: Mosyle Asset Inventory snapshot of Apple devices (macOS, iOS/iPadOS, tvOS) managed via MDM.
+profiling: No description available.
+profiling_summary: Statistical data profiling summary table that provides comprehensive column-level insights across all datasets. Aggregates metrics on data distribution, cardinality, null prevalence, and value patterns to support data quality assessment,schema optimization, data modeling decisions, and anomaly detection. This table enables data engineers to understand data characteristics, identify optimization opportunities, and validate data transformation logic.
+quality: No description available.
+quality_summary: Comprehensive data quality monitoring table that aggregates Dataquality scan results across all data sources. Provides dimension-level quality scores, alert counts, and distribution metrics to enable proactive data quality management and identify datasets requiring remediation. This table powers quality dashboards, SLA monitoring, and data governance reporting.
+workday_employees: Employee snapshot dataset, one row per employee.</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 2 — Calling tool: bigquery_get_schema</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "table_names": [
+    "intune_assets"
+  ]
+}</pre>
+                            </details>
+
+                            <div id="tool-output-8ecfff2b9a594969bbd416bc9271194d">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>
+Table: intune_assets
+Schema:
+custom_fields (STRING) - Client specific custom attributes not promoted to columns (canonicalized JSON).
+asset_id (STRING) - Intune/Graph managed device ID (GUID).
+asset_name (STRING) - Device/computer name.
+serial_number (STRING) - Hardware serial (if device).
+upn_user_id (STRING) - Primary user UPN.
+user_name (STRING) - Primary user display name.
+user_id (STRING) - The unique identifier (GUID) of the primary user associated with the device in Intune/Azure AD.
+asset_state (STRING) - Managed/Unmanaged. The device is successfully enrolled and actively managed by Intune (MDM).
+category (STRING) - Intune device category display name.
+ownership_type (STRING) - Ownership: company / personal.
+management_name (STRING) - The Intune management authority name. eg-david_Windows_5/6/2025_10:11 AM
+management_certificate_expiration_timestamp (TIMESTAMP) - Expiration date of the MDM management certificate that allows Intune to manage the device.
+enrollment_timestamp (TIMESTAMP) - Initial enrollment timestamp.
+last_check_in_timestamp (TIMESTAMP) - Last check-in with Intune.
+compliance_state (STRING) - Compliant/noncompliant/unknown.
+compliance_grace_expiry (TIMESTAMP) - Compliance grace period end.
+platform (STRING) - Operating system family.
+os_version (STRING) - OS version
+sku (STRING) - Stock Keeping Unit. Describes the hardware or OS family type of the device as reported by the system SKU. eg. Home,Pro.
+model (STRING) - Model identifier.
+manufacturer (STRING) - Manufacturer.
+imei (STRING) - IMEI (mobile).
+meid (STRING) - MEID (mobile).
+wifi_subnet (STRING) - The subnet ID or range (network segment) of the Wi-Fi the device is/was connected to.
+wifi_mac_address (STRING) - Wi-Fi MAC address.
+wifi_ip_address (STRING) - The current or last known IPv4 address assigned to the device when connected via Wi-Fi.
+mac_address (STRING) - Ethernet MAC (if present).
+is_supervised (BOOLEAN) - Apple supervised flag.
+jailbreak_detected (STRING) - Jailbreak detection (iOS).
+encryption_enabled (BOOLEAN) - Disk encryption status.
+storage_total_gb (FLOAT) - Total storage GB.
+storage_free_gb (FLOAT) - Free storage GB.
+user_email (STRING) - User Email Id.
+user_phone_number (STRING) - user contact number.
+os_patch_level (STRING) - OS vendor security patch baseline currently installed (Android = YYYY-MM-01 date; Windows/macOS often a label/build).
+esim_id (STRING) - eSIM Embedded IDentifier (global chip ID for eSIM-capable devices).
+tpm_vendor_id (STRING) - TPM vendor ID (Windows) reported by the TPM; sometimes a 4-char code or numeric mapped to vendor.
+tpm_version (STRING) - TPM firmware version string.
+processor_architecture (STRING) - CPU architecture reported by the OS.
+product_name (STRING) - OS product/edition name.
+bios_version (STRING) - SMBIOS/Firmware version string from the system board.
+circuit_card_id (STRING) - SIM card Integrated Circuit Card ID (if cellular present).
+subscriber_carrier (STRING) - Mobile carrier associated with the active SIM/eSIM.
+cellular_technology (STRING) - Current/last-reported radio technology.
+eas_status (STRING) - Exchange ActiveSync management state.
+eas_reason (STRING) - Reason text/code for the current EAS status.
+eas_activated (BOOLEAN) - Whether an EAS partnership/profile is active on the device.
+eas_activation_id (STRING) - Identifier of the EAS partnership/activation on the server.
+last_eas_sync_timestamp (STRING) - Timestamp of the last successful EAS mailbox sync.
+management_agent (STRING) - Management authority for the device as seen by Intune.
+ingestion_date (DATE) - Data Ingestion date.
+ingestion_timestamp (TIMESTAMP) - Data ingestion timestamp
+raw_input_filename (STRING) - Source filename in raw.
+curated_input_filename (STRING) - Processed filename in Curated.
+source_record_hash (STRING) - Hash of tracked attributes to detect changes.
+
+Sample Rows:
+[{'custom_fields': '{"Azure AD Device ID":"ca75ec68-0648-42f1-bc63-3940dfa0cb5e","Azure AD registered":"FALSE","Intune registered":"Registered","JoinType":"Azure AD joined"}', 'asset_id': 'ca75ec68-0648-42f1-bc63-3940dfa0cb5e', 'asset_name': 'ASTREYA_RMS', 'serial_number': None, 'upn_user_id': 'rakeshms@astreya.com', 'user_name': 'Rakesh MS', 'user_id': 'ec1c430b-f97a-467e-b99d-bbcfa3015b92', 'asset_state': 'Managed', 'category': None, 'ownership_type': 'Corporate', 'management_name': 'rms_Windows_4/16/2025_11:02 AM', 'management_certificate_expiration_timestamp': None, 'enrollment_timestamp': None, 'last_check_in_timestamp': None, 'compliance_state': 'Compliant', 'compliance_grace_expiry': None, 'platform': 'Windows', 'os_version': '0.0.0.0', 'sku': None, 'model': None, 'manufacturer': None, 'imei': None, 'meid': None, 'wifi_subnet': None, 'wifi_mac_address': None, 'wifi_ip_address': None, 'mac_address': None, 'is_supervised': False, 'jailbreak_detected': 'Unknown', 'encryption_enabled': False, 'storage_total_gb': 0.0, 'storage_free_gb': 0.0, 'user_email': None, 'user_phone_number': None, 'os_patch_level': None, 'esim_id': None, 'tpm_vendor_id': None, 'tpm_version': None, 'processor_architecture': 'Unknown', 'product_name': None, 'bios_version': None, 'circuit_card_id': None, 'subscriber_carrier': None, 'cellular_technology': None, 'eas_status': None, 'eas_reason': None, 'eas_activated': False, 'eas_activation_id': '82B4AD6373E654A2BBC0F8E5A0833820', 'last_eas_sync_timestamp': '1/1/2001 0:00:00', 'management_agent': 'Intune', 'ingestion_date': datetime.date(2025, 11, 19), 'ingestion_timestamp': datetime.datetime(2025, 11, 19, 10, 45, 46, 75829, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/intune/assets/date=20251119/intune_assets1.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/intune/assets/ingestion_date=2025-11-19/part-00000-75670e76-d034-409c-9bf7-57b92ca90d86.c000.snappy.parquet', 'source_record_hash': '9e508287e15bc9321369aa3edc622b0daae682f6ccac51e1927b9b7e4f81e914'}, {'custom_fields': '{"Azure AD Device ID":"ca75ec68-0648-42f1-bc63-3940dfa0cb5e","Azure AD registered":"FALSE","Intune registered":"Registered","JoinType":"Azure AD joined"}', 'asset_id': 'ca75ec68-0648-42f1-bc63-3940dfa0cb5e', 'asset_name': 'ASTREYA_RMS', 'serial_number': None, 'upn_user_id': 'rakeshms@astreya.com', 'user_name': 'Rakesh MS', 'user_id': 'ec1c430b-f97a-467e-b99d-bbcfa3015b92', 'asset_state': 'Managed', 'category': None, 'ownership_type': 'Corporate', 'management_name': 'rms_Windows_4/16/2025_11:02 AM', 'management_certificate_expiration_timestamp': None, 'enrollment_timestamp': None, 'last_check_in_timestamp': None, 'compliance_state': 'Compliant', 'compliance_grace_expiry': None, 'platform': 'Windows', 'os_version': '0.0.0.0', 'sku': None, 'model': None, 'manufacturer': None, 'imei': None, 'meid': None, 'wifi_subnet': None, 'wifi_mac_address': None, 'wifi_ip_address': None, 'mac_address': None, 'is_supervised': False, 'jailbreak_detected': 'Unknown', 'encryption_enabled': False, 'storage_total_gb': 0.0, 'storage_free_gb': 0.0, 'user_email': None, 'user_phone_number': None, 'os_patch_level': None, 'esim_id': None, 'tpm_vendor_id': None, 'tpm_version': None, 'processor_architecture': 'Unknown', 'product_name': None, 'bios_version': None, 'circuit_card_id': None, 'subscriber_carrier': None, 'cellular_technology': None, 'eas_status': None, 'eas_reason': None, 'eas_activated': False, 'eas_activation_id': '82B4AD6373E654A2BBC0F8E5A0833820', 'last_eas_sync_timestamp': '1/1/2001 0:00:00', 'management_agent': 'Intune', 'ingestion_date': datetime.date(2025, 11, 19), 'ingestion_timestamp': datetime.datetime(2025, 11, 19, 10, 45, 46, 75829, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/intune/assets/date=20251112/intune_assets1.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/intune/assets/ingestion_date=2025-11-12/part-00000-7189be35-3585-4a88-9929-a06a3349a0ec.c000.snappy.parquet', 'source_record_hash': '9e508287e15bc9321369aa3edc622b0daae682f6ccac51e1927b9b7e4f81e914'}, {'custom_fields': '{"Azure AD Device ID":"6714284c-b133-4c63-a905-f358b57c0008","Azure AD registered":"TRUE","Intune registered":"Registered","JoinType":"Azure AD joined"}', 'asset_id': 'b843e47e-c285-488e-8eeb-08a5d27ecf41', 'asset_name': 'PF1589ZV', 'serial_number': 'PF1589ZV', 'upn_user_id': 'rwheeler@astreya.com', 'user_name': 'Rose Marie Wheeler', 'user_id': '9161e47c-6a30-4184-add8-3d3f3569b9f8', 'asset_state': 'Managed', 'category': None, 'ownership_type': 'Corporate', 'management_name': 'deanjames_Windows_9/20/2021_5:21 PM', 'management_certificate_expiration_timestamp': None, 'enrollment_timestamp': None, 'last_check_in_timestamp': None, 'compliance_state': 'Compliant', 'compliance_grace_expiry': None, 'platform': 'Windows', 'os_version': '10.0.26100.3775', 'sku': 'Pro', 'model': '20KS003LUS', 'manufacturer': 'LENOVO', 'imei': None, 'meid': None, 'wifi_subnet': '192.168.0.0', 'wifi_mac_address': 'D89C67CA0B5D', 'wifi_ip_address': '192.168.0.135', 'mac_address': 'E86A6405B1CC', 'is_supervised': False, 'jailbreak_detected': 'Unknown', 'encryption_enabled': True, 'storage_total_gb': 936480.0, 'storage_free_gb': 798937.0, 'user_email': None, 'user_phone_number': None, 'os_patch_level': None, 'esim_id': None, 'tpm_vendor_id': None, 'tpm_version': None, 'processor_architecture': 'X64', 'product_name': None, 'bios_version': None, 'circuit_card_id': None, 'subscriber_carrier': None, 'cellular_technology': None, 'eas_status': None, 'eas_reason': None, 'eas_activated': True, 'eas_activation_id': '3E3F511C7A81931F2528D26D4C350DE7', 'last_eas_sync_timestamp': '1/1/2001 0:00:00', 'management_agent': 'Intune', 'ingestion_date': datetime.date(2025, 11, 19), 'ingestion_timestamp': datetime.datetime(2025, 11, 19, 10, 45, 46, 75829, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/intune/assets/date=20251119/intune_assets1.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/intune/assets/ingestion_date=2025-11-19/part-00000-75670e76-d034-409c-9bf7-57b92ca90d86.c000.snappy.parquet', 'source_record_hash': '7d8ddcd240d02587a16cae7c544efb38204ab9fd667b2ed33e238dfe9201bfc7'}]</pre>
+                                </details>
+                            </div>
+                        </div></div><div class="msg bot-msg"><iframe style="width: 100%; height: 500px; border: none;" src="./Q8_files/saved_resource.html"></iframe></div></div><div class="request-block"><div class="msg user-msg">Go with Security one</div><div class="msg bot-msg"><b>Agent Steps:</b><br><div>
+                            <div><b>🔧 Step 1 — Calling tool: bigquery_get_schema</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "table_names": [
+    "intune_assets"
+  ]
+}</pre>
+                            </details>
+
+                            <div id="tool-output-3b9730f183894a548787cf19983c1976">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>
+Table: intune_assets
+Schema:
+custom_fields (STRING) - Client specific custom attributes not promoted to columns (canonicalized JSON).
+asset_id (STRING) - Intune/Graph managed device ID (GUID).
+asset_name (STRING) - Device/computer name.
+serial_number (STRING) - Hardware serial (if device).
+upn_user_id (STRING) - Primary user UPN.
+user_name (STRING) - Primary user display name.
+user_id (STRING) - The unique identifier (GUID) of the primary user associated with the device in Intune/Azure AD.
+asset_state (STRING) - Managed/Unmanaged. The device is successfully enrolled and actively managed by Intune (MDM).
+category (STRING) - Intune device category display name.
+ownership_type (STRING) - Ownership: company / personal.
+management_name (STRING) - The Intune management authority name. eg-david_Windows_5/6/2025_10:11 AM
+management_certificate_expiration_timestamp (TIMESTAMP) - Expiration date of the MDM management certificate that allows Intune to manage the device.
+enrollment_timestamp (TIMESTAMP) - Initial enrollment timestamp.
+last_check_in_timestamp (TIMESTAMP) - Last check-in with Intune.
+compliance_state (STRING) - Compliant/noncompliant/unknown.
+compliance_grace_expiry (TIMESTAMP) - Compliance grace period end.
+platform (STRING) - Operating system family.
+os_version (STRING) - OS version
+sku (STRING) - Stock Keeping Unit. Describes the hardware or OS family type of the device as reported by the system SKU. eg. Home,Pro.
+model (STRING) - Model identifier.
+manufacturer (STRING) - Manufacturer.
+imei (STRING) - IMEI (mobile).
+meid (STRING) - MEID (mobile).
+wifi_subnet (STRING) - The subnet ID or range (network segment) of the Wi-Fi the device is/was connected to.
+wifi_mac_address (STRING) - Wi-Fi MAC address.
+wifi_ip_address (STRING) - The current or last known IPv4 address assigned to the device when connected via Wi-Fi.
+mac_address (STRING) - Ethernet MAC (if present).
+is_supervised (BOOLEAN) - Apple supervised flag.
+jailbreak_detected (STRING) - Jailbreak detection (iOS).
+encryption_enabled (BOOLEAN) - Disk encryption status.
+storage_total_gb (FLOAT) - Total storage GB.
+storage_free_gb (FLOAT) - Free storage GB.
+user_email (STRING) - User Email Id.
+user_phone_number (STRING) - user contact number.
+os_patch_level (STRING) - OS vendor security patch baseline currently installed (Android = YYYY-MM-01 date; Windows/macOS often a label/build).
+esim_id (STRING) - eSIM Embedded IDentifier (global chip ID for eSIM-capable devices).
+tpm_vendor_id (STRING) - TPM vendor ID (Windows) reported by the TPM; sometimes a 4-char code or numeric mapped to vendor.
+tpm_version (STRING) - TPM firmware version string.
+processor_architecture (STRING) - CPU architecture reported by the OS.
+product_name (STRING) - OS product/edition name.
+bios_version (STRING) - SMBIOS/Firmware version string from the system board.
+circuit_card_id (STRING) - SIM card Integrated Circuit Card ID (if cellular present).
+subscriber_carrier (STRING) - Mobile carrier associated with the active SIM/eSIM.
+cellular_technology (STRING) - Current/last-reported radio technology.
+eas_status (STRING) - Exchange ActiveSync management state.
+eas_reason (STRING) - Reason text/code for the current EAS status.
+eas_activated (BOOLEAN) - Whether an EAS partnership/profile is active on the device.
+eas_activation_id (STRING) - Identifier of the EAS partnership/activation on the server.
+last_eas_sync_timestamp (STRING) - Timestamp of the last successful EAS mailbox sync.
+management_agent (STRING) - Management authority for the device as seen by Intune.
+ingestion_date (DATE) - Data Ingestion date.
+ingestion_timestamp (TIMESTAMP) - Data ingestion timestamp
+raw_input_filename (STRING) - Source filename in raw.
+curated_input_filename (STRING) - Processed filename in Curated.
+source_record_hash (STRING) - Hash of tracked attributes to detect changes.
+
+Sample Rows:
+[{'custom_fields': '{"Azure AD Device ID":"ca75ec68-0648-42f1-bc63-3940dfa0cb5e","Azure AD registered":"FALSE","Intune registered":"Registered","JoinType":"Azure AD joined"}', 'asset_id': 'ca75ec68-0648-42f1-bc63-3940dfa0cb5e', 'asset_name': 'ASTREYA_RMS', 'serial_number': None, 'upn_user_id': 'rakeshms@astreya.com', 'user_name': 'Rakesh MS', 'user_id': 'ec1c430b-f97a-467e-b99d-bbcfa3015b92', 'asset_state': 'Managed', 'category': None, 'ownership_type': 'Corporate', 'management_name': 'rms_Windows_4/16/2025_11:02 AM', 'management_certificate_expiration_timestamp': None, 'enrollment_timestamp': None, 'last_check_in_timestamp': None, 'compliance_state': 'Compliant', 'compliance_grace_expiry': None, 'platform': 'Windows', 'os_version': '0.0.0.0', 'sku': None, 'model': None, 'manufacturer': None, 'imei': None, 'meid': None, 'wifi_subnet': None, 'wifi_mac_address': None, 'wifi_ip_address': None, 'mac_address': None, 'is_supervised': False, 'jailbreak_detected': 'Unknown', 'encryption_enabled': False, 'storage_total_gb': 0.0, 'storage_free_gb': 0.0, 'user_email': None, 'user_phone_number': None, 'os_patch_level': None, 'esim_id': None, 'tpm_vendor_id': None, 'tpm_version': None, 'processor_architecture': 'Unknown', 'product_name': None, 'bios_version': None, 'circuit_card_id': None, 'subscriber_carrier': None, 'cellular_technology': None, 'eas_status': None, 'eas_reason': None, 'eas_activated': False, 'eas_activation_id': '82B4AD6373E654A2BBC0F8E5A0833820', 'last_eas_sync_timestamp': '1/1/2001 0:00:00', 'management_agent': 'Intune', 'ingestion_date': datetime.date(2025, 11, 19), 'ingestion_timestamp': datetime.datetime(2025, 11, 19, 10, 45, 46, 75829, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/intune/assets/date=20251119/intune_assets1.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/intune/assets/ingestion_date=2025-11-19/part-00000-75670e76-d034-409c-9bf7-57b92ca90d86.c000.snappy.parquet', 'source_record_hash': '9e508287e15bc9321369aa3edc622b0daae682f6ccac51e1927b9b7e4f81e914'}, {'custom_fields': '{"Azure AD Device ID":"ca75ec68-0648-42f1-bc63-3940dfa0cb5e","Azure AD registered":"FALSE","Intune registered":"Registered","JoinType":"Azure AD joined"}', 'asset_id': 'ca75ec68-0648-42f1-bc63-3940dfa0cb5e', 'asset_name': 'ASTREYA_RMS', 'serial_number': None, 'upn_user_id': 'rakeshms@astreya.com', 'user_name': 'Rakesh MS', 'user_id': 'ec1c430b-f97a-467e-b99d-bbcfa3015b92', 'asset_state': 'Managed', 'category': None, 'ownership_type': 'Corporate', 'management_name': 'rms_Windows_4/16/2025_11:02 AM', 'management_certificate_expiration_timestamp': None, 'enrollment_timestamp': None, 'last_check_in_timestamp': None, 'compliance_state': 'Compliant', 'compliance_grace_expiry': None, 'platform': 'Windows', 'os_version': '0.0.0.0', 'sku': None, 'model': None, 'manufacturer': None, 'imei': None, 'meid': None, 'wifi_subnet': None, 'wifi_mac_address': None, 'wifi_ip_address': None, 'mac_address': None, 'is_supervised': False, 'jailbreak_detected': 'Unknown', 'encryption_enabled': False, 'storage_total_gb': 0.0, 'storage_free_gb': 0.0, 'user_email': None, 'user_phone_number': None, 'os_patch_level': None, 'esim_id': None, 'tpm_vendor_id': None, 'tpm_version': None, 'processor_architecture': 'Unknown', 'product_name': None, 'bios_version': None, 'circuit_card_id': None, 'subscriber_carrier': None, 'cellular_technology': None, 'eas_status': None, 'eas_reason': None, 'eas_activated': False, 'eas_activation_id': '82B4AD6373E654A2BBC0F8E5A0833820', 'last_eas_sync_timestamp': '1/1/2001 0:00:00', 'management_agent': 'Intune', 'ingestion_date': datetime.date(2025, 11, 19), 'ingestion_timestamp': datetime.datetime(2025, 11, 19, 10, 45, 46, 75829, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/intune/assets/date=20251112/intune_assets1.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/intune/assets/ingestion_date=2025-11-12/part-00000-7189be35-3585-4a88-9929-a06a3349a0ec.c000.snappy.parquet', 'source_record_hash': '9e508287e15bc9321369aa3edc622b0daae682f6ccac51e1927b9b7e4f81e914'}, {'custom_fields': '{"Azure AD Device ID":"6714284c-b133-4c63-a905-f358b57c0008","Azure AD registered":"TRUE","Intune registered":"Registered","JoinType":"Azure AD joined"}', 'asset_id': 'b843e47e-c285-488e-8eeb-08a5d27ecf41', 'asset_name': 'PF1589ZV', 'serial_number': 'PF1589ZV', 'upn_user_id': 'rwheeler@astreya.com', 'user_name': 'Rose Marie Wheeler', 'user_id': '9161e47c-6a30-4184-add8-3d3f3569b9f8', 'asset_state': 'Managed', 'category': None, 'ownership_type': 'Corporate', 'management_name': 'deanjames_Windows_9/20/2021_5:21 PM', 'management_certificate_expiration_timestamp': None, 'enrollment_timestamp': None, 'last_check_in_timestamp': None, 'compliance_state': 'Compliant', 'compliance_grace_expiry': None, 'platform': 'Windows', 'os_version': '10.0.26100.3775', 'sku': 'Pro', 'model': '20KS003LUS', 'manufacturer': 'LENOVO', 'imei': None, 'meid': None, 'wifi_subnet': '192.168.0.0', 'wifi_mac_address': 'D89C67CA0B5D', 'wifi_ip_address': '192.168.0.135', 'mac_address': 'E86A6405B1CC', 'is_supervised': False, 'jailbreak_detected': 'Unknown', 'encryption_enabled': True, 'storage_total_gb': 936480.0, 'storage_free_gb': 798937.0, 'user_email': None, 'user_phone_number': None, 'os_patch_level': None, 'esim_id': None, 'tpm_vendor_id': None, 'tpm_version': None, 'processor_architecture': 'X64', 'product_name': None, 'bios_version': None, 'circuit_card_id': None, 'subscriber_carrier': None, 'cellular_technology': None, 'eas_status': None, 'eas_reason': None, 'eas_activated': True, 'eas_activation_id': '3E3F511C7A81931F2528D26D4C350DE7', 'last_eas_sync_timestamp': '1/1/2001 0:00:00', 'management_agent': 'Intune', 'ingestion_date': datetime.date(2025, 11, 19), 'ingestion_timestamp': datetime.datetime(2025, 11, 19, 10, 45, 46, 75829, tzinfo=datetime.timezone.utc), 'raw_input_filename': 'gs://ipd-dev-raw/astreya/intune/assets/date=20251119/intune_assets1.csv', 'curated_input_filename': 'gs://ipd-dev-curated/astreya/intune/assets/ingestion_date=2025-11-19/part-00000-75670e76-d034-409c-9bf7-57b92ca90d86.c000.snappy.parquet', 'source_record_hash': '7d8ddcd240d02587a16cae7c544efb38204ab9fd667b2ed33e238dfe9201bfc7'}]</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 2 — Calling tool: bq_unified_query_checker</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "query": "SELECT encryption_enabled, jailbreak_detected, COUNT(asset_id) AS device_count FROM intune_assets GROUP BY encryption_enabled, jailbreak_detected ORDER BY device_count DESC"
+}</pre>
+                            </details>
+
+                            <div id="tool-output-4423e1dd597c41cbb8e26e1d15e6fafa">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>{"final_status": "PASS", "message": "Query validated and safe to execute", "corrected_sql": "SELECT encryption_enabled, jailbreak_detected, COUNT(asset_id) AS device_count FROM intune_assets GROUP BY encryption_enabled, jailbreak_detected ORDER BY device_count DESC", "layers": {"llm_checker": {"status": "PASS", "detail": "LLM returned candidate SQL", "output": "SELECT encryption_enabled, jailbreak_detected, COUNT(asset_id) AS device_count FROM intune_assets GROUP BY encryption_enabled, jailbreak_detected ORDER BY device_count DESC"}, "static_checker": {"status": "PASS", "detail": "No modification detected", "output": "SELECT encryption_enabled, jailbreak_detected, COUNT(asset_id) AS device_count FROM intune_assets GROUP BY encryption_enabled, jailbreak_detected ORDER BY device_count DESC"}, "dry_run": {"status": "PASS", "detail": "Dry run succeeded", "output": "DRY_RUN_OK"}}}</pre>
+                                </details>
+                            </div>
+                        </div><div>
+                            <div><b>🔧 Step 3 — Calling tool: bigquery_query</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>{
+  "query": "SELECT encryption_enabled, jailbreak_detected, COUNT(asset_id) AS device_count FROM intune_assets GROUP BY encryption_enabled, jailbreak_detected ORDER BY device_count DESC"
+}</pre>
+                            </details>
+
+                            <div id="tool-output-b0b8775f30ee4ea48c1858862c05d0f9">
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>{
+  "status": "SUCCESS",
+  "executed_sql": "SELECT encryption_enabled, jailbreak_detected, COUNT(asset_id) AS device_count FROM intune_assets GROUP BY encryption_enabled, jailbreak_detected ORDER BY device_count DESC",
+  "rows": [
+    {
+      "encryption_enabled": true,
+      "jailbreak_detected": "Unknown",
+      "device_count": 850
+    },
+    {
+      "encryption_enabled": false,
+      "jailbreak_detected": "Unknown",
+      "device_count": 45
+    }
+  ],
+  "row_count": 2
+}</pre>
+                                </details>
+                            </div>
+                        </div></div><div class="msg bot-msg"><iframe style="width: 100%; height: 500px; border: none;" src="./Q8_files/saved_resource(1).html"></iframe></div></div></div>
+
+        <div class="chat-input-area">
+            <input type="text" id="userInput" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // 🔥 NEW SESSION ID USING TIMESTAMP + HIGH PRECISION TIMER
+        const sessionId = `${Date.now()}${performance.now().toFixed(3).replace('.', '')}`;
+        console.log("Generated Session ID:", sessionId);
+
+        // Maps step_id -> tool output div
+        const stepOutputTargetMap = {};
+
+        // Stores tool outputs that arrive early
+        const pendingToolOutputs = {};
+
+        async function sendMessage() {
+            const input = document.getElementById("userInput");
+            const chatBox = document.getElementById("chatBox");
+            const text = input.value.trim();
+            if (!text) return;
+
+            input.value = "";
+
+            // --- WRAPPER for this message ---
+            const requestWrapper = document.createElement("div");
+            requestWrapper.className = "request-block";
+            chatBox.appendChild(requestWrapper);
+
+            // USER MESSAGE
+            const userBubble = document.createElement("div");
+            userBubble.className = "msg user-msg";
+            userBubble.innerText = text;
+            requestWrapper.appendChild(userBubble);
+
+            // Steps container for this request
+            const stepsContainer = document.createElement("div");
+            stepsContainer.className = "msg bot-msg";
+            stepsContainer.innerHTML = "<b>Agent Steps:</b><br>";
+            requestWrapper.appendChild(stepsContainer);
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // --- Streaming fetch ---
+            const response = await fetch(
+                `http://localhost:8000/db_agent?user_input=${encodeURIComponent(text)}&session_id=${sessionId}`
+            );
+
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+
+            let finalAnswer = null;
+
+            while (true) {
+                const { value, done } = await reader.read();
+                if (done) break;
+
+                const chunk = decoder.decode(value, { stream: true });
+                if (!chunk) continue;
+
+                chunk.split("\n").forEach(line => {
+                    if (!line.trim()) return;
+
+                    let data;
+                    try { data = JSON.parse(line); }
+                    catch { return; }
+
+                    // -------------------------------------------------------
+                    // TOOL CALL
+                    // -------------------------------------------------------
+                    if (data.type === "tool_call") {
+                        const stepId = data.step_id;
+                        const uniqueDivId = `tool-output-${stepId}`;
+                        stepOutputTargetMap[stepId] = uniqueDivId;
+
+                        const box = document.createElement("div");
+                        box.innerHTML = `
+                            <div><b>🔧 Step ${data.sequence} — Calling tool: ${data.tool_name}</b></div>
+
+                            <details>
+                                <summary>📥 Tool Input</summary>
+                                <pre>${JSON.stringify(data.tool_input, null, 2)}</pre>
+                            </details>
+
+                            <div id="${uniqueDivId}"></div>
+                        `;
+
+                        stepsContainer.appendChild(box);
+
+                        // Apply pending tool output if it arrived early
+                        if (pendingToolOutputs[stepId]) {
+                            const outBox = document.getElementById(uniqueDivId);
+                            outBox.innerHTML = `
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>${pendingToolOutputs[stepId]}</pre>
+                                </details>
+                            `;
+                            delete pendingToolOutputs[stepId];
+                        }
+                    }
+
+                    // -------------------------------------------------------
+                    // TOOL OUTPUT
+                    // -------------------------------------------------------
+                    if (data.type === "tool_output") {
+                        const stepId = data.step_id;
+                        const divId = stepOutputTargetMap[stepId];
+                        const outputDiv = divId ? document.getElementById(divId) : null;
+
+                        if (outputDiv) {
+                            outputDiv.innerHTML = `
+                                <details>
+                                    <summary>📄 Tool Output</summary>
+                                    <pre>${data.content}</pre>
+                                </details>
+                            `;
+                        } else {
+                            // output arrived before its tool_call
+                            pendingToolOutputs[stepId] = data.content;
+                        }
+                    }
+
+                    // -------------------------------------------------------
+                    // FINAL AI MESSAGE
+                    // -------------------------------------------------------
+                    if (data.type === "ai_message") {
+                        finalAnswer = data.content;
+                    }
+
+                    // -------------------------------------------------------
+                    // ERROR
+                    // -------------------------------------------------------
+                    if (data.error) {
+                        const errDiv = document.createElement("div");
+                        errDiv.className = "msg bot-msg";
+                        errDiv.style.color = "red";
+                        errDiv.innerText = `Error: ${data.error}`;
+                        requestWrapper.appendChild(errDiv);
+                    }
+                });
+
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+
+            // -------------------------------------------------------
+            // RENDER FINAL ANSWER (inside THIS request block ONLY)
+            // -------------------------------------------------------
+            if (finalAnswer) {
+            const finalDiv = document.createElement("div");
+            finalDiv.className = "msg bot-msg";
+
+            // Create iframe
+            const iframe = document.createElement("iframe");
+            iframe.style.width = "100%";
+            iframe.style.height = "500px"; // adjust as needed
+            iframe.style.border = "none";
+
+            // Append iframe to finalDiv
+            finalDiv.appendChild(iframe);   
+            requestWrapper.appendChild(finalDiv);
+
+            // Write the agent HTML into the iframe
+            const doc = iframe.contentDocument || iframe.contentWindow.document;
+            doc.open();
+            doc.write(finalAnswer); // the full HTML/CSS/JS output
+            doc.close();
+        }
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+
+</body></html>
